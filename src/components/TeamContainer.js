@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Header } from 'semantic-ui-react'
 import TeamBoardsList from './TeamBoardsList'
 
-class TeamBoardsContainer extends React.Component {
+class TeamContainer extends React.Component {
   renderTeamBoardsList = () => {
     if(this.props.user){
       this.props.user.teams.map( team => (
@@ -35,4 +35,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(TeamBoardsContainer)
+export default connect(mapStateToProps)(TeamContainer)

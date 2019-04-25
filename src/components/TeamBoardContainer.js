@@ -2,16 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Nav from './Nav'
 import { setBoard } from '../redux/actions'
-import BoardHeader from './BoardHeader'
+import TeamBoardHeader from './TeamBoardHeader'
 import ProjectContainer from './ProjectContainer'
 import EmptyUserProject from './EmptyUserProject'
 
-class BoardContainer extends React.Component {
+class TeamBoardContainer extends React.Component {
 
   setBoardFromParams = () => {
     if(this.props.user){
-      let board = this.props.user.user_boards.find(board => board.name === this.props.match.params.board)
-
+      let team = this.props.user.teams.find(team => team.name === this.props.match.params.team)
+      let board = team.team_boards.find(board => board.name === this.props.match.params.board)
       if(board){
         this.props.setBoard(board)
       }
@@ -30,11 +30,11 @@ class BoardContainer extends React.Component {
     return(
       <div>
         <Nav/>
-        <BoardHeader board={this.props.board} />
+        <TeamBoardHeader board={this.props.board} team={this.props.user.teams.find(team => team.name === this.props.match.params.team)}/>
         <div id='board-container'>
         {this.props.board ?
-          this.props.board.projects.map( user_project => (
-            <ProjectContainer key={user_project.name + user_project.id} project={user_project} />
+          this.props.board.projects.map( project => (
+            <ProjectContainer key={project.name + project.id} project={project} />
           ))
           : null
         }
@@ -53,4 +53,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { setBoard })(BoardContainer)
+export default connect(mapStateToProps, { setBoard })(TeamBoardContainer)

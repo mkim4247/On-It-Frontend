@@ -104,6 +104,7 @@ export const deletingUserBoard = (user_board) => {
     })
     .then(res => res.json())
     .then(allUserBoards => {
+      console.log(allUserBoards)
       let filteredBoards = allUserBoards.filter( user_board => user_board.user_id === user.id )
       dispatch(deleteUserBoard(filteredBoards))
     })
@@ -232,4 +233,40 @@ export const deletingTeam = (team) => {
 
 const deleteTeam = teams => {
   return { type: "DELETE_TEAM", teams }
+}
+
+export const addingTeamBoard = (newTeamBoard) => {
+  return (dispatch, getStore) => {
+    fetch(RAILS_API + 'team_boards', {
+      method: "POST",
+      headers: HEADERS,
+      body: JSON.stringify(newTeamBoard)
+    })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(addTeamBoard(data.team_board))
+    })
+  }
+}
+
+const addTeamBoard = team_board => {
+  return { type: "ADD_TEAM_BOARD", team_board }
+}
+
+export const deletingTeamBoard = (team_board, team) => {
+  return (dispatch, getStore) => {
+
+    fetch(RAILS_API + `team_boards/${team_board.id}`, {
+      method: "DELETE"
+    })
+    .then(res => res.json())
+    .then(allTeamBoards => {
+      let filteredBoards = allTeamBoards.filter( board => board.team_id === team_board.team_id )
+      dispatch(deleteTeamBoard(filteredBoards, team))
+    })
+  }
+}
+
+const deleteTeamBoard = (team_boards, team) => {
+  return { type: "DELETE_TEAM_BOARD", team_boards, team }
 }

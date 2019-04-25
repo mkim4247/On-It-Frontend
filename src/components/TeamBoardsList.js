@@ -1,8 +1,9 @@
 import React from 'react'
-import BoardCard from './BoardCard'
+import TeamBoardCard from './TeamBoardCard'
 import { Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { deletingTeam } from '../redux/actions'
+import EmptyTeamBoard  from './EmptyTeamBoard'
 
 class TeamBoardsList extends React.Component {
 
@@ -21,10 +22,11 @@ class TeamBoardsList extends React.Component {
         </button>
         {this.props.team ?
           this.props.team.team_boards.map( board => (
-            <BoardCard board={board} key={board.name + board.id}/>
+            <TeamBoardCard team={this.props.team} board={board} key={board.name + board.id}/>
           ))
           : null
         }
+        <EmptyTeamBoard team={this.props.team} />
       </div>
     )
   }

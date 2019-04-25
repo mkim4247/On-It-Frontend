@@ -14,6 +14,9 @@ class TodoContainer extends React.Component {
 
        {this.props.todo.title}:
        {this.props.todo.description}
+       <div>
+         {this.props.todo.due_date}
+       </div>
        <button onClick={this.deleteTodo}>
         Delete Todo
        </button>

@@ -8,6 +8,7 @@ import Login from './components/Login'
 import Home from './components/Home'
 import Create from './components/Create'
 import BoardContainer from './components/BoardContainer'
+import TeamBoardContainer from './components/TeamBoardContainer'
 
 class App extends Component {
   componentDidMount(){
@@ -34,8 +35,11 @@ class App extends Component {
               this.props.user ?
                 <Redirect to='/home' /> : <Create />
             )} />
-          <Route exact path='/:username/:board' render={ ownProps => (
+          <Route exact path='/:username/user/:board' render={ ownProps => (
               <BoardContainer {...ownProps} />
+            )} />
+          <Route exact path='/:team/team/:board' render={ ownProps => (
+              <TeamBoardContainer {...ownProps} />
             )} />
         </Switch>
       </div>

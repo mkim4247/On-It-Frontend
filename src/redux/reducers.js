@@ -91,6 +91,30 @@ const userReducer = (state=null, action) => {
       case "DELETE_TEAM":
         userCopy = {...state, teams: action.teams}
         return userCopy
+
+      case "ADD_TEAM_BOARD":
+        teamCopy = state.teams.map( team => {
+          if(team.id === action.team_board.team_id){
+            return {...team, team_boards: [...team.team_boards, action.team_board]}
+          }
+          else {
+            return team
+          }
+        })
+        userCopy = {...state, teams: teamCopy}
+        return userCopy
+
+      case "DELETE_TEAM_BOARD":
+        teamCopy = state.teams.map( team => {
+          if(team.id === action.team.id){
+            return {...team, team_boards: action.team_boards}
+          }
+          else {
+            return team
+          }
+        })
+        userCopy = {...state, teams: teamCopy}
+        return userCopy
     default:
       return state
   }

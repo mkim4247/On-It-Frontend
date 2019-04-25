@@ -2,11 +2,11 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-class BoardCard extends React.Component {
+class TeamBoardCard extends React.Component {
 
   render(){
     return(
-      <NavLink to={`/${this.props.user.username}/user/${this.props.board.name}`}
+      <NavLink to={`/${this.props.team.name}/team/${this.props.board.name}`}
       >
       <div className='board-card'>
         <h4>
@@ -27,4 +27,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(BoardCard)
+export default connect(mapStateToProps)(TeamBoardCard)
