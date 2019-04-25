@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form } from 'semantic-ui-react'
-import Nav from './nav'
+import Nav from './Nav'
 
 class Edit extends React.Component {
   constructor(props){

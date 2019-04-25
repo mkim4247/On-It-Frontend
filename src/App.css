@@ -1,0 +1,57 @@
+#home {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-areas:
+    "side personal"
+    "side boards";
+  padding: 20px;
+}
+
+#home-container {
+  margin-left: 50px;
+  margin-right: 50px;
+
+}
+
+#sidebar {
+  grid-area: side;
+  max-width: 150px;
+  min-width: 150px;
+}
+
+#personal {
+  grid-area: personal;
+  overflow: hidden;
+}
+
+#team {
+  grid-area: boards;
+  margin-top: 5vh;
+  overflow: hidden;
+}
+
+.board-card {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  float: left;
+  max-width: 200px;
+  min-width: 200px;
+  max-height: 100px;
+  min-height: 100px;
+}
+
+.ui.menu {
+  margin: 0 !important;
+}
+
+#board-container {
+  display: flex;
+  padding: 20px;
+}
+
+.project-container {
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid black;
+}

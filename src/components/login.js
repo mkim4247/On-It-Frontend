@@ -1,6 +1,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+
+import {connect} from 'react-redux'
+import {setUser, settingUser} from '../redux/actions'
 
 class Login extends React.Component {
   constructor(props){
@@ -32,7 +35,7 @@ class Login extends React.Component {
         alert('Incorrect username and/or password')
       }else{
         console.log(data)
-        this.props.setCurrentUser(data.user_info)
+        this.props.setUser(data.user_info)
         localStorage.setItem('token', data.token)
       }
     })
@@ -56,8 +59,8 @@ class Login extends React.Component {
         <Form size='large' onSubmit={this.handleLoginSubmit}>
          <Segment stacked>
           <Form.Input fluid icon='user' iconPosition='left' label='Enter Username:' type='text' name='username' onChange={this.handleChange} placeholder="username"/>
-          <Form.Input fluid icon='lock' iconPosition='left' label='Password:' type='password' name='password' onChange={this.handleChange} placeholder="password"/>
-          <Button fluid icon='lock' iconPosition='left'> Login </Button>
+          <Form.Input fluid label='Password:' type='password' name='password' onChange={this.handleChange} placeholder="password"/>
+          <Button fluid > Login </Button>
           </Segment>
         </Form>
         <Message>
@@ -74,4 +77,4 @@ class Login extends React.Component {
 
 }
 
-export default Login
+export default connect(null, {setUser, settingUser})(Login)
