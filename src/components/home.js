@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Nav from './Nav'
 import Sidebar from './SideBar'
-import PersonalBoardsList from './PersonalBoardsList'
+import UserBoardsList from './UserBoardsList'
 import TeamBoardsContainer from './TeamBoardsContainer'
 
 class Home extends React.Component {
@@ -14,7 +14,7 @@ class Home extends React.Component {
         <div id='home'>
         <Sidebar />
         <div id='home-container'>
-          <PersonalBoardsList />
+          <UserBoardsList />
           <TeamBoardsContainer />
         </div>
         </div>

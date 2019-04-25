@@ -4,6 +4,7 @@ const userReducer = (state=null, action) => {
   let userCopy;
   let userBoardCopy;
   let userProjectCopy;
+  let teamCopy;
 
   switch(action.type){
     case "SET_USER":
@@ -83,6 +84,13 @@ const userReducer = (state=null, action) => {
         userCopy = {...state, user_boards: userBoardCopy}
         return userCopy
 
+      case "ADD_NEW_TEAM":
+        teamCopy = [...state.teams, action.team]
+        userCopy = {...state, teams: teamCopy}
+        return userCopy
+      case "DELETE_TEAM":
+        userCopy = {...state, teams: action.teams}
+        return userCopy
     default:
       return state
   }

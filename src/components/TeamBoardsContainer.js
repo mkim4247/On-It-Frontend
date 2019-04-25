@@ -16,14 +16,14 @@ class TeamBoardsContainer extends React.Component {
     return(
       <div id='team'>
       <Header size={'small'}>
-        Team Boards Container
+        Team Boards
       </Header>
-        {this.props.user ?
-          this.props.user.teams.map( team => (
-            <TeamBoardsList team={team} key={team.name + team.id}/>
-          ))
-          : null
-        }
+      {this.props.user ?
+        this.props.user.teams.map( team => {
+          return <TeamBoardsList key={team.name + team.id} team={team} />
+        })
+        : null
+      }
       </div>
     )
   }

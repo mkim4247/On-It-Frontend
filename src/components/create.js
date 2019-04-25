@@ -5,11 +5,10 @@ class Create extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      name: "",
+      first_name: "",
+      last_name: "",
       username: "",
       email: "",
-      bio: "",
-      avatar: "",
       password: ""
     }
   }
@@ -21,7 +20,7 @@ class Create extends React.Component {
   }
 
   handleSubmit = (event) => {
-    fetch(`http://localhost:4247/api/v1/users`, {
+    fetch(`http://localhost:4247/api/v1/new`, {
       method:"POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,11 +28,10 @@ class Create extends React.Component {
       },
       body: JSON.stringify({
         user: {
-          name: this.state.name,
+          first_name: this.state.first_name,
           username: this.state.username,
           email: this.state.email,
-          bio: this.state.bio,
-          avatar: this.state.avatar,
+          last_name: this.state.last_name,
           password: this.state.password
         }
       })
@@ -55,15 +53,15 @@ class Create extends React.Component {
         Create an Account
         <Form onSubmit={this.handleSubmit}>
           <Form.Group widths='equal'>
-            <Form.Input fluid label='Name' name='name' placeholder='Name' onChange={this.handleChange}/>
+            <Form.Input fluid label='First Name' name='first_name' placeholder='First Name' onChange={this.handleChange}/>
             <Form.Input fluid label='Username' name='username' placeholder='Username' onChange={this.handleChange}/>
           </Form.Group>
           <Form.Group widths='equal'>
             <Form.Input fluid label='Password' name='password' type='password' onChange={this.handleChange}/>
             <Form.Input fluid label='Email' name='email' placeholder='Email' onChange={this.handleChange}/>
           </Form.Group>
-          <Form.TextArea label='Bio' placeholder="What's your life motto?" name='bio' onChange={this.handleChange}/>
-          <Form.Input label="Avatar" name='avatar' onChange={this.handleChange}/>
+          <Form.TextArea label='last name' name='last_name' onChange={this.handleChange}/>
+
           <Form.Button>Submit</Form.Button>
         </Form>
       </div>

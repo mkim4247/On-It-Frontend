@@ -4,7 +4,7 @@ import { Header } from 'semantic-ui-react'
 import BoardCard from './BoardCard'
 import EmptyUserBoard from './EmptyUserBoard'
 
-class PersonalBoardsList extends React.Component {
+class UserBoardsList extends React.Component {
   render(){
     return(
       <div id='personal'>
@@ -14,7 +14,7 @@ class PersonalBoardsList extends React.Component {
         {this.props.user ?
           this.props.user.user_boards.map( user_board => {
             return(
-              <BoardCard board={user_board} key={'ub' + user_board.name + user_board.id}/>
+              <BoardCard board={user_board} key={user_board.name + user_board.id}/>
             )
           })
           : null
@@ -31,4 +31,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(PersonalBoardsList)
+export default connect(mapStateToProps)(UserBoardsList)
