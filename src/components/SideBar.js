@@ -40,7 +40,7 @@ class Sidebar extends React.Component {
           {this.props.user ?
             this.props.user.user_boards.map( user_board => (
               <div key={user_board.name + user_board.id}>
-              <NavLink to={`/${this.props.user.username}/user/${user_board.name}`}>
+              <NavLink to={`/user/${this.props.user.username}/${user_board.name}`}>
                 {user_board.name}
               </NavLink>
             </div>
@@ -54,7 +54,7 @@ class Sidebar extends React.Component {
           {this.props.user ?
             this.props.user.teams.map( team => (
               <div key={team.name + team.id}>
-              <NavLink to={`/${team.name}`}>
+              <NavLink to={`/team/${team.name}`}>
                 {team.name}
               </NavLink>
             </div>

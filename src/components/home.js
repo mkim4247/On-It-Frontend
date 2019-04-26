@@ -4,6 +4,7 @@ import Nav from './Nav'
 import Sidebar from './SideBar'
 import BoardsList from './BoardsList'
 import TeamContainer from './TeamContainer'
+import Invites from './Invites'
 
 class Home extends React.Component {
 
@@ -17,6 +18,7 @@ class Home extends React.Component {
             <BoardsList owner={{...this.props.user, type: "user"}}/>
             <TeamContainer />
           </div>
+          <Invites/>
         </div>
       </div>
     )

@@ -1,9 +1,9 @@
 #home {
   display: grid;
-  grid-template-columns: 25% 75%;
+  grid-template-columns: 20% 60% 20%;
   grid-template-areas:
-    "side personal"
-    "side boards";
+    "side personal invites"
+    "side boards invites";
 }
 
 #home-board-container {
@@ -58,4 +58,9 @@
 
 #team-board {
   clear: both;
+}
+
+#invite-container {
+  grid-area: invites;
+  border: 2px solid black;
 }
