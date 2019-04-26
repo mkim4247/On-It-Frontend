@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Nav from './Nav'
-import { setBoard } from '../redux/actions'
+import { setBoardForShowPage } from '../redux/actions'
 import TeamBoardHeader from './TeamBoardHeader'
 import ProjectContainer from './ProjectContainer'
 import EmptyUserProject from './EmptyUserProject'
@@ -13,7 +13,7 @@ class TeamBoardContainer extends React.Component {
       let team = this.props.user.teams.find(team => team.name === this.props.match.params.team)
       let board = team.team_boards.find(board => board.name === this.props.match.params.board)
       if(board){
-        this.props.setBoard(board)
+        this.props.setBoardForShowPage(board)
       }
     }
   }
@@ -53,4 +53,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { setBoard })(TeamBoardContainer)
+export default connect(mapStateToProps, { setBoardForShowPage })(TeamBoardContainer)

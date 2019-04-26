@@ -1,17 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Header } from 'semantic-ui-react'
-import TeamBoardsList from './TeamBoardsList'
+import BoardsList from './BoardsList'
 
 class TeamContainer extends React.Component {
-  renderTeamBoardsList = () => {
-    if(this.props.user){
-      this.props.user.teams.map( team => (
-        <TeamBoardsList team={team} key={team.name + team.id}/>
-      ))
-    }
-  }
-
   render(){
     return(
       <div id='team'>
@@ -20,7 +12,7 @@ class TeamContainer extends React.Component {
       </Header>
       {this.props.user ?
         this.props.user.teams.map( team => {
-          return <TeamBoardsList key={team.name + team.id} team={team} />
+          return <BoardsList key={team.name + team.id} owner={{...team, type: "team"}} />
         })
         : null
       }

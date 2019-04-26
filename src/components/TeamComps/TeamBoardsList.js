@@ -2,14 +2,9 @@ import React from 'react'
 import TeamBoardCard from './TeamBoardCard'
 import { Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { deletingTeam } from '../redux/actions'
 import EmptyTeamBoard  from './EmptyTeamBoard'
 
 class TeamBoardsList extends React.Component {
-
-  handleDeleteTeam = event => {
-    this.props.deletingTeam(this.props.team)
-  }
 
   render(){
     return(
@@ -32,4 +27,4 @@ class TeamBoardsList extends React.Component {
   }
 }
 
-export default connect(null, { deletingTeam })(TeamBoardsList)
+export default connect(null, )(TeamBoardsList)

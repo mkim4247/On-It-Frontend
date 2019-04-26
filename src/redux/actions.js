@@ -70,7 +70,9 @@ export const checkingToken = token => {
   }
 }
 
-export const setBoard = board => {
+////////////////////////////////////////
+
+export const setBoardForShowPage = board => {
   return { type: "SET_BOARD", board }
 }
 

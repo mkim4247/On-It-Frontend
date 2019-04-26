@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Nav from './Nav'
 import Sidebar from './SideBar'
-import UserBoardsList from './UserBoardsList'
+import BoardsList from './BoardsList'
 import TeamContainer from './TeamContainer'
 
 class Home extends React.Component {
@@ -13,8 +13,8 @@ class Home extends React.Component {
         <Nav />
         <div id='home'>
           <Sidebar />
-          <div id='home-container'>
-            <UserBoardsList />
+          <div id='home-board-container'>
+            <BoardsList owner={{...this.props.user, type: "user"}}/>
             <TeamContainer />
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Nav from './Nav'
-import { setBoard } from '../redux/actions'
+import { setBoardForShowPage } from '../redux/actions'
 import BoardHeader from './BoardHeader'
 import ProjectContainer from './ProjectContainer'
 import EmptyUserProject from './EmptyUserProject'
@@ -13,7 +13,7 @@ class BoardContainer extends React.Component {
       let board = this.props.user.user_boards.find(board => board.name === this.props.match.params.board)
 
       if(board){
-        this.props.setBoard(board)
+        this.props.setBoardForShowPage(board)
       }
     }
   }
@@ -53,4 +53,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { setBoard })(BoardContainer)
+export default connect(mapStateToProps, { setBoardForShowPage })(BoardContainer)

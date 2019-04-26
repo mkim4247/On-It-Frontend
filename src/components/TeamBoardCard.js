@@ -13,7 +13,7 @@ class TeamBoardCard extends React.Component {
           {this.props.board.name}
         </h4>
         <div>
-        {this.props.board.description}
+          {this.props.board.description}
         </div>
       </div>
       </NavLink>
