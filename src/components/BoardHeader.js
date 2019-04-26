@@ -1,21 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingUserBoard, deletingTeamBoard } from '../redux/actions'
+import { deletingBoard } from '../redux/actions'
 import { Redirect } from 'react-router-dom'
 
 class BoardHeader extends React.Component {
   state = {
     redirect: false
   }
+
   deleteBoard = event => {
     let confirm = window.confirm("Are you sure?")
     if(confirm){
-      if(this.props.path === 'user'){
-        this.props.deletingUserBoard(this.props.board)
-      }
-      else {
-        this.props.deletingTeamBoard(this.props.board, this.props.team)
-      }
+      this.props.deletingBoard(this.props.board, this.props.path)
       this.setState({ redirect: true })
     }
   }
@@ -37,4 +33,4 @@ class BoardHeader extends React.Component {
   }
 }
 
-export default connect(null, { deletingUserBoard, deletingTeamBoard })(BoardHeader)
+export default connect(null, { deletingBoard })(BoardHeader)

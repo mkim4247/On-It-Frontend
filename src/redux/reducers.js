@@ -110,7 +110,7 @@ const userReducer = (state=null, action) => {
 
       case "DELETE_TEAM_BOARD":
         teamCopy = state.teams.map( team => {
-          if(team.id === action.team.id){
+          if(team.id === action.teamID){
             return {...team, team_boards: action.team_boards}
           }
           else {

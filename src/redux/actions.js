@@ -111,42 +111,34 @@ const addTeamBoard = team_board => {
 }
 
 
-export const deletingUserBoard = (user_board) => {
+export const deletingBoard = (board, path) => {
   return (dispatch, getStore) => {
     let user = getStore().user
 
-    fetch(RAILS_API + `user_boards/${user_board.id}`, {
+    fetch(`${RAILS_API}${path}_boards/${board.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())
-    .then(allUserBoards => {
-      console.log(allUserBoards)
-      let filteredBoards = allUserBoards.filter( user_board => user_board.user_id === user.id )
-      dispatch(deleteUserBoard(filteredBoards))
+    .then(allBoards => {
+      if(path === "user"){
+        let filteredBoards = allBoards.filter( user_board => user_board.user_id === user.id )
+        dispatch(deleteUserBoard(filteredBoards))
+      }
+      else {
+        let filteredBoards = allBoards.filter( team_board => team_board.team_id === board.team_id )
+        dispatch(deleteTeamBoard(filteredBoards, board.team_id))
+      }
     })
   }
 }
 
-export const deletingTeamBoard = (team_board, team) => {
-  return (dispatch, getStore) => {
-
-    fetch(RAILS_API + `team_boards/${team_board.id}`, {
-      method: "DELETE"
-    })
-    .then(res => res.json())
-    .then(allTeamBoards => {
-      let filteredBoards = allTeamBoards.filter( board => board.team_id === team_board.team_id )
-      dispatch(deleteTeamBoard(filteredBoards, team))
-    })
-  }
-}
 
 const deleteUserBoard = (user_boards) => {
   return { type: "DELETE_USER_BOARD", user_boards }
 }
 
-const deleteTeamBoard = (team_boards, team) => {
-  return { type: "DELETE_TEAM_BOARD", team_boards, team }
+const deleteTeamBoard = (team_boards, teamID) => {
+  return { type: "DELETE_TEAM_BOARD", team_boards, teamID }
 }
 
 
@@ -240,7 +232,6 @@ export const addingNewTodo = (newTodo, project, path) => {
         dispatch(addUserTodo(data.user_todo, project))
       }
       else {
-        console.log(data, newTodo)
         dispatch(addTeamTodo(data.team_todo, project))
       }
     })
