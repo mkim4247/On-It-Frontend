@@ -256,22 +256,31 @@ const addTeamTodo = (team_todo, project) => {
 }
 
 
-export const deletingUserTodo = (user_todo, project) => {
+export const deletingTodo = (todo, project) => {
   return (dispatch, getStore) => {
-    fetch(RAILS_API + `user_todos/${user_todo.id}`, {
+    fetch(`${RAILS_API}${project.type}_todos/${todo.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())
-    .then(allUserTodos => {
-        let filteredTodos = allUserTodos.filter( user_todo => user_todo.user_project_id === project.id )
-        console.log(filteredTodos)
+    .then(allTodos => {
+      if(project.type === "user"){
+        let filteredTodos = allTodos.filter( todo => todo.user_project_id === project.id )
         dispatch(deleteUserTodo(filteredTodos, project))
+      }
+      else {
+        let filteredTodos = allTodos.filter( todo => todo.team_project_id === project.id )
+        dispatch(deleteTeamTodo(filteredTodos, project))
+      }
+
     })
   }
 }
 
 const deleteUserTodo = (user_todos, project) => {
   return { type: "DELETE_USER_TODO", user_todos, project }
+}
+const deleteTeamTodo = (team_todos, project) => {
+  return { type: "DELETE_TEAM_TODO", team_todos, project }
 }
 
 

@@ -49,7 +49,14 @@ class BoardContainer extends React.Component {
         <div id='board-container'>
         {this.props.board ?
           this.props.board.projects.map( project => (
-            <ProjectContainer key={project.name + project.id} project={project} path={this.props.path}/>
+            <ProjectContainer key={project.name + project.id}
+              project={
+                this.props.path === "user" ?
+                {...project, type: "user"}
+                :
+                {...project, type: "team"}
+              }
+              path={this.props.path}/>
           ))
           : null
         }

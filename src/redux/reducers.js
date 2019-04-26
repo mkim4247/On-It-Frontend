@@ -6,6 +6,7 @@ const userReducer = (state=null, action) => {
   let userProjectCopy;
   let teamCopy;
   let teamBoardCopy;
+  let teamProjectCopy;
 
   switch(action.type){
     case "SET_USER":
@@ -159,7 +160,50 @@ const userReducer = (state=null, action) => {
         userCopy = {...state, teams: teamCopy}
         return userCopy
       case "ADD_TEAM_TODO":
-        teamCopy = 'hi'
+        teamCopy = state.teams.map( team => {
+          teamBoardCopy = team.team_boards.map( board => {
+            if(board.id === action.project.team_board_id){
+              teamProjectCopy = board.projects.map( project => {
+                if(project.id === action.project.id){
+                  return {...project, todos: [...project.todos, action.team_todo]}
+                }
+                else {
+                  return project
+                }
+              })
+              return {...board, projects: teamProjectCopy}
+            }
+            else {
+              return board
+            }
+          })
+          return {...team, team_boards: teamBoardCopy}
+        })
+        userCopy = {...state, teams: teamCopy}
+        return userCopy
+    case "DELETE_TEAM_TODO":
+    teamCopy = state.teams.map( team => {
+      teamBoardCopy = team.team_boards.map( board => {
+        if(board.id === action.project.team_board_id){
+          teamProjectCopy = board.projects.map( project => {
+            if(project.id === action.project.id){
+              return {...project, todos: action.team_todos}
+            }
+            else {
+              return project
+            }
+          })
+          return {...board, projects: teamProjectCopy}
+        }
+        else {
+          return board
+        }
+      })
+      return {...team, team_boards: teamBoardCopy}
+    })
+    userCopy = {...state, teams: teamCopy}
+    return userCopy
+
 
     default:
       return state

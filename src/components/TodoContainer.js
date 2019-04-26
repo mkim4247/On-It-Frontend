@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingUserTodo } from '../redux/actions'
+import { deletingTodo } from '../redux/actions'
 
 class TodoContainer extends React.Component {
 
   deleteTodo = event => {
-    this.props.deletingUserTodo(this.props.todo, this.props.project)
+    this.props.deletingTodo(this.props.todo, this.props.project)
   }
 
   render(){
@@ -25,4 +25,4 @@ class TodoContainer extends React.Component {
   }
 }
 
-export default connect(null, { deletingUserTodo })(TodoContainer)
+export default connect(null, { deletingTodo })(TodoContainer)
