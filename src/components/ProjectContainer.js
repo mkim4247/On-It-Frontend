@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingUserProject, addingUserTodo } from '../redux/actions'
+import { deletingProject, addingNewTodo } from '../redux/actions'
 import TodoContainer from './TodoContainer'
 
 class ProjectContainer extends React.Component {
@@ -11,7 +11,7 @@ class ProjectContainer extends React.Component {
   }
 
   deleteProject = event => {
-    this.props.deletingUserProject(this.props.project)
+    this.props.deletingProject(this.props.project, this.props.path)
   }
 
   handleChange = event => {
@@ -23,8 +23,7 @@ class ProjectContainer extends React.Component {
   submitUserTodo = event => {
     event.preventDefault()
     event.target.reset()
-    let todo = {...this.state, user_project_id: this.props.project.id}
-    this.props.addingUserTodo(todo, this.props.project)
+    this.props.addingNewTodo(this.state, this.props.project, this.props.path)
   }
 
   render(){
@@ -53,4 +52,4 @@ class ProjectContainer extends React.Component {
 
 }
 
-export default connect(null, { deletingUserProject, addingUserTodo })(ProjectContainer)
+export default connect(null, { deletingProject, addingNewTodo })(ProjectContainer)

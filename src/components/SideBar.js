@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Header, Segment } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 import { addingNewTeam } from '../redux/actions'
 
 class Sidebar extends React.Component {

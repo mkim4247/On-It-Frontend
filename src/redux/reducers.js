@@ -5,6 +5,7 @@ const userReducer = (state=null, action) => {
   let userBoardCopy;
   let userProjectCopy;
   let teamCopy;
+  let teamBoardCopy;
 
   switch(action.type){
     case "SET_USER":
@@ -84,6 +85,8 @@ const userReducer = (state=null, action) => {
         userCopy = {...state, user_boards: userBoardCopy}
         return userCopy
 
+
+
       case "ADD_NEW_TEAM":
         teamCopy = [...state.teams, action.team]
         userCopy = {...state, teams: teamCopy}
@@ -115,6 +118,49 @@ const userReducer = (state=null, action) => {
         })
         userCopy = {...state, teams: teamCopy}
         return userCopy
+
+      case "ADD_TEAM_PROJECT":
+        teamCopy = state.teams.map( team => {
+          if(team.id === action.board.team_id){
+            teamBoardCopy = team.team_boards.map( team_board => {
+              if( team_board.id === action.board.id ){
+                return {...action.board, projects: [...action.board.projects, action.team_project]}
+              }
+              else {
+                return team_board
+              }
+            })
+            return {...team, team_boards: teamBoardCopy}
+          }
+          else {
+            return team
+          }
+        })
+        userCopy = {...state, teams: teamCopy}
+        return userCopy
+
+      case "DELETE_TEAM_PROJECT":
+        teamCopy = state.teams.map( team => {
+          if(team.id === action.team_board.team_id){
+            teamBoardCopy = team.team_boards.map( team_board => {
+              if( team_board.id === action.team_board.id ){
+                return {...team_board, projects: action.team_projects}
+              }
+              else {
+                return team_board
+              }
+            })
+            return {...team, team_boards: teamBoardCopy}
+          }
+          else {
+            return team
+          }
+        })
+        userCopy = {...state, teams: teamCopy}
+        return userCopy
+      case "ADD_TEAM_TODO":
+        teamCopy = 'hi'
+
     default:
       return state
   }

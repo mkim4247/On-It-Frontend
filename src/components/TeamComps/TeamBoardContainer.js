@@ -30,7 +30,12 @@ class TeamBoardContainer extends React.Component {
     return(
       <div>
         <Nav/>
-        <TeamBoardHeader board={this.props.board} team={this.props.user.teams.find(team => team.name === this.props.match.params.team)}/>
+        <TeamBoardHeader board={this.props.board}
+          team={
+            this.props.user ?
+            this.props.user.teams.find(team => team.name === this.props.match.params.team)
+            : null
+          }/>
         <div id='board-container'>
         {this.props.board ?
           this.props.board.projects.map( project => (

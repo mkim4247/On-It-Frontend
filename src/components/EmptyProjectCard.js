@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addingUserBoard } from '../redux/actions'
+import { addingNewProject } from '../redux/actions'
 
-class EmptyUserBoard extends React.Component {
+class EmptyProjectCard extends React.Component {
   state = {
     name: "",
     description: ""
@@ -17,22 +17,23 @@ class EmptyUserBoard extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     event.target.reset()
-    this.props.addingUserBoard(this.state)
+    this.props.addingNewProject(this.state, this.props.board)
   }
 
   render(){
     return(
-      <div className='board-card'>
-        Add a Board
+      <div className='project-container'>
+        add project
         <form onSubmit={this.handleSubmit}>
           <input type='text' name='name' placeholder='Name' onChange={this.handleChange} required/>
+          <br/>
           <input type='text' name='description' placeholder='Description' onChange={this.handleChange}/>
+          <br/>
           <input type='submit'/>
         </form>
       </div>
     )
   }
-
 }
 
-export default connect(null, { addingUserBoard })(EmptyUserBoard)
+export default connect(null, {addingNewProject})(EmptyProjectCard)
