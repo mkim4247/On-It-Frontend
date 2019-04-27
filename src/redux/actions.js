@@ -320,7 +320,7 @@ const deleteTeam = teams => {
 
 /////////////////////////
 
-export const invitingToTeam = newInvite => {
+export const invitingToTeam = (newInvite, team) => {
   return (dispatch, getStore) => {
     let user = getStore().user
 
@@ -329,22 +329,28 @@ export const invitingToTeam = newInvite => {
     .then(users => {
       let receiver = users.find( user => user.email === newInvite.email)
 
-      if(receiver){
-        newInvite.sender_id = user.id
-        newInvite.receiver_id = receiver.id
-
-        fetch(`${RAILS_API}invites`, {
-          method: "POST",
-          headers: HEADERS,
-          body: JSON.stringify(newInvite)
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-        })
+      if(team.users.find(user => user.email === receiver.email)){
+        alert("Already a member")
       }
       else {
-        alert("That user does not exist")
+        if(receiver){
+          newInvite.sender_id = user.id
+          newInvite.receiver_id = receiver.id
+          newInvite.team_id = team.id
+
+          fetch(`${RAILS_API}invites`, {
+            method: "POST",
+            headers: HEADERS,
+            body: JSON.stringify(newInvite)
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+          })
+        }
+        else {
+          alert("That user does not exist")
+        }
       }
     })
   }

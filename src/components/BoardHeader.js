@@ -27,8 +27,8 @@ class BoardHeader extends React.Component {
     event.preventDefault()
     event.target.reset()
 
-    let invite = {team_id: this.props.team.id, email: this.state.email, receiver_id: 2 }
-    this.props.invitingToTeam(invite)
+    let invite = {email: this.state.email}
+    this.props.invitingToTeam(invite, this.props.team)
   }
 
 

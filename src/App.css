@@ -15,7 +15,6 @@
 
 #sidebar {
   grid-area: side;
-  width: 250px;
   padding-top: 20px;
 }
 
