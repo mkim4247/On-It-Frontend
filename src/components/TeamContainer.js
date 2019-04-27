@@ -12,7 +12,7 @@ class TeamContainer extends React.Component {
       </Header>
       {this.props.user ?
         this.props.user.teams.map( team => {
-          return <BoardsList key={team.name + team.id} owner={{...team, type: "team"}} />
+          return <BoardsList key={team.name + team.id + 'tc'} owner={{...team, type: "team"}} />
         })
         : null
       }

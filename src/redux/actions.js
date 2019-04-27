@@ -316,3 +316,66 @@ export const deletingTeam = (team) => {
 const deleteTeam = teams => {
   return { type: "DELETE_TEAM", teams }
 }
+
+
+/////////////////////////
+
+export const invitingToTeam = newInvite => {
+  return (dispatch, getStore) => {
+    let user = getStore().user
+
+    fetch(`${RAILS_API}users`)
+    .then(res => res.json())
+    .then(users => {
+      let receiver = users.find( user => user.email === newInvite.email)
+
+      if(receiver){
+        newInvite.sender_id = user.id
+        newInvite.receiver_id = receiver.id
+
+        fetch(`${RAILS_API}invites`, {
+          method: "POST",
+          headers: HEADERS,
+          body: JSON.stringify(newInvite)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+        })
+      }
+      else {
+        alert("That user does not exist")
+      }
+    })
+  }
+}
+
+export const acceptingTeamInvite = invite => {
+  return (dispatch, getStore) => {
+    let user = getStore().user
+    let newUserTeam = {user_id: user.id, team_id: invite.team.id}
+
+    fetch(`${RAILS_API}user_teams`, {
+      method: "POST",
+      headers: HEADERS,
+      body: JSON.stringify(newUserTeam)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch(deletingTeamInvite(invite))
+    })
+  }
+}
+
+export const deletingTeamInvite = invite => {
+  return (dispatch, getStore) => {
+    fetch(`${RAILS_API}invites/${invite.id}`, {
+      method: "DELETE"
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+  }
+}
