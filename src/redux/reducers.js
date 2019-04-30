@@ -13,14 +13,14 @@ const userReducer = (state=null, action) => {
       return action.user
 
     case "ADD_USER_BOARD":
-      userBoardCopy = [...state.user_boards, action.user_board]
-      userCopy = {...state, user_boards: userBoardCopy}
+      userBoardCopy = [...state.boards, action.user_board]
+      userCopy = {...state, boards: userBoardCopy}
       return userCopy
     case "DELETE_USER_BOARD":
-      userCopy = {...state, user_boards: action.user_boards}
+      userCopy = {...state, boards: action.user_boards}
       return userCopy
     case "ADD_USER_PROJECT":
-      userBoardCopy = state.user_boards.map( board => {
+      userBoardCopy = state.boards.map( board => {
         if(board.id === action.board.id){
           return {...board, projects: [...board.projects, action.user_project]}
         }
@@ -29,11 +29,11 @@ const userReducer = (state=null, action) => {
         }
       })
 
-      userCopy = {...state, user_boards: userBoardCopy}
+      userCopy = {...state, boards: userBoardCopy}
       return userCopy
 
     case "DELETE_USER_PROJECT":
-      userBoardCopy = state.user_boards.map( board => {
+      userBoardCopy = state.boards.map( board => {
         if(board.id === action.board.id){
           return {...board, projects: action.user_projects}
         }
@@ -41,11 +41,11 @@ const userReducer = (state=null, action) => {
           return board
         }
       })
-      userCopy = {...state, user_boards: userBoardCopy}
+      userCopy = {...state, boards: userBoardCopy}
 
       return userCopy
     case "ADD_USER_TODO":
-      userBoardCopy = state.user_boards.map( board => {
+      userBoardCopy = state.boards.map( board => {
         if(board.id === action.project.user_board_id){
           userProjectCopy = board.projects.map( project => {
             if(project.id === action.project.id){
@@ -62,11 +62,11 @@ const userReducer = (state=null, action) => {
         }
       })
 
-      userCopy = {...state, user_boards: userBoardCopy}
+      userCopy = {...state, boards: userBoardCopy}
       return userCopy
 
       case "DELETE_USER_TODO":
-        userBoardCopy = state.user_boards.map( board => {
+        userBoardCopy = state.boards.map( board => {
           if(board.id === action.project.user_board_id){
             userProjectCopy = board.projects.map( project => {
               if(project.id === action.project.id){
@@ -83,7 +83,7 @@ const userReducer = (state=null, action) => {
           }
         })
 
-        userCopy = {...state, user_boards: userBoardCopy}
+        userCopy = {...state, boards: userBoardCopy}
         return userCopy
 
 
@@ -99,7 +99,7 @@ const userReducer = (state=null, action) => {
       case "ADD_TEAM_BOARD":
         teamCopy = state.teams.map( team => {
           if(team.id === action.team_board.team_id){
-            return {...team, team_boards: [...team.team_boards, action.team_board]}
+            return {...team, boards: [...team.boards, action.team_board]}
           }
           else {
             return team
@@ -111,7 +111,7 @@ const userReducer = (state=null, action) => {
       case "DELETE_TEAM_BOARD":
         teamCopy = state.teams.map( team => {
           if(team.id === action.teamID){
-            return {...team, team_boards: action.team_boards}
+            return {...team, boards: action.team_boards}
           }
           else {
             return team
@@ -123,7 +123,7 @@ const userReducer = (state=null, action) => {
       case "ADD_TEAM_PROJECT":
         teamCopy = state.teams.map( team => {
           if(team.id === action.board.team_id){
-            teamBoardCopy = team.team_boards.map( team_board => {
+            teamBoardCopy = team.boards.map( team_board => {
               if( team_board.id === action.board.id ){
                 return {...action.board, projects: [...action.board.projects, action.team_project]}
               }
@@ -131,7 +131,7 @@ const userReducer = (state=null, action) => {
                 return team_board
               }
             })
-            return {...team, team_boards: teamBoardCopy}
+            return {...team, boards: teamBoardCopy}
           }
           else {
             return team
@@ -143,7 +143,7 @@ const userReducer = (state=null, action) => {
       case "DELETE_TEAM_PROJECT":
         teamCopy = state.teams.map( team => {
           if(team.id === action.team_board.team_id){
-            teamBoardCopy = team.team_boards.map( team_board => {
+            teamBoardCopy = team.boards.map( team_board => {
               if( team_board.id === action.team_board.id ){
                 return {...team_board, projects: action.team_projects}
               }
@@ -151,7 +151,7 @@ const userReducer = (state=null, action) => {
                 return team_board
               }
             })
-            return {...team, team_boards: teamBoardCopy}
+            return {...team, boards: teamBoardCopy}
           }
           else {
             return team
@@ -161,7 +161,7 @@ const userReducer = (state=null, action) => {
         return userCopy
       case "ADD_TEAM_TODO":
         teamCopy = state.teams.map( team => {
-          teamBoardCopy = team.team_boards.map( board => {
+          teamBoardCopy = team.boards.map( board => {
             if(board.id === action.project.team_board_id){
               teamProjectCopy = board.projects.map( project => {
                 if(project.id === action.project.id){
@@ -177,13 +177,13 @@ const userReducer = (state=null, action) => {
               return board
             }
           })
-          return {...team, team_boards: teamBoardCopy}
+          return {...team, boards: teamBoardCopy}
         })
         userCopy = {...state, teams: teamCopy}
         return userCopy
     case "DELETE_TEAM_TODO":
     teamCopy = state.teams.map( team => {
-      teamBoardCopy = team.team_boards.map( board => {
+      teamBoardCopy = team.boards.map( board => {
         if(board.id === action.project.team_board_id){
           teamProjectCopy = board.projects.map( project => {
             if(project.id === action.project.id){
@@ -199,7 +199,7 @@ const userReducer = (state=null, action) => {
           return board
         }
       })
-      return {...team, team_boards: teamBoardCopy}
+      return {...team, boards: teamBoardCopy}
     })
     userCopy = {...state, teams: teamCopy}
     return userCopy

@@ -27,11 +27,11 @@ class BoardsList extends React.Component {
         }
 
         {this.props.owner.type === "user" ?
-            this.props.owner.user_boards.map( user_board => {
+            this.props.owner.boards.map( user_board => {
               return <BoardCard owner={this.props.owner} board={user_board} key={user_board.name}/>
             })
           :
-            this.props.owner.team_boards.map( team_board => {
+            this.props.owner.boards.map( team_board => {
               return <BoardCard owner={this.props.owner} board={team_board} key={team_board.name} />
             })
         }

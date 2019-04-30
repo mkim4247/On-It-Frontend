@@ -11,14 +11,14 @@ class BoardContainer extends React.Component {
   setBoardFromParams = () => {
     if(this.props.user){
       if(this.props.path === "user"){
-        let board = this.props.user.user_boards.find(board => board.name === this.props.match.params.board)
+        let board = this.props.user.boards.find(board => board.name === this.props.match.params.board)
         if(board){
           this.props.setBoardForShowPage(board)
         }
       }
       else {
         let team = this.props.user.teams.find(team => team.name === this.props.match.params.team)
-        let board = team.team_boards.find(board => board.name === this.props.match.params.board)
+        let board = team.boards.find(board => board.name === this.props.match.params.board)
         if(board){
           this.props.setBoardForShowPage(board)
         }

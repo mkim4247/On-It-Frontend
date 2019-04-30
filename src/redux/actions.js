@@ -164,10 +164,10 @@ export const addingNewProject = (newProject, board) => {
     .then(data => {
 
       if(board.type === "user"){
-        dispatch(addUserProject(data.user_project, board))
+        dispatch(addUserProject(data.project, board))
       }
       else {
-        dispatch(addTeamProject(data.team_project, board))
+        dispatch(addTeamProject(data.project, board))
       }
     })
   }

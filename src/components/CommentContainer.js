@@ -9,7 +9,7 @@ class CommentContainer extends React.Component {
       {this.props.project.comments.map( comment => (
         <div key={"comment" + comment.id}>
           {comment.content}
-          <button onClick={this.props.deletingComment(comment, this.props.project)}> Delete </button>
+          <button onClick={() => this.props.deletingComment(comment, this.props.project)}> Delete </button>
         </div>
       ))}
       </div>
