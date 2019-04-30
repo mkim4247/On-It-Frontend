@@ -385,3 +385,42 @@ export const deletingTeamInvite = invite => {
     })
   }
 }
+
+
+
+///////
+
+export const postingNewComment = (comment, project) => {
+  return (dispatch, getStore) => {
+    let user = getStore().user
+    comment.user_id = user.id
+
+    if(project.type === "user"){
+      comment.user_project_id = project.id
+    }
+    else {
+      comment.team_project_id = project.id
+    }
+    fetch(`${RAILS_API}${project.type}_comments`, {
+      method: "POST",
+      headers: HEADERS,
+      body: JSON.stringify(comment)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+  }
+}
+
+export const deletingComment = (comment, project) => {
+  return (dispatch, getStore) => {
+    fetch(`${RAILS_API}${project.type}_comments/${comment.id}`, {
+      method: "DELETE"
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+  }
+}

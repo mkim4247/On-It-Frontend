@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { deletingProject, addingNewTodo } from '../redux/actions'
 import TodoContainer from './TodoContainer'
+import CommentForm from './CommentForm'
+import CommentContainer from './CommentContainer'
 
 class ProjectContainer extends React.Component {
   state = {
@@ -46,6 +48,9 @@ class ProjectContainer extends React.Component {
           <input type='submit' />
         </form>
       </div>
+
+      <CommentForm project={this.props.project} />
+      <CommentContainer project={this.props.project} />
       </div>
     )
   }
