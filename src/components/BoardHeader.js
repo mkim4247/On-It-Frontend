@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingBoard, invitingToTeam, leavingTeam } from '../redux/actions'
+import { deletingBoard, leavingTeam } from '../redux/actions'
 import { Redirect } from 'react-router-dom'
 import { Header, Button } from 'semantic-ui-react'
+import TeammateContainer from './TeammateContainer'
 
 class BoardHeader extends React.Component {
   state = {
-    redirect: false,
-    email: ""
+    redirect: false
   }
 
   deleteBoard = event => {
@@ -18,25 +18,10 @@ class BoardHeader extends React.Component {
     }
   }
 
-  handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
-
   leaveTeam = event => {
     this.props.leavingTeam(this.props.team)
     this.setState({ redirect: true })
   }
-
-  submitInviteToTeam = event => {
-    event.preventDefault()
-    event.target.reset()
-
-    let invite = {email: this.state.email}
-    this.props.invitingToTeam(invite, this.props.team)
-  }
-
 
   render(){
     return(
@@ -45,31 +30,18 @@ class BoardHeader extends React.Component {
         :
       <div id='board-header'>
         {this.props.board ?
-          <Header size='medium'>
+          <span>
             {this.props.board.name}
-          </Header>
+          </span>
          : null }
-        <br/>
-        <Button onClick={this.deleteBoard} size='tiny'>
+        <Button onClick={this.deleteBoard} size='tiny' floated='right'>
           Delete Board
         </Button>
         {this.props.team ?
-          <div>
-            Users:
-            {this.props.team.users.map( user => {
-              return <div key={user.username}>{ user.username }</div>
-            })}
-            <br/>
-            Invite to team
-            <form onSubmit={this.submitInviteToTeam}>
-                <input type='text' name='email' placeholder='Enter email' required onChange={this.handleChange}/>
-                <input type='submit'/>
-            </form>
-          </div>
-
+          <TeammateContainer team={this.props.team}/>
           : null
         }
-        <Button onClick={this.leaveTeam} size='tiny'>
+        <Button onClick={this.leaveTeam} size='tiny' floated='right'>
           Leave team
         </Button>
       </div>
@@ -78,4 +50,4 @@ class BoardHeader extends React.Component {
   }
 }
 
-export default connect(null, { deletingBoard, invitingToTeam, leavingTeam })(BoardHeader)
+export default connect(null, { deletingBoard, leavingTeam })(BoardHeader)

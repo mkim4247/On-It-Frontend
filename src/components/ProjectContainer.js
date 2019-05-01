@@ -5,21 +5,49 @@ import TodoContainer from './TodoContainer'
 import TodoForm from './TodoForm'
 import CommentForm from './CommentForm'
 import CommentContainer from './CommentContainer'
+import { Card, Button, Dropdown } from 'semantic-ui-react'
 
 class ProjectContainer extends React.Component {
 
   deleteProject = event => {
-    this.props.deletingProject(this.props.project, this.props.path)
+    let confirm = window.confirm("Are you sure?")
+
+    if(confirm){
+      this.props.deletingProject(this.props.project, this.props.path)
+    }
   }
 
   render(){
     return(
       <div className='project-container'>
-      {this.props.project.name}
-      <div>
-        Description: {this.props.project.description}
-      </div>
-      <button onClick={this.deleteProject}> Delete Project </button>
+        <Card fluid>
+          <Card.Content>
+
+            <Card.Header>
+              <Dropdown text={this.props.project.name} >
+                <Dropdown.Menu>
+                  <Dropdown.Item>
+                    Edit
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={this.deleteProject}>
+                    Delete Project
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+
+            </Card.Header>
+
+
+              <Card.Description>
+                {this.props.project.description}
+              </Card.Description>
+
+                </Card.Content>
+
+              <Card.Content >
+
+
+
       <div>
         {this.props.project.todos.map( user_todo => (
           <TodoContainer todo={user_todo} project={this.props.project} key={user_todo.title + user_todo.id}/>
@@ -32,6 +60,10 @@ class ProjectContainer extends React.Component {
 
       <CommentForm project={this.props.project} />
       <CommentContainer project={this.props.project} />
+      </Card.Content>
+
+      </Card>
+
       </div>
     )
   }

@@ -38,6 +38,8 @@ class BoardContainer extends React.Component {
     return(
       <div>
         <Nav/>
+
+        <div id='board-container'>
           <BoardHeader board={this.props.board} team={
             this.props.user ?
               this.props.user.teams.find(team => team.name === this.props.match.params.team)
@@ -45,8 +47,8 @@ class BoardContainer extends React.Component {
             }
             path={this.props.path}
           />
+        <div id='board-projects-container'>
 
-        <div id='board-container'>
 
 
         {
@@ -70,6 +72,7 @@ class BoardContainer extends React.Component {
               {...this.props.board, type: "team"}
             }/>
         </div>
+      </div>
 
       </div>
     )

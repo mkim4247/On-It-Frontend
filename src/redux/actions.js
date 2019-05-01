@@ -162,12 +162,12 @@ export const addingNewProject = (newProject, board) => {
     })
     .then(res => res.json())
     .then(data => {
-
+      console.log(data)
       if(board.type === "user"){
-        dispatch(addUserProject(data.project, board))
+        dispatch(addUserProject(data.user_project, board))
       }
       else {
-        dispatch(addTeamProject(data.project, board))
+        dispatch(addTeamProject(data.team_project, board))
       }
     })
   }
@@ -437,25 +437,55 @@ export const postingNewComment = (comment, project) => {
       body: JSON.stringify(comment)
     })
     .then(res => res.json())
-    .then(data => {
-      console.log(data)
+    .then(newComment => {
+      if(project.type === "user"){
+        dispatch(addUserComment(newComment, project))
+      }
+      else {
+        dispatch(addTeamComment(newComment, project))
+      }
     })
   }
 }
+
+const addUserComment = (user_comment, project) => {
+  return { type: "ADD_USER_COMMENT", user_comment, project }
+}
+
+const addTeamComment = (team_comment, project) => {
+  return { type: "ADD_TEAM_COMMENT", team_comment, project }
+}
+
 
 export const deletingComment = (comment, project) => {
   return (dispatch, getStore) => {
     fetch(`${RAILS_API}${project.type}_comments/${comment.id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: HEADERS,
+      body: JSON.stringify(comment)
     })
     .then(res => res.json())
-    .then(data => {
-      console.log(data)
+    .then(selectedComments => {
+      if(project.type === "user"){
+        dispatch(deletedUserComment(selectedComments, project))
+      }
+      else {
+        dispatch(deletedTeamComment(selectedComments, project))
+      }
     })
   }
 }
 
-export const assigningUserTeamTodo = (todo) => {
+const deletedUserComment = (user_comments, project) => {
+  return { type: "DELETE_USER_COMMENT", user_comments, project }
+}
+
+const deletedTeamComment = (team_comments, project) => {
+  return { type: "DELETE_TEAM_COMMENT", team_comments, project }
+}
+
+
+export const assigningUserTeamTodo = (todo, project) => {
   return (dispatch, getStore) => {
     let user = getStore().user
 
@@ -470,8 +500,33 @@ export const assigningUserTeamTodo = (todo) => {
       body: JSON.stringify(newUserTeamTodo)
     })
     .then(res => res.json())
-    .then(data => {
-      console.log(data)
+    .then(newTodo => {
+      dispatch(addUserTeamTodo(newTodo, project))
+    })
+  }
+}
+
+const addUserTeamTodo = (todo, project) => {
+  return { type: "ADD_USER_TEAM_TODO", todo, project }
+}
+
+export const unassigningUserTeamTodo = (todo) => {
+  return (dispatch, getStore) => {
+    let user = getStore().user
+
+    let user_team_todo = {
+      user_id: user.id,
+      team_todo_id: todo.id
+    }
+
+    fetch(`${RAILS_API}user_team_todos`, {
+      method: "DELETE",
+      headers: HEADERS,
+      body: JSON.stringify(user_team_todo)
+    })
+    .then(res => res.json())
+    .then(user => {
+      dispatch(setUser(user))
     })
   }
 }

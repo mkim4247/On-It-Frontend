@@ -3,6 +3,9 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class BoardCard extends React.Component {
+  state={
+    hover: false
+  }
 
   render(){
     return(
@@ -13,7 +16,7 @@ class BoardCard extends React.Component {
           `/team/${this.props.owner.name}/${this.props.board.name}`
         }
       >
-      <div className='board-card'>
+      <div className='board-card' onMouseOver={()=>this.setState({ hover: true })} onMouseOut={() => this.setState({hover: false})}>
         <h4>
           {this.props.board.name}
         </h4>
