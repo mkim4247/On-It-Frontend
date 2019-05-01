@@ -368,25 +368,55 @@ export const acceptingTeamInvite = invite => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
+      dispatch(joinTeam(data.team))
       dispatch(deletingTeamInvite(invite))
     })
   }
 }
 
+const joinTeam = team => {
+  return { type: "JOINING_TEAM", team }
+}
+
 export const deletingTeamInvite = invite => {
   return (dispatch, getStore) => {
+    let user = getStore().user
+
     fetch(`${RAILS_API}invites/${invite.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())
-    .then(data => {
-      console.log(data)
+    .then(allInvites => {
+      let filteredInvites = allInvites.filter( invite => invite.receiver.find(receiver => receiver.username === user.username) )
+      dispatch(deleteTeamInvite(filteredInvites))
     })
   }
 }
 
+const deleteTeamInvite = invites => {
+  return { type: "DELETE_TEAM_INVITE", invites }
+}
 
+export const leavingTeam = team => {
+  return (dispatch, getStore) => {
+    let user = getStore().user
+
+    let user_team = {
+      team_id: team.id,
+      user_id: user.id
+    }
+
+    fetch(`${RAILS_API}user_teams`, {
+      method: "DELETE",
+      headers: HEADERS,
+      body: JSON.stringify(user_team)
+    })
+    .then(res => res.json())
+    .then(user => {
+      dispatch(setUser(user))
+    })
+  }
+}
 
 ///////
 
@@ -417,6 +447,27 @@ export const deletingComment = (comment, project) => {
   return (dispatch, getStore) => {
     fetch(`${RAILS_API}${project.type}_comments/${comment.id}`, {
       method: "DELETE"
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+  }
+}
+
+export const assigningUserTeamTodo = (todo) => {
+  return (dispatch, getStore) => {
+    let user = getStore().user
+
+    let newUserTeamTodo = {
+      user_id: user.id,
+      team_todo_id: todo.id
+    }
+
+    fetch(`${RAILS_API}user_team_todos`, {
+      method: "POST",
+      headers: HEADERS,
+      body: JSON.stringify(newUserTeamTodo)
     })
     .then(res => res.json())
     .then(data => {

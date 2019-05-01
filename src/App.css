@@ -15,7 +15,9 @@
 
 #sidebar {
   grid-area: side;
-  padding-top: 20px;
+  padding-top: 5vh;
+  padding-left: 5vw;
+  padding-right: 20px;
 }
 
 #personal {
@@ -34,14 +36,19 @@
   padding: 10px;
   margin: 10px;
   float: left;
-  max-width: 200px;
-  min-width: 200px;
+  max-width: 180px;
+  min-width: 180px;
   max-height: 100px;
   min-height: 100px;
 }
 
 .ui.menu {
   margin: 0 !important;
+}
+
+#board-header {
+  padding-top: 2vh;
+  padding-left: 2vw;
 }
 
 #board-container {

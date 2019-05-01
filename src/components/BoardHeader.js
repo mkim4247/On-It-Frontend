@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingBoard, invitingToTeam } from '../redux/actions'
+import { deletingBoard, invitingToTeam, leavingTeam } from '../redux/actions'
 import { Redirect } from 'react-router-dom'
+import { Header, Button } from 'semantic-ui-react'
 
 class BoardHeader extends React.Component {
   state = {
@@ -23,6 +24,11 @@ class BoardHeader extends React.Component {
     })
   }
 
+  leaveTeam = event => {
+    this.props.leavingTeam(this.props.team)
+    this.setState({ redirect: true })
+  }
+
   submitInviteToTeam = event => {
     event.preventDefault()
     event.target.reset()
@@ -37,11 +43,16 @@ class BoardHeader extends React.Component {
       this.state.redirect ?
         <Redirect to='/home' />
         :
-      <div>
+      <div id='board-header'>
         {this.props.board ?
-        this.props.board.name : null }
+          <Header size='medium'>
+            {this.props.board.name}
+          </Header>
+         : null }
         <br/>
-        <button onClick={this.deleteBoard}> Delete Board </button>
+        <Button onClick={this.deleteBoard} size='tiny'>
+          Delete Board
+        </Button>
         {this.props.team ?
           <div>
             Users:
@@ -58,10 +69,13 @@ class BoardHeader extends React.Component {
 
           : null
         }
+        <Button onClick={this.leaveTeam} size='tiny'>
+          Leave team
+        </Button>
       </div>
 
     )
   }
 }
 
-export default connect(null, { deletingBoard, invitingToTeam })(BoardHeader)
+export default connect(null, { deletingBoard, invitingToTeam, leavingTeam })(BoardHeader)

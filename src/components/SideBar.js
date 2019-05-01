@@ -1,19 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Header } from 'semantic-ui-react'
 import { addingNewTeam } from '../redux/actions'
+import { Menu, Modal, Form } from 'semantic-ui-react'
 
 class Sidebar extends React.Component {
   state = {
-    showForm: false,
+    showModal: false,
     name: "",
     description: ""
   }
 
-  showNewTeamForm = event => {
+  showModal = event => {
     this.setState({
-      showForm: !this.state.showForm
+      showModal: true
+    })
+  }
+
+  closeModal = event => {
+    this.setState({
+      showModal: false
     })
   }
 
@@ -27,60 +33,64 @@ class Sidebar extends React.Component {
     event.preventDefault()
     event.target.reset()
     this.props.addingNewTeam(this.state)
-    this.setState({ showForm: false })
+    this.setState({ showModal: false })
   }
 
   render(){
+    const { showModal } = this.state
+
     return(
       <div id='sidebar'>
-          <Header size={'small'}>
-            Personal
-          </Header>
+        <Menu vertical secondary fluid size='massive'>
 
-          {this.props.user ?
-            this.props.user.boards.map( user_board => (
-              <div key={user_board.id + user_board.name}>
-              <NavLink to={`/user/${this.props.user.username}/${user_board.name}`}>
-                {user_board.name}
-              </NavLink>
-            </div>
-            ))
-            : null
-          }
+          <Menu.Item header>
+            PERSONAL
+          </Menu.Item>
+            <Menu.Menu>
+            {this.props.user ?
+              this.props.user.boards.map( user_board => (
+                <Menu.Item key={user_board.id + user_board.name} href={`/user/${this.props.user.username}/${user_board.name}`} >
+                  {user_board.name}
 
-          <Header size={'small'}>
-          Teams
-          </Header>
-          {this.props.user ?
+              </Menu.Item>
+              ))
+              : null
+              }
+            </Menu.Menu>
+
+            <Menu.Item header>
+              TEAMS
+            </Menu.Item>
+            <Menu.Menu>
+            {this.props.user ?
             this.props.user.teams.map( team => (
-              <div key={team.name + team.id}>
-              <NavLink to={`/team/${team.name}`}>
+              <Menu.Item key={team.name + team.id} href={`/team/${team.name}`}>
                 {team.name}
-              </NavLink>
-            </div>
+              </Menu.Item>
             ))
           : null
           }
-            <div onClick={this.showNewTeamForm}>
-              Create a Team
-            </div>
+          <Menu.Item onClick={this.showModal}>
+              + Create a Team
+          </Menu.Item>
+
+          </Menu.Menu>
+          </Menu>
 
 
-            <div id='new-team-form' style={
-                this.state.showForm ?
-                  {display: 'block'}
-                  :
-                  {display: 'none'}
-
-              }>
-              <form onSubmit={this.handleSubmit}>
-              <input type='text' name='name' onChange={this.handleChange} placeholder='Name' required/>
-              <input type='text' name='description' onChange={this.handleChange} placeholder='Description'/>
-              <br/>
-              <input type='submit'/>
-              </form>
-
-            </div>
+            <Modal size='mini' onClose={this.closeModal} open={showModal}>
+              <Modal.Header>
+                create team
+              </Modal.Header>
+              <Modal.Content>
+                <Form onSubmit={this.handleSubmit}>
+                <Form.Input type='text' name='name' onChange={this.handleChange} placeholder='Name' required/>
+                <Form.Input type='text' name='description' onChange={this.handleChange} placeholder='Description'/>
+                <br/>
+                <Form.Input type='submit'/>
+                </Form>
+              </Modal.Content>
+            </Modal>
 
       </div>
     )

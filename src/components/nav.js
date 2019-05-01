@@ -63,7 +63,10 @@ class Nav extends React.Component {
           { display: "none" }
         }>
         Nav Menu
+
       </div>
+
+
     </div>
 
     )

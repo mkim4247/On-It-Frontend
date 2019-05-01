@@ -38,26 +38,29 @@ class BoardContainer extends React.Component {
     return(
       <div>
         <Nav/>
-        <BoardHeader board={this.props.board} team={
-          this.props.user ?
-            this.props.user.teams.find(team => team.name === this.props.match.params.team)
-            : null
-          }
-          path={this.props.path}
-        />
+          <BoardHeader board={this.props.board} team={
+            this.props.user ?
+              this.props.user.teams.find(team => team.name === this.props.match.params.team)
+              : null
+            }
+            path={this.props.path}
+          />
 
         <div id='board-container'>
-        {this.props.board ?
-          this.props.board.projects.map( project => (
-            <ProjectContainer key={project.name + project.id}
-              project={
-                this.props.path === "user" ?
-                {...project, type: "user"}
-                :
-                {...project, type: "team"}
-              }
-              path={this.props.path}/>
-          ))
+
+
+        {
+          this.props.board ?
+            this.props.board.projects.map( project => (
+              <ProjectContainer key={'pc-' + project.name + project.id}
+                project={
+                  this.props.path === "user" ?
+                    {...project, type: "user"}
+                    :
+                    {...project, type: "team"}
+                  }
+                path={this.props.path}/>
+            ))
           : null
         }
         <EmptyProjectCard board={
@@ -65,8 +68,8 @@ class BoardContainer extends React.Component {
               {...this.props.board, type: "user"}
               :
               {...this.props.board, type: "team"}
-          }/>
-      </div>
+            }/>
+        </div>
 
       </div>
     )

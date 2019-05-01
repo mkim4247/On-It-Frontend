@@ -1,11 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingTodo } from '../redux/actions'
+import { deletingTodo, assigningUserTeamTodo } from '../redux/actions'
 
 class TodoContainer extends React.Component {
 
   deleteTodo = event => {
     this.props.deletingTodo(this.props.todo, this.props.project)
+  }
+
+  assignTodo = event => {
+    this.props.assigningUserTeamTodo(this.props.todo)
   }
 
   render(){
@@ -17,6 +21,17 @@ class TodoContainer extends React.Component {
        <div>
          {this.props.todo.due_date}
        </div>
+       {this.props.todo.users ?
+         this.props.todo.users.map( user => (
+           <div key={user.username + 'todo'}>
+             {user.username}
+           </div>
+         ))
+         : null
+       }
+       <button onClick={this.assignTodo}>
+         Sign up todo
+       </button>
        <button onClick={this.deleteTodo}>
         Delete Todo
        </button>
@@ -25,4 +40,4 @@ class TodoContainer extends React.Component {
   }
 }
 
-export default connect(null, { deletingTodo })(TodoContainer)
+export default connect(null, { deletingTodo, assigningUserTeamTodo })(TodoContainer)

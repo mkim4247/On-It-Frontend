@@ -14,9 +14,9 @@ class BoardsList extends React.Component {
   render(){
     return(
       <div id='personal'>
-        <Header size={'small'}>
+        <Header size={'medium'}>
           {this.props.owner.type === 'user' ?
-            'Personal Boards' : this.props.owner.name
+            'PERSONAL BOARDS' : this.props.owner.name
           }
         </Header>
         {this.props.owner.type === "team" ?

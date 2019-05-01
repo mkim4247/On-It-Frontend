@@ -7,8 +7,8 @@ class TeamContainer extends React.Component {
   render(){
     return(
       <div id='team'>
-      <Header size={'small'}>
-        Team Boards
+      <Header size={'medium'}>
+        TEAM BOARDS
       </Header>
       {this.props.user ?
         this.props.user.teams.map( team => {

@@ -1,11 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { addingNewBoard } from '../redux/actions'
+import { Modal, Form } from 'semantic-ui-react'
 
 class EmptyBoardCard extends React.Component {
   state = {
     name: "",
-    description: ""
+    description: "",
+    redirect: false,
+    showModal: false
   }
 
   handleChange = event => {
@@ -18,18 +22,53 @@ class EmptyBoardCard extends React.Component {
     event.preventDefault()
     event.target.reset()
     this.props.addingNewBoard(this.state, this.props.owner)
+    this.setState({ redirect: true })
+  }
+
+  openModal = () => {
+    this.setState({ showModal: true })
+  }
+
+  closeModal = () => {
+    this.setState({ showModal: false })
   }
 
   render(){
+    const { showModal } = this.state
+
     return(
-      <div className='board-card'>
+      this.state.redirect ?
+        <Redirect to={
+          this.props.owner.type === "user" ?
+          `/${this.props.owner.type}/${this.props.owner.username}/${this.state.name}`
+          :
+          `/${this.props.owner.type}/${this.props.owner.name}/${this.state.name}`
+        } />
+
+      :
+      <div>
+
+      <div className='board-card' onClick={this.openModal}>
         Add a Board
-        <form onSubmit={this.handleSubmit}>
-          <input type='text' name='name' placeholder='Name' onChange={this.handleChange} required/>
-          <input type='text' name='description' placeholder='Description' onChange={this.handleChange}/>
-          <input type='submit'/>
-        </form>
+        </div>
+
+        <Modal onClose={this.closeModal}
+            open={showModal} size='mini'>
+          <Modal.Header>Add A Board</Modal.Header>
+
+
+          <Modal.Content>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Input type='text' name='name' placeholder='Name' onChange={this.handleChange} required/>
+            <Form.Input type='text' name='description' placeholder='Description' onChange={this.handleChange}/>
+            <Form.Input type='submit'/>
+          </Form>
+          </Modal.Content>
+        </Modal>
+
+
       </div>
+
     )
   }
 
