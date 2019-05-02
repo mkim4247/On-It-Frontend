@@ -323,6 +323,11 @@ const userReducer = (state=null, action) => {
       userCopy = {...state, teams: teamCopy}
       return userCopy
 
+
+
+
+
+
     case "JOINING_TEAM":
       userCopy = {...state, teams: [...state.teams, action.team]}
       return userCopy

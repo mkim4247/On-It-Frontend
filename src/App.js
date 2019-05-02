@@ -36,7 +36,10 @@ class App extends Component {
                 <Redirect to='/home' /> : <Create />
             )} />
           <Route exact path='/user/:username/:board' render={ ownProps => (
+              this.props.user ?
               <BoardContainer {...ownProps} path="user"/>
+              :
+              <Redirect to='/login'/>
             )} />
           <Route exact path='/team/:team/:board' render={ ownProps => (
               <BoardContainer {...ownProps} path="team"/>

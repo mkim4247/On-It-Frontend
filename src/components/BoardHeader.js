@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingBoard, leavingTeam } from '../redux/actions'
+import { deletingBoard, leavingTeam} from '../redux/actions'
 import { Redirect } from 'react-router-dom'
-import { Header, Button } from 'semantic-ui-react'
+import { Header, Card, Button, Modal, Menu, Popup, Icon, Form } from 'semantic-ui-react'
 import TeammateContainer from './TeammateContainer'
 
 class BoardHeader extends React.Component {
   state = {
-    redirect: false
+    redirect: false,
+    showModal: false
   }
 
   deleteBoard = event => {
@@ -23,27 +24,105 @@ class BoardHeader extends React.Component {
     this.setState({ redirect: true })
   }
 
+  showModal = event => {
+    this.setState({
+      showModal: true
+    })
+  }
+
+  closeModal = event => {
+    this.setState({
+      showModal: false
+    })
+  }
+
+
   render(){
+    const { showModal } = this.state
     return(
       this.state.redirect ?
         <Redirect to='/home' />
         :
-      <div id='board-header'>
+      <div>
         {this.props.board ?
-          <span>
-            {this.props.board.name}
-          </span>
+          <Menu borderless>
+            <Menu.Menu position='left'>
+              <Menu.Item>
+                <Header as='span'>
+                  {this.props.board.name}
+                </Header>
+              </Menu.Item>
+            </Menu.Menu>
+
+            <Menu.Menu position='right'>
+
+              <Menu.Item>
+                {this.props.team.users.map( user => (
+                  <Popup trigger={
+                      <span style={{
+                      border: '1px solid black', height: '30px', width: '30px', borderRadius: '50%', textAlign: 'center', backgroundColor: '#42f4e2'
+                    }}>
+                      <strong style={{position: "relative", top: '25%'}}>{user.first_name[0] + user.last_name[0]}</strong>
+                  </span>
+                }
+                content={`${user.first_name} ${user.last_name}`}
+              />
+                ))}
+              </Menu.Item>
+
+              <Menu.Item onClick={this.showModal}>
+                <Button icon>
+                <Icon name='ellipsis horizontal' />
+                </Button>
+              </Menu.Item>
+            </Menu.Menu>
+
+          </Menu>
+
          : null }
-        <Button onClick={this.deleteBoard} size='tiny' floated='right'>
-          Delete Board
-        </Button>
-        {this.props.team ?
-          <TeammateContainer team={this.props.team}/>
-          : null
-        }
-        <Button onClick={this.leaveTeam} size='tiny' floated='right'>
-          Leave team
-        </Button>
+
+
+
+        <Modal open={showModal} size='small' onClose={this.closeModal}>
+          {this.props.board ?
+
+          <Modal.Content>
+          <Card fluid>
+            <Card.Content>
+          <Card.Header>
+              {this.props.board.name}
+          </Card.Header>
+        </Card.Content>
+          <Card.Content>
+            <Card.Description>
+              Description:
+              <div>
+                {this.props.board.description}
+              </div>
+            </Card.Description>
+
+            </Card.Content>
+            <Card.Content>
+              {this.props.team ?
+                <TeammateContainer team={this.props.team}/>
+                : null
+              }
+            </Card.Content>
+            <Card.Content>
+              <Button onClick={this.leaveTeam} fluid color='teal'>
+                Leave Team
+              </Button>
+            </Card.Content>
+            <Card.Content>
+            <Button onClick={this.deleteBoard} fluid color='teal'>
+              Delete Board
+            </Button>
+          </Card.Content>
+        </Card>
+      </Modal.Content>
+      : null
+      }
+        </Modal>
       </div>
 
     )

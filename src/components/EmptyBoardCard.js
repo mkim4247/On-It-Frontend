@@ -54,7 +54,7 @@ class EmptyBoardCard extends React.Component {
 
         <Modal onClose={this.closeModal}
             open={showModal} size='mini'>
-          <Modal.Header>Add A Board</Modal.Header>
+          <Modal.Header> + Add Board</Modal.Header>
 
 
           <Modal.Content>

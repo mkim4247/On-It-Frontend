@@ -10,7 +10,6 @@
   margin-left: 50px;
   margin-right: 50px;
   padding: 20px;
-
 }
 
 #sidebar {
@@ -47,17 +46,13 @@
   margin: 0 !important;
 }
 
-#board-header {
-  padding-top: 2vh;
-  padding-left: 2vw;
-}
-
 #board-container {
   overflow-x: scroll;
   width: 100vw;
   background-size: cover;
   height: 100vh;
   padding: 3vh;
+  background-image: url('./background_images copy/blair-fraser-15138-unsplash.jpg')
 }
 
 #board-projects-container {
@@ -68,6 +63,8 @@
   padding: 10px;
   margin: 10px;
   min-width: 275px;
+  max-height: 80vh;
+  overflow-y: scroll;
 }
 
 #team-board {
@@ -77,4 +74,8 @@
 #invite-container {
   grid-area: invites;
   border: 2px solid black;
+}
+
+#todo-container {
+
 }

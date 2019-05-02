@@ -1,12 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { acceptingTeamInvite, deletingTeamInvite } from '../redux/actions'
+import { Menu, Modal } from 'semantic-ui-react'
 
 class Invites extends React.Component {
   render(){
     return(
       <div id='invite-container'>
-      Invites
+        <Menu vertical secondary fluid size='massive'>
+          <Menu.Item header>
+            Invites
+          </Menu.Item>
       {this.props.user ?
         this.props.user.invitations.map(invite => (
           <div key={invite.id}>
@@ -23,6 +27,7 @@ class Invites extends React.Component {
         ))
         : null
       }
+    </Menu>
       </div>
     )
   }

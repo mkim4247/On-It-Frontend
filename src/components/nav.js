@@ -9,8 +9,6 @@ class Nav extends React.Component {
 
   state = { visible: false }
 
-
-
   logout = () => {
     this.props.setUser(null)
     localStorage.clear()
@@ -29,7 +27,7 @@ class Nav extends React.Component {
         <Menu.Item as={NavLink} to='/home' name="Home" />
         <Menu.Menu position='right'>
         {this.props.user ?
-          <Menu.Item name="Logout" onClick={this.logout} />
+          <Menu.Item as={NavLink} name="Logout" to='/login' onClick={this.logout} />
           :
           <Menu.Item name="Login" as={NavLink} to='/login'/>
         }

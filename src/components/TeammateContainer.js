@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { invitingToTeam } from '../redux/actions'
+import { Form } from 'semantic-ui-react'
 
 class TeammateContainer extends React.Component {
   state = {
     email: ""
   }
+
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -25,14 +27,15 @@ class TeammateContainer extends React.Component {
       <div>
         Users:
         {this.props.team.users.map( user => {
-          return <div key={user.username}>{ user.username }</div>
+          return <div key={user.username}>{`${user.first_name} ${user.last_name}`}</div>
         })}
-        <br/>
-        Invite to team
-        <form onSubmit={this.submitInviteToTeam}>
-            <input type='text' name='email' placeholder='Enter email' required onChange={this.handleChange}/>
-            <input type='submit'/>
-        </form>
+        <Form onSubmit={this.submitInviteToTeam}>
+          <label htmlFor='email'>
+            Invite to team:
+          </label>
+            <Form.Input type='text' name='email' placeholder='Enter email' required onChange={this.handleChange}/>
+            <Form.Input type='submit'/>
+        </Form>
       </div>
     )
   }

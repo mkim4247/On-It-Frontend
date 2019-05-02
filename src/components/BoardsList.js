@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Header } from 'semantic-ui-react'
+import { Header, Dropdown } from 'semantic-ui-react'
 import BoardCard from './BoardCard'
 import EmptyBoardCard from './EmptyBoardCard'
 import { deletingTeam } from '../redux/actions'
@@ -8,7 +8,10 @@ import { deletingTeam } from '../redux/actions'
 class BoardsList extends React.Component {
 
   handleDeleteTeam = event => {
-    this.props.deletingTeam(this.props.owner)
+    let confirm = window.confirm("Are you sure?")
+    if(confirm){
+      this.props.deletingTeam(this.props.owner)
+    }
   }
 
   render(){
@@ -16,15 +19,20 @@ class BoardsList extends React.Component {
       <div id='personal'>
         <Header size={'medium'}>
           {this.props.owner.type === 'user' ?
-            'PERSONAL BOARDS' : this.props.owner.name
+            'PERSONAL BOARDS'
+            :
+            <Dropdown text={this.props.owner.name} >
+              <Dropdown.Menu>
+                <Dropdown.Item>
+                  Edit
+                </Dropdown.Item>
+                <Dropdown.Item onClick={this.handleDeleteTeam}>
+                  Delete Team
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           }
         </Header>
-        {this.props.owner.type === "team" ?
-        <button onClick={this.handleDeleteTeam}>
-          Delete Team
-        </button>
-          : null
-        }
 
         {this.props.owner.type === "user" ?
             this.props.owner.boards.map( user_board => {

@@ -49,9 +49,7 @@ class BoardContainer extends React.Component {
           />
         <div id='board-projects-container'>
 
-
-
-        {
+          {
           this.props.board ?
             this.props.board.projects.map( project => (
               <ProjectContainer key={'pc-' + project.name + project.id}
