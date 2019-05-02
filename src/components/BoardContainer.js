@@ -11,16 +11,19 @@ class BoardContainer extends React.Component {
   setBoardFromParams = () => {
     if(this.props.user){
       if(this.props.path === "user"){
-        let board = this.props.user.boards.find(board => board.name === this.props.match.params.board)
+        let board = this.props.user.boards.find( board => board.name === this.props.match.params.board )
+
         if(board){
-          this.props.setBoardForShowPage(board)
+            this.props.setBoardForShowPage(board)
         }
       }
       else {
-        let team = this.props.user.teams.find(team => team.name === this.props.match.params.team)
-        let board = team.boards.find(board => board.name === this.props.match.params.board)
+        let team = this.props.user.teams.find( team => team.name === this.props.match.params.team )
+
+        let board = team.boards.find( board => board.name === this.props.match.params.board )
+
         if(board){
-          this.props.setBoardForShowPage(board)
+            this.props.setBoardForShowPage(board)
         }
       }
     }
@@ -40,38 +43,44 @@ class BoardContainer extends React.Component {
         <Nav/>
 
         <div id='board-container'>
-          <BoardHeader board={this.props.board} team={
-            this.props.user ?
-              this.props.user.teams.find(team => team.name === this.props.match.params.team)
+          <BoardHeader
+            board={
+              this.props.path === "user" ?
+                {...this.props.board, type: "user"}
+                :
+                {...this.props.board, type: "team"}
+              }
+            team={
+              this.props.user ?
+                this.props.user.teams.find( team => team.name === this.props.match.params.team )
+                : null
+              }
+          />
+          <div id='board-projects-container'>
+            {this.props.board ?
+              this.props.board.projects.map( project => (
+                <ProjectContainer
+                  key={`pc-${project.name}${project.id}`}
+                  project={
+                    this.props.path === "user" ?
+                      {...project, type: "user"}
+                      :
+                      {...project, type: "team"}
+                    }
+                />
+              ))
               : null
             }
-            path={this.props.path}
-          />
-        <div id='board-projects-container'>
-
-          {
-          this.props.board ?
-            this.props.board.projects.map( project => (
-              <ProjectContainer key={'pc-' + project.name + project.id}
-                project={
-                  this.props.path === "user" ?
-                    {...project, type: "user"}
-                    :
-                    {...project, type: "team"}
-                  }
-                path={this.props.path}/>
-            ))
-          : null
-        }
-        <EmptyProjectCard board={
-            this.props.path === "user" ?
-              {...this.props.board, type: "user"}
-              :
-              {...this.props.board, type: "team"}
-            }/>
+            <EmptyProjectCard
+              board={
+                this.props.path === "user" ?
+                  {...this.props.board, type: "user"}
+                  :
+                  {...this.props.board, type: "team"}
+                }
+            />
+          </div>
         </div>
-      </div>
-
       </div>
     )
   }

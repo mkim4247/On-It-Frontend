@@ -15,7 +15,11 @@ class Home extends React.Component {
         <div id='home'>
           <Sidebar />
           <div id='home-board-container'>
-            <BoardsList owner={{...this.props.user, type: "user"}}/>
+            <BoardsList
+              owner={
+                {...this.props.user, type: "user"}
+              }
+            />
             <TeamContainer />
           </div>
           <Invites/>

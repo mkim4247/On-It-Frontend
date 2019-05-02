@@ -27,26 +27,26 @@ export const settingUser = user => {
   }
 }
 
-// export const creatingNewUser = user => {
-//   return dispatch => {
-//     fetch(RAILS_API + 'users', {
-//       method:"POST",
-//       headers: HEADERS,
-//       body: JSON.stringify({ user })
-//     })
-//     .then(res => res.json())
-//     .then(data => {
-//       if(data.error){
-//         alert(data.error)
-//       }
-//       else {
-//         console.log('New User Created')
-//         dispatch(setUser(data.user))
-//         localStorage.setItem('token', data.token)
-//       }
-//     })
-//   }
-// }
+export const creatingNewUser = user => {
+  return dispatch => {
+    fetch(RAILS_API + 'users', {
+      method:"POST",
+      headers: HEADERS,
+      body: JSON.stringify({ user })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.error){
+        alert(data.error)
+      }
+      else {
+        console.log('New User Created')
+        dispatch(setUser(data.user))
+        localStorage.setItem('token', data.token)
+      }
+    })
+  }
+}
 
 export const checkingToken = token => {
   return dispatch => {
@@ -111,16 +111,16 @@ const addTeamBoard = team_board => {
 }
 
 
-export const deletingBoard = (board, path) => {
+export const deletingBoard = board => {
   return (dispatch, getStore) => {
     let user = getStore().user
 
-    fetch(`${RAILS_API}${path}_boards/${board.id}`, {
+    fetch(`${RAILS_API}${board.type}_boards/${board.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())
     .then(allBoards => {
-      if(path === "user"){
+      if(board.type === "user"){
         let filteredBoards = allBoards.filter( user_board => user_board.user_id === user.id )
         dispatch(deleteUserBoard(filteredBoards))
       }
@@ -182,16 +182,16 @@ const addTeamProject = (team_project, board) => {
   return { type: "ADD_TEAM_PROJECT", team_project, board }
 }
 
-export const deletingProject = (project, path) => {
+export const deletingProject = (project) => {
   return (dispatch, getStore) => {
     let board = getStore().board
 
-    fetch(`${RAILS_API}${path}_projects/${project.id}`, {
+    fetch(`${RAILS_API}${project.type}_projects/${project.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())
     .then(allProjects => {
-      if(path === "user"){
+      if(project.type === "user"){
         let filteredUser = allProjects.filter( user_project => user_project.user_board_id === board.id )
         dispatch(deleteUserProject(filteredUser, board))
       }
@@ -216,19 +216,19 @@ const deleteTeamProject = (team_projects, team_board) => {
 
 
 
-export const addingNewTodo = (newTodo, project, path) => {
+export const addingNewTodo = (newTodo, project) => {
   return (dispatch, getStore) => {
 
-    newTodo[`${path}_project_id`] = project.id
+    newTodo[`${project.type}_project_id`] = project.id
 
-    fetch(`${RAILS_API}${path}_todos`, {
+    fetch(`${RAILS_API}${project.type}_todos`, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(newTodo)
     })
     .then(res => res.json())
     .then(data => {
-      if(path === "user"){
+      if(project.type === "user"){
         dispatch(addUserTodo(data.user_todo, project))
       }
       else {

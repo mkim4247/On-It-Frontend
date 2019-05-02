@@ -7,15 +7,20 @@ class TeamContainer extends React.Component {
   render(){
     return(
       <div id='team'>
-      <Header size={'medium'}>
-        TEAM BOARDS
-      </Header>
-      {this.props.user ?
-        this.props.user.teams.map( team => {
-          return <BoardsList key={team.name + team.id + 'tc'} owner={{...team, type: "team"}} />
-        })
-        : null
-      }
+        <Header size={'medium'}>
+          TEAM BOARDS
+        </Header>
+        {this.props.user ?
+          this.props.user.teams.map( team => (
+            <BoardsList
+              key={`team-${team.id}`}
+              owner={
+                {...team, type: "team"}
+              }
+            />
+          ))
+          : null
+        }
       </div>
     )
   }

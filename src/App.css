@@ -1,6 +1,6 @@
 #home {
   display: grid;
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 20% 65% 15%;
   grid-template-areas:
     "side personal invites"
     "side boards invites";
@@ -47,7 +47,6 @@
 }
 
 #board-container {
-  overflow-x: scroll;
   width: 100vw;
   background-size: cover;
   height: 100vh;
@@ -57,6 +56,8 @@
 
 #board-projects-container {
   display: flex;
+  overflow-x: scroll;
+
 }
 
 .project-container {
@@ -73,7 +74,7 @@
 
 #invite-container {
   grid-area: invites;
-  border: 2px solid black;
+  padding-top: 5vh;
 }
 
 #todo-container {

@@ -4,6 +4,7 @@ import { addingNewProject } from '../redux/actions'
 import { Card, Modal, Button, Form, Header } from 'semantic-ui-react'
 
 class EmptyProjectCard extends React.Component {
+
   state = {
     name: "",
     description: "",
@@ -20,17 +21,22 @@ class EmptyProjectCard extends React.Component {
     event.preventDefault()
     event.target.reset()
     this.props.addingNewProject(this.state, this.props.board)
-    this.setState({ showModal: false })
+    this.setState({
+      showModal: false
+    })
   }
 
+  openModal = () => {
+    this.setState({
+      showModal: true
+    })
+  }
 
-    openModal = () => {
-      this.setState({ showModal: true })
-    }
-
-    closeModal = () => {
-      this.setState({ showModal: false })
-    }
+  closeModal = () => {
+    this.setState({
+      showModal: false
+    })
+  }
 
   render(){
     const { showModal } = this.state
@@ -38,37 +44,58 @@ class EmptyProjectCard extends React.Component {
     return(
       <div className='project-container'>
         <Card>
-        <Card.Content>
-        <Card.Header>
-        <Button onClick={this.openModal} fluid color='teal'>
-         + Add Project
-         </Button>
-         </Card.Header>
-         </Card.Content>
+          <Card.Content>
+            <Card.Header>
+              <Button
+                onClick={this.openModal}
+                fluid
+                color='teal'>
+                + Add Project
+              </Button>
+            </Card.Header>
+          </Card.Content>
         </Card>
 
-        <Modal onClose={this.closeModal}
-            open={showModal} size='mini'>
-        <Modal.Content>
-          <Form onSubmit={this.handleSubmit}>
-            <Header as='h5' textAlign='center'>
-              Add Project
-            </Header>
-            <Form.Field>
-              <label htmlFor='name'>
-                Project
-              </label>
-            <Form.Input type='text' name='name' placeholder='Project' onChange={this.handleChange} required/>
-            </Form.Field>
-            <Form.Field>
-              <label htmlFor='description'>
-                Description
-              </label>
-            <Form.Input type='text' name='description' placeholder='Description' onChange={this.handleChange}/>
-            </Form.Field>
-            <Button type='submit' fluid color='teal'> Submit </Button>
-          </Form>
-        </Modal.Content>
+        <Modal
+          onClose={this.closeModal}
+          open={showModal}
+          size='mini'>
+          <Modal.Content>
+            <Form onSubmit={this.handleSubmit}>
+              <Header
+                as='h5'
+                textAlign='center'>
+                Add Project
+              </Header>
+              <Form.Field>
+                <label htmlFor='name'>
+                  Project
+                </label>
+                <Form.Input
+                  type='text'
+                  name='name'
+                  placeholder='Name'
+                  onChange={this.handleChange}
+                  required/>
+              </Form.Field>
+              <Form.Field>
+                <label htmlFor='description'>
+                  Description
+                </label>
+                <Form.Input
+                  type='text'
+                  name='description'
+                  placeholder='Description'
+                  onChange={this.handleChange}/>
+                <Button
+                  type='submit'
+                  fluid
+                  color='teal'>
+                  Submit
+                </Button>
+              </Form.Field>
+            </Form>
+          </Modal.Content>
         </Modal>
       </div>
     )

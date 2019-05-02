@@ -8,7 +8,8 @@ import { deletingTeam } from '../redux/actions'
 class BoardsList extends React.Component {
 
   handleDeleteTeam = event => {
-    let confirm = window.confirm("Are you sure?")
+    let confirm = window.confirm("Are you sure you want to delete this team?")
+
     if(confirm){
       this.props.deletingTeam(this.props.owner)
     }
@@ -21,7 +22,7 @@ class BoardsList extends React.Component {
           {this.props.owner.type === 'user' ?
             'PERSONAL BOARDS'
             :
-            <Dropdown text={this.props.owner.name} >
+            <Dropdown text={this.props.owner.name}>
               <Dropdown.Menu>
                 <Dropdown.Item>
                   Edit
@@ -35,15 +36,25 @@ class BoardsList extends React.Component {
         </Header>
 
         {this.props.owner.type === "user" ?
-            this.props.owner.boards.map( user_board => {
-              return <BoardCard owner={this.props.owner} board={user_board} key={user_board.name}/>
-            })
+          this.props.owner.boards.map( user_board => (
+            <BoardCard
+              key={`board-${user_board.name}`}
+              owner={this.props.owner}
+              board={user_board}
+            />
+          ))
           :
-            this.props.owner.boards.map( team_board => {
-              return <BoardCard owner={this.props.owner} board={team_board} key={team_board.name} />
-            })
+          this.props.owner.boards.map( team_board => (
+            <BoardCard
+              key={`board-${team_board.name}`}
+              owner={this.props.owner}
+              board={team_board}
+            />
+          ))
         }
+
         <EmptyBoardCard owner={this.props.owner} />
+
       </div>
     )
   }

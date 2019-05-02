@@ -17,7 +17,11 @@ class TodoContainer extends React.Component {
   }
 
   deleteTodo = event => {
-    this.props.deletingTodo(this.props.todo, this.props.project)
+    let confirm = window.confirm("Are you sure you want to delete this task?")
+
+    if(confirm){
+      this.props.deletingTodo(this.props.todo, this.props.project)
+    }
   }
 
   assignTodo = event => {
@@ -44,88 +48,115 @@ class TodoContainer extends React.Component {
 
     return(
       <div id='todo-container'>
-        <Card fluid onClick={this.openModal} style={{color: "black"}} >
+        <Card
+          fluid
+          onClick={this.openModal}
+          style={{color: "black"}} >
           <Card.Content>
-            <div>
+            <Card.Description>
               {this.props.todo.title}
-            </div>
+            </Card.Description>
             <Card.Meta>
-            <div>
               {`Due: ${this.formatDueDate(this.props.todo)}`}
-            </div>
-          </Card.Meta>
-
+            </Card.Meta>
             <div style={{float: 'right'}}>
-               {this.props.todo.users ?
-                 this.props.todo.users.map( user => (
-                   <span key={user.username + 'todo'} style={{
-                       border: '1px solid black', height: '1em', width: '1em', borderRadius: '50%', padding: '5px', backgroundColor: '#42f4e2'
-                     }}>
-                     <strong style={{position: "relative", top: '25%'}}>{user.first_name[0] + user.last_name[0]}</strong>
-                   </span>
-                 ))
-                 : null
-               }
-           </div>
-
-     </Card.Content>
-
-     </Card>
-
-
-       <Modal size='tiny' onClose={this.closeModal} open={showModal}>
-         <Modal.Content>
-           <Card fluid>
-             <Card.Content>
-
-               <Card.Header>
-                 {this.props.todo.title}
-               </Card.Header>
-               <Card.Meta textAlign='right'>
-                   {`Due: ${this.formatDueDate(this.props.todo)}`}
-               </Card.Meta>
-             </Card.Content>
-             <Card.Content>
-               <Card.Description fluid>
-                 Description:
-                 <br/>
-                   {this.props.todo.description}
-               </Card.Description>
-            </Card.Content>
-               <Card.Content>
-                   On It:
-                   <div>
-                   {this.props.todo && this.props.todo.users ?
-                     this.props.todo.users.map( user => {
-                       return <div> {`${user.first_name} ${user.last_name}`} </div>
-                     })
-                   : null
-                     }
-                   </div>
-               </Card.Content>
-           <Card.Content>
-             {this.props.todo && this.props.todo.users.find( user => user.username === this.props.user.username) ?
-               <Button onClick={this.unassignTodo} fluid color='teal'>
-                 Hop Off
-               </Button>
-               :
-               <Button onClick={this.assignTodo} fluid color='teal'>
-                 Hop On
-               </Button>
-             }
-           </Card.Content>
-           <Card.Content>
-           <Button onClick={this.deleteTodo} fluid color='teal'>
-            Delete Task
-          </Button>
-        </Card.Content>
-
-
+              {this.props.todo.users ?
+                this.props.todo.users.map( user => (
+                  <span
+                    key={`todo-${user.id}`}
+                    style={{
+                      border: '1px solid black',
+                      height: '1em',
+                      width: '1em',
+                      borderRadius: '50%',
+                      padding: '5px',
+                      backgroundColor: '#42f4e2'
+                    }}>
+                    <strong
+                      style={{
+                        position: "relative",
+                        top: '25%'}}>
+                        {user.first_name[0] + user.last_name[0]}
+                    </strong>
+                  </span>
+                ))
+                : null
+              }
+            </div>
+          </Card.Content>
         </Card>
 
-         </Modal.Content>
-       </Modal>
+        <Modal
+          size='tiny'
+          onClose={this.closeModal}
+          open={showModal}>
+          <Modal.Content>
+            <Card fluid>
+              <Card.Content>
+                <Card.Header>
+                  {this.props.todo.title}
+                </Card.Header>
+                <Card.Meta textAlign='right'>
+                  {`Due: ${this.formatDueDate(this.props.todo)}`}
+                </Card.Meta>
+              </Card.Content>
+              <Card.Content>
+                <Card.Description fluid>
+                  Description:
+                  <div>
+                    {this.props.todo.description}
+                  </div>
+                </Card.Description>
+              </Card.Content>
 
+              {this.props.project.type === 'team' ?
+                <Card.Content>
+                  <Card.Content>
+                    On It:
+                    <div>
+                      {this.props.todo && this.props.todo.users ?
+                        this.props.todo.users.map( user => (
+                          <div>
+                            {`${user.first_name} ${user.last_name}`}
+                          </div>
+                        ))
+                        : null
+                      }
+                    </div>
+                  </Card.Content>
+                  <Card.Content>
+                    {this.props.todo && this.props.todo.users ?
+                      this.props.todo.users.find( user => user.username === this.props.user.username) ?
+                        <Button
+                          onClick={this.unassignTodo}
+                          fluid
+                          color='teal'>
+                          Hop Off
+                        </Button>
+                        :
+                        <Button
+                          onClick={this.assignTodo}
+                          fluid
+                          color='teal'>
+                          Hop On
+                        </Button>
+                      : null
+                    }
+                  </Card.Content>
+                </Card.Content>
+                : null
+              }
+              <Card.Content>
+                <Button
+                  onClick={this.deleteTodo}
+                  fluid
+                  color='teal'>
+                  Delete Task
+                </Button>
+              </Card.Content>
+            </Card>
+          </Modal.Content>
+        </Modal>
       </div>
     )
   }

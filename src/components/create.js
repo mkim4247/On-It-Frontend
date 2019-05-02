@@ -1,16 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { creatingNewUser } from '../redux/actions'
 import { Form } from 'semantic-ui-react'
 
 class Create extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      first_name: "",
-      last_name: "",
-      username: "",
-      email: "",
-      password: ""
-    }
+  state = {
+    first_name: "",
+    last_name: "",
+    username: "",
+    email: "",
+    password: ""
   }
 
   handleChange = (event) => {
@@ -19,33 +18,10 @@ class Create extends React.Component {
     })
   }
 
-  handleSubmit = (event) => {
-    fetch(`http://localhost:4247/api/v1/new`, {
-      method:"POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        user: {
-          first_name: this.state.first_name,
-          username: this.state.username,
-          email: this.state.email,
-          last_name: this.state.last_name,
-          password: this.state.password
-        }
-      })
-    }).then(res => res.json())
-    .then(data => {
-      if(data.error){
-        console.log(data)
-      }else{
-        console.log(data)
-        this.props.setCurrentUser(data.user_info)
-        localStorage.setItem('token', data.token)
-      }
-    })
-  };
+  handleSubmit = event => {
+    event.preventDefault()
+    this.props.creatingNewUser(this.state)
+  }
 
   render(){
     return(
@@ -70,4 +46,4 @@ class Create extends React.Component {
 
 }
 
-export default Create
+export default connect(null, { creatingNewUser })(Create)
