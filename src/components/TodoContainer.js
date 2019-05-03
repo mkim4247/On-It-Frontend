@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { deletingTodo, assigningUserTeamTodo, unassigningUserTeamTodo } from '../redux/actions'
-import { Card, Modal, Button, Header } from 'semantic-ui-react'
+import { Card, Modal, Button, Header, Icon } from 'semantic-ui-react'
+import EditTodo from './EditTodo'
 
 class TodoContainer extends React.Component {
   state = {
-    showModal: false
+    showModal: false,
+    showEdit: false
   }
 
   openModal = todo => {
@@ -14,6 +16,18 @@ class TodoContainer extends React.Component {
 
   closeModal = () => {
     this.setState({ showModal: false })
+  }
+
+  openEdit = () => {
+    this.setState({
+      showEdit: true
+    })
+  }
+
+  closeEdit = () => {
+    this.setState({
+      showEdit: false
+    })
   }
 
   deleteTodo = event => {
@@ -45,6 +59,7 @@ class TodoContainer extends React.Component {
 
   render(){
     const { showModal } = this.state
+    const { showEdit } = this.state
 
     return(
       <div>
@@ -94,14 +109,19 @@ class TodoContainer extends React.Component {
           <Modal.Content>
             <Card fluid>
               <Card.Content>
+                <Button
+                  icon
+                  floated="right"
+                  onClick={this.openEdit}>
+                  <Icon name='ellipsis horizontal'/>
+                </Button>
                 <Card.Header>
                   {this.props.todo.title}
                 </Card.Header>
-                <Card.Meta textAlign='right'>
+                <Header sub textAlign='right'>
                   {`Due: ${this.formatDueDate(this.props.todo)}`}
-                </Card.Meta>
-              </Card.Content>
-              <Card.Content>
+                  {this.props.project.description}
+                </Header>
                 <Card.Description>
                   Description:
                   <div>
@@ -112,20 +132,6 @@ class TodoContainer extends React.Component {
 
               {this.props.project.type === 'team' ?
                 <Card.Content>
-                  <Card.Content>
-                    On It:
-                    <div>
-                      {this.props.todo && this.props.todo.users ?
-                        this.props.todo.users.map( user => (
-                          <div key={`users-${user.id}`}>
-                            {`${user.first_name} ${user.last_name}`}
-                          </div>
-                        ))
-                        : null
-                      }
-                    </div>
-                  </Card.Content>
-                  <Card.Content>
                     {this.props.todo && this.props.todo.users ?
                       this.props.todo.users.find( user => user.username === this.props.user.username) ?
                         <Button
@@ -143,7 +149,6 @@ class TodoContainer extends React.Component {
                         </Button>
                       : null
                     }
-                  </Card.Content>
                 </Card.Content>
                 : null
               }
@@ -158,6 +163,17 @@ class TodoContainer extends React.Component {
             </Card>
           </Modal.Content>
         </Modal>
+
+        {showEdit ?
+          <EditTodo
+            showEdit={this.state.showEdit}
+            closeEdit={this.closeEdit}
+            todo={this.props.todo}
+            project={this.props.project} />
+          :
+          null
+        }
+
       </div>
     )
   }

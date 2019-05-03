@@ -74,7 +74,7 @@ class AddBoard extends React.Component {
                 <label htmlFor='description'>
                   Description (optional)
                 </label>
-                <Form.Input
+                <Form.TextArea
                   type='text'
                   name='description'
                   placeholder='Description'

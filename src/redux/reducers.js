@@ -4,6 +4,7 @@ const userReducer = (state=null, action) => {
   let userCopy;
   let userBoardCopy;
   let userProjectCopy;
+  let userTodoCopy;
   let teamCopy;
   let teamBoardCopy;
   let teamProjectCopy;
@@ -119,6 +120,37 @@ const userReducer = (state=null, action) => {
 
         userCopy = {...state, boards: userBoardCopy}
         return userCopy
+
+
+      case "EDIT_USER_TODO":
+        userBoardCopy = state.boards.map( board => {
+          if(board.id === action.project.user_board_id){
+            userProjectCopy = board.projects.map( project => {
+              if(project.id === action.project.id){
+                userTodoCopy = project.todos.map( todo => {
+                  if(todo.id === action.todo.id){
+                    return {...todo, title: action.todo.title, description: action.todo.description, due_date: action.todo.due_date}
+                  }
+                  else {
+                    return todo
+                  }
+                })
+                return {...project, todos: userTodoCopy}
+              }
+              else {
+                return project
+              }
+            })
+            return {...board, projects: userProjectCopy}
+          }
+          else {
+            return board
+          }
+        })
+
+        userCopy = {...state, boards: userBoardCopy}
+        return userCopy
+
       case "ADD_USER_COMMENT":
         userBoardCopy = state.boards.map( board => {
           if(board.id === action.project.user_board_id){
@@ -224,7 +256,7 @@ const userReducer = (state=null, action) => {
         })
         userCopy = {...state, teams: teamCopy}
         return userCopy
-      
+
       case "ADD_TEAM_PROJECT":
         teamCopy = state.teams.map( team => {
           if(team.id === action.board.team_id){
@@ -317,6 +349,37 @@ const userReducer = (state=null, action) => {
             teamProjectCopy = board.projects.map( project => {
               if(project.id === action.project.id){
                 return {...project, todos: action.team_todos}
+              }
+              else {
+                return project
+              }
+            })
+            return {...board, projects: teamProjectCopy}
+          }
+          else {
+            return board
+          }
+        })
+        return {...team, boards: teamBoardCopy}
+      })
+      userCopy = {...state, teams: teamCopy}
+      return userCopy
+
+    case "EDIT_TEAM_TODO":
+      teamCopy = state.teams.map( team => {
+        teamBoardCopy = team.boards.map( board => {
+          if(board.id === action.project.team_board_id){
+            teamProjectCopy = board.projects.map( project => {
+              if(project.id === action.project.id){
+                teamTodoCopy = project.todos.map( todo => {
+                  if(todo.id === action.todo.id){
+                    return {...todo, title: action.todo.title, description: action.todo.description, due_date: action.todo.due_date}
+                  }
+                  else {
+                    return todo
+                  }
+                })
+                return {...project, todos: teamTodoCopy}
               }
               else {
                 return project

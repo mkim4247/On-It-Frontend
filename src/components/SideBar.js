@@ -121,7 +121,7 @@ class Sidebar extends React.Component {
                 <label htmlFor='description'>
                   Description
                 </label>
-                <Form.Input
+                <Form.TextArea
                   type='text'
                   name='description'
                   onChange={this.handleChange}

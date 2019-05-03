@@ -129,7 +129,7 @@ class ProjectContainer extends React.Component {
                 <label htmlFor='description'>
                   Description (optional)
                 </label>
-                <Form.Input
+                <Form.TextArea
                   type="text"
                   name="description"
                   onChange={this.handleChange}

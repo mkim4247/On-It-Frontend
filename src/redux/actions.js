@@ -640,3 +640,30 @@ const editUserBoard = board => {
 const editTeamBoard = board => {
   return { type: "EDIT_TEAM_BOARD", board }
 }
+
+
+export const editingTodo = (todo, project) => {
+  return dispatch => {
+    fetch(`${RAILS_API}${project.type}_todos/${todo.id}`, {
+      method: "PATCH",
+      headers: HEADERS,
+      body: JSON.stringify(todo)
+    })
+    .then(res => res.json())
+    .then(editTodo => {
+      if(project.type === "user")
+        dispatch(editUserTodo(editTodo, project))
+      else {
+        dispatch(editTeamTodo(editTodo, project))
+      }
+    })
+  }
+}
+
+const editUserTodo = (todo, project) => {
+  return { type: "EDIT_USER_TODO", todo, project }
+}
+
+const editTeamTodo = (todo, project) => {
+  return { type: "EDIT_TEAM_TODO", todo, project }
+}
