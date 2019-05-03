@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { editingTeam } from '../../redux/actions'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Header } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 
 class EditTeam extends React.Component {
@@ -25,49 +25,46 @@ class EditTeam extends React.Component {
 
   render(){
     return(
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Field>
-        <label htmlFor='name'>
-          Team
-        </label>
-        <Form.Input
-          type='text'
-          name='name'
-          required
-          placeholder='Name'
-          value={this.state.name}
-          onChange={this.handleChange}/>
-          <label htmlFor='description'>
-            Description
+      <Fragment>
+        <Header sub textAlign='center'>
+          <NavLink to={`/team/${this.props.team.name}`}>
+            <Button
+              color='teal'>
+              Back
+            </Button>
+          </NavLink>
+        </Header>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
+          <label htmlFor='name'>
+            Team
           </label>
           <Form.Input
             type='text'
-            name='description'
-            placeholder='Description'
-            value={this.state.description}
+            name='name'
+            required
+            placeholder='Name'
+            value={this.state.name}
             onChange={this.handleChange}/>
-          <Button
-            type='submit'
-            fluid
-            color='teal'>
-            Submit
-          </Button>
-        </Form.Field>
-        <NavLink to={`/team/${this.props.team.name}`}>
-          <Button
-            fluid
-            color='red'>
-            Cancel
-          </Button>
-        </NavLink>
-      </Form>
+            <label htmlFor='description'>
+              Description
+            </label>
+            <Form.Input
+              type='text'
+              name='description'
+              placeholder='Description'
+              value={this.state.description}
+              onChange={this.handleChange}/>
+            <Button
+              type='submit'
+              fluid
+              color='teal'>
+              Submit
+            </Button>
+          </Form.Field>
+        </Form>
+      </Fragment>
     )
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    team: state.team
   }
 }
 
