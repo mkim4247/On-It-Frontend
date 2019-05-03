@@ -91,13 +91,11 @@ class Invites extends React.Component {
                 <Card.Content extra>
                   <div className='ui two buttons'>
                     <Button
-                      basic
                       color='green'
                       onClick={ () => this.acceptTeamInvite(this.state.invite) }>
                       Accept Invite
                     </Button>
                     <Button
-                      basic
                       color='red'
                       onClick={ () => this.deleteTeamInvite(this.state.invite) }>
                       Decline Invite

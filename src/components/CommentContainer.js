@@ -57,20 +57,24 @@ class CommentContainer extends React.Component {
                 Comments
               </Header>
               {this.props.project.comments.map( comment => (
-                comment.user ?
-                  <Comment key={`comment-${comment.id}-${this.props.project.id}`}>
-                    <Comment.Content>
+                <Comment key={`comment-${comment.id}-${this.props.project.id}`}>
+                  <Comment.Content>
+                    {this.props.project.type === "team" ?
                       <Comment.Author>
                         {`${comment.user.first_name} ${comment.user.last_name}`}
                       </Comment.Author>
-                      <Comment.Metadata>
-                        {comment.created_at}
-                      </Comment.Metadata>
-                      <Comment.Text>
-                        {comment.content}
-                      </Comment.Text>
+                      :
+                      null
+                    }
+                    <Comment.Metadata>
+                      {comment.created_at}
+                    </Comment.Metadata>
+                    <Comment.Text>
+                      {comment.content}
+                    </Comment.Text>
                       {comment.user.username === this.props.user.username ?
                         <Button
+                          color='red'
                           onClick={() => this.deleteComment(comment)}>
                           Delete
                         </Button>
@@ -78,7 +82,6 @@ class CommentContainer extends React.Component {
                       }
                     </Comment.Content>
                   </Comment>
-                  : null
                 ))
               }
             </Comment.Group>

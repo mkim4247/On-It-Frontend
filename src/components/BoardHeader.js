@@ -52,6 +52,9 @@ class BoardHeader extends React.Component {
                   <Header as='span'>
                     {this.props.board.name}
                   </Header>
+                  <Header sub>
+                    {this.props.board.description}
+                  </Header>
                 </Menu.Item>
               </Menu.Menu>
               <Menu.Menu position='right'>
