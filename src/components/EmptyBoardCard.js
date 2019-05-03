@@ -49,9 +49,9 @@ class EmptyBoardCard extends React.Component {
         <Redirect
           to={
             this.props.owner.type === "user" ?
-              `/${this.props.owner.type}/${this.props.owner.username}/${this.state.name}`
+              `/${this.props.owner.type}/${this.props.owner.username}/board/${this.state.name}`
               :
-              `/${this.props.owner.type}/${this.props.owner.name}/${this.state.name}`
+              `/${this.props.owner.type}/${this.props.owner.name}/board/${this.state.name}`
           }
         />
       :

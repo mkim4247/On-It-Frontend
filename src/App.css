@@ -17,10 +17,22 @@
   padding-left: 3vw;
 }
 
+#sidebar a:hover {
+  color: teal;
+}
+
 .board-list {
   grid-area: personal;
   overflow: hidden;
   padding: 5px;
+}
+
+.board-list a {
+  color: black;
+}
+
+.board-list a:hover {
+  color: teal;
 }
 
 #team {

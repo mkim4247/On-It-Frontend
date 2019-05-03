@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingProject, addingNewTodo } from '../redux/actions'
+import { addingNewTodo } from '../redux/actions'
 import TodoContainer from './TodoContainer'
 import CommentContainer from './CommentContainer'
 import { Card, Button, Dropdown, Modal, Header, Form, Icon } from 'semantic-ui-react'
@@ -38,14 +38,6 @@ class ProjectContainer extends React.Component {
     this.setState({
       showEdit: false
     })
-  }
-
-  deleteProject = event => {
-    let confirm = window.confirm("Are you sure you want to delete this project?")
-
-    if(confirm){
-      this.props.deletingProject(this.props.project)
-    }
   }
 
   handleChange = event => {
@@ -180,4 +172,4 @@ class ProjectContainer extends React.Component {
 
 
 
-export default connect(null, { deletingProject, addingNewTodo })(ProjectContainer)
+export default connect(null, { addingNewTodo })(ProjectContainer)

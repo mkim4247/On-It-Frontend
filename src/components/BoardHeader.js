@@ -1,15 +1,29 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingBoard} from '../redux/actions'
 import { Redirect } from 'react-router-dom'
 import { Header, Card, Button, Modal, Menu, Popup, Icon } from 'semantic-ui-react'
 import InviteForm from './InviteForm'
+import EditBoard from './EditBoard'
+import { deletingBoard } from '../redux/actions'
+
 
 class BoardHeader extends React.Component {
 
   state = {
     redirect: false,
-    showModal: false
+    showEdit: false
+  }
+
+  openEdit = () => {
+    this.setState({
+      showEdit: true
+    })
+  }
+
+  closeEdit = () => {
+    this.setState({
+      showEdit: false
+    })
   }
 
   deleteBoard = event => {
@@ -24,21 +38,8 @@ class BoardHeader extends React.Component {
     }
   }
 
-  showModal = event => {
-    this.setState({
-      showModal: true
-    })
-  }
-
-  closeModal = event => {
-    this.setState({
-      showModal: false
-    })
-  }
-
-
   render(){
-    const { showModal } = this.state
+    const { showEdit } = this.state
 
     return(
       this.state.redirect ?
@@ -70,15 +71,11 @@ class BoardHeader extends React.Component {
                               width: '30px',
                               borderRadius: '50%',
                               textAlign: 'center',
-                              backgroundColor: '#42f4e2'
-                            }
-                          }>
+                              backgroundColor: '#42f4e2'}}>
                             <strong
                               style={{
                                 position: "relative",
-                                top: '25%'
-                              }
-                            }>
+                                top: '25%'}}>
                               {user.first_name[0] + user.last_name[0]}
                             </strong>
                           </span>
@@ -94,7 +91,7 @@ class BoardHeader extends React.Component {
                 <Menu.Item>
                   <Button
                     icon
-                    onClick={this.showModal}>
+                    onClick={this.openEdit}>
                     <Icon name='ellipsis horizontal' />
                   </Button>
                 </Menu.Item>
@@ -105,48 +102,33 @@ class BoardHeader extends React.Component {
           }
 
           <Modal
-            open={showModal}
-            size='small'
-            onClose={this.closeModal}>
-            {this.props.board ?
-              <Modal.Content>
-                <Card fluid>
-                  <Card.Content>
-                    <Card.Header>
-                      {this.props.board.name}
-                    </Card.Header>
-                  </Card.Content>
+            onClose={this.closeEdit}
+            open={showEdit}
+            size='tiny'>
+            <Modal.Content>
+              <Card fluid>
+                <EditBoard
+                  closeEdit={this.closeEdit}
+                  board={this.props.board}/>
 
+                {this.props.team ?
                   <Card.Content>
-                    <Card.Description>
-                      Description:
-                      <div>
-                        {this.props.board.description}
-                      </div>
-                    </Card.Description>
+                    <InviteForm team={this.props.team}/>
                   </Card.Content>
-
-                  {this.props.team ?
-                    <Card.Content>
-                      <InviteForm team={this.props.team}/>
-                    </Card.Content>
-                    :
-                    null
-                  }
-                  <Card.Content>
-                    <Button
-                      onClick={this.deleteBoard}
-                      fluid
-                      color='red'>
-                      Delete Board
-                    </Button>
-                  </Card.Content>
-                </Card>
-              </Modal.Content>
-              : null
-            }
+                  :
+                  null
+                }
+                <Card.Content>
+                  <Button
+                    onClick={this.deleteBoard}
+                    fluid
+                    color='red'>
+                    Delete Board
+                  </Button>
+                </Card.Content>
+              </Card>
+            </Modal.Content>
           </Modal>
-
         </div>
     )
   }

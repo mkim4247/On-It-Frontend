@@ -613,3 +613,30 @@ const editUserProject = project => {
 const editTeamProject = project => {
   return { type: "EDIT_TEAM_PROJECT", project }
 }
+
+
+export const editingBoard = board => {
+  return dispatch => {
+    fetch(`${RAILS_API}${board.type}_boards/${board.id}`, {
+      method: "PATCH",
+      headers: HEADERS,
+      body: JSON.stringify(board)
+    })
+    .then(res => res.json())
+    .then(editBoard => {
+      if(board.type === "user")
+        dispatch(editUserBoard(editBoard))
+      else {
+        dispatch(editTeamBoard(editBoard))
+      }
+    })
+  }
+}
+
+const editUserBoard = board => {
+  return { type: "EDIT_USER_BOARD", board }
+}
+
+const editTeamBoard = board => {
+  return { type: "EDIT_TEAM_BOARD", board }
+}

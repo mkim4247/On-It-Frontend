@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Header, Form, Button, Card, Modal } from 'semantic-ui-react'
-import { editingProject } from '../redux/actions'
+import { editingProject, deletingProject } from '../redux/actions'
 
 class EditProject extends React.Component {
 
@@ -22,6 +22,14 @@ class EditProject extends React.Component {
     event.preventDefault()
     this.props.editingProject(this.state)
     this.props.closeEdit()
+  }
+
+  deleteProject = event => {
+    let confirm = window.confirm("Are you sure you want to delete this project?")
+
+    if(confirm){
+      this.props.deletingProject(this.props.project)
+    }
   }
 
   render(){
@@ -70,6 +78,14 @@ class EditProject extends React.Component {
               </Form>
             </Card.Description>
           </Card.Content>
+          <Card.Content>
+            <Button
+              fluid
+              color='red'
+              onClick={this.deleteProject}>
+              Delete Project
+            </Button>
+          </Card.Content>
         </Card>
       </Modal.Content>
     </Modal>
@@ -78,4 +94,4 @@ class EditProject extends React.Component {
   }
 }
 
-export default connect(null, { editingProject })(EditProject)
+export default connect(null, { editingProject, deletingProject })(EditProject)

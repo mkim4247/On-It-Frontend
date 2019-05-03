@@ -5,27 +5,19 @@ import { Header } from 'semantic-ui-react'
 
 class BoardCard extends React.Component {
 
-  state={
-    hover: false
-  }
-
   render(){
     return(
-      <NavLink to={
+      <NavLink
+        to={
           this.props.owner.type === "user" ?
           `/user/${this.props.owner.username}/board/${this.props.board.name}`
           :
-          `/team/${this.props.owner.name}/board/${this.props.board.name}`
-        }>
-
-
+          `/team/${this.props.owner.name}/board/${this.props.board.name}`}>
         <div
           style={{
             backgroundImage: `url(${this.props.board.background_image})`
           }}
-          className='board-card'
-          onMouseOver={ () => this.setState({ hover: true }) }
-          onMouseOut={ () => this.setState({hover: false})} >
+          className='board-card'>
           <Header
             as='h1'
             textAlign='center'

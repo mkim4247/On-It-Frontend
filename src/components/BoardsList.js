@@ -3,16 +3,24 @@ import { connect } from 'react-redux'
 import { Header, Dropdown, Card } from 'semantic-ui-react'
 import BoardCard from './BoardCard'
 import EmptyBoardCard from './EmptyBoardCard'
-import { deletingTeam } from '../redux/actions'
+import { NavLink } from 'react-router-dom'
 
 class BoardsList extends React.Component {
 
-  handleDeleteTeam = event => {
-    let confirm = window.confirm("Are you sure you want to delete this team?")
+  state = {
+    mouseOver: false
+  }
 
-    if(confirm){
-      this.props.deletingTeam(this.props.owner)
-    }
+  handleMouseOver = event => {
+    this.setState({
+      mouseOver: true
+    })
+  }
+
+  handleMouseOut = event => {
+    this.setState({
+      mouseOver: false
+    })
   }
 
   render(){
@@ -22,16 +30,10 @@ class BoardsList extends React.Component {
           {this.props.owner.type === 'user' ?
             'PERSONAL BOARDS'
             :
-            <Dropdown text={this.props.owner.name}>
-              <Dropdown.Menu>
-                <Dropdown.Item>
-                  Edit
-                </Dropdown.Item>
-                <Dropdown.Item onClick={this.handleDeleteTeam}>
-                  Delete Team
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <NavLink
+              to={`/team/${this.props.owner.name}`}>
+              {this.props.owner.name}
+            </NavLink>
           }
         </Header>
         <Card.Group itemsPerRow={3} style={{ marginBottom: "5px"}}>
@@ -65,4 +67,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { deletingTeam })(BoardsList)
+export default connect(mapStateToProps)(BoardsList)
