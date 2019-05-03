@@ -150,7 +150,7 @@ class TodoContainer extends React.Component {
                 <Button
                   onClick={this.deleteTodo}
                   fluid
-                  color='teal'>
+                  color='red'>
                   Delete Task
                 </Button>
               </Card.Content>

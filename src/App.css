@@ -1,12 +1,12 @@
-#home {
+.home {
   display: grid;
-  grid-template-columns: 20% 65% 15%;
+  grid-template-columns: 20% 60% 20%;
   grid-template-areas:
     "side personal invites"
     "side boards invites";
 }
 
-#home-board-container {
+.home-board-container {
   padding: 20px;
 }
 
@@ -16,7 +16,7 @@
   padding-left: 3vw;
 }
 
-#personal {
+.board-list {
   grid-area: personal;
   overflow: hidden;
   padding: 5px;
@@ -29,17 +29,16 @@
 }
 
 .board-card {
-  border: 3px solid black;
   padding: 10px;
   margin: 10px;
   float: left;
-  max-width: 225px;
-  min-width: 225px;
-  max-height: 150px;
-  min-height: 150px;
+  max-width: 200px;
+  min-width: 200px;
+  max-height: 125px;
+  min-height: 125px;
   background-size: cover;
   border-radius: 5%;
-  box-shadow: 2px 2px 2px black
+  box-shadow: 3px 3px 3px black
 }
 
 .ui.menu {
@@ -70,7 +69,8 @@
   clear: both;
 }
 
-#invite-container {
+.right-container {
   grid-area: invites;
   padding-top: 5vh;
+  padding-right: 3vw;
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { invitingToTeam } from '../redux/actions'
 import { Form, Button, Header } from 'semantic-ui-react'
 
-class TeammateContainer extends React.Component {
+class InviteForm extends React.Component {
 
   state = {
     email: ""
@@ -27,7 +27,7 @@ class TeammateContainer extends React.Component {
     return(
       <Form onSubmit={this.submitInviteToTeam}>
         <Header as='h5'>
-          Invite To Team:
+          + INVITE MEMBER
         </Header>
         <Form.Field>
           <Form.Input
@@ -48,4 +48,4 @@ class TeammateContainer extends React.Component {
   }
 }
 
-export default connect(null, { invitingToTeam })(TeammateContainer)
+export default connect(null, { invitingToTeam })(InviteForm)

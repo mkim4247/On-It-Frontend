@@ -12,9 +12,9 @@ class Home extends React.Component {
     return (
       <div>
         <Nav />
-        <div id='home'>
-          <Sidebar />
-          <div id='home-board-container'>
+        <div className='home'>
+          <Sidebar ownProps={this.props}/>
+          <div className='home-board-container'>
             <BoardsList
               owner={
                 {...this.props.user, type: "user"}

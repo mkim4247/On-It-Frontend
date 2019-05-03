@@ -6,7 +6,7 @@ import BoardHeader from './BoardHeader'
 import ProjectContainer from './ProjectContainer'
 import EmptyProjectCard from './EmptyProjectCard'
 
-class BoardContainer extends React.Component {
+class BoardShow extends React.Component {
 
   setBoardFromParams = () => {
     if(this.props.user){
@@ -98,4 +98,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { setBoardForShowPage })(BoardContainer)
+export default connect(mapStateToProps, { setBoardForShowPage })(BoardShow)

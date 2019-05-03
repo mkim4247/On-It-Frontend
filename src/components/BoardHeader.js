@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingBoard, leavingTeam} from '../redux/actions'
+import { deletingBoard} from '../redux/actions'
 import { Redirect } from 'react-router-dom'
 import { Header, Card, Button, Modal, Menu, Popup, Icon } from 'semantic-ui-react'
-import TeammateContainer from './TeammateContainer'
+import InviteForm from './InviteForm'
 
 class BoardHeader extends React.Component {
 
@@ -17,18 +17,6 @@ class BoardHeader extends React.Component {
 
     if(confirm){
       this.props.deletingBoard(this.props.board)
-
-      this.setState({
-        redirect: true
-      })
-    }
-  }
-
-  leaveTeam = event => {
-    let confirm = window.confirm("Are you sure you want to leave this team?")
-
-    if(confirm){
-      this.props.leavingTeam(this.props.team)
 
       this.setState({
         redirect: true
@@ -99,6 +87,7 @@ class BoardHeader extends React.Component {
                   :
                   null
                 }
+
                 <Menu.Item onClick={this.showModal}>
                   <Button icon>
                     <Icon name='ellipsis horizontal' />
@@ -134,27 +123,16 @@ class BoardHeader extends React.Component {
 
                   {this.props.team ?
                     <Card.Content>
-                      <TeammateContainer team={this.props.team}/>
+                      <InviteForm team={this.props.team}/>
                     </Card.Content>
                     :
                     null
-                  }
-                  {this.props.team ?
-                    <Card.Content>
-                        <Button
-                          onClick={this.leaveTeam}
-                          fluid
-                          color='teal'>
-                          Leave Team
-                        </Button>
-                  </Card.Content>
-                    : null
                   }
                   <Card.Content>
                     <Button
                       onClick={this.deleteBoard}
                       fluid
-                      color='teal'>
+                      color='red'>
                       Delete Board
                     </Button>
                   </Card.Content>
@@ -168,4 +146,4 @@ class BoardHeader extends React.Component {
   }
 }
 
-export default connect(null, { deletingBoard, leavingTeam })(BoardHeader)
+export default connect(null, { deletingBoard })(BoardHeader)

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addingNewTeam } from '../redux/actions'
 import { Menu, Modal, Form, Button } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
 
 class Sidebar extends React.Component {
 
@@ -55,9 +56,14 @@ class Sidebar extends React.Component {
             {this.props.user ?
               this.props.user.boards.map( user_board => (
                 <Menu.Item
+                  as={NavLink}
                   key={`board-${user_board.id}`}
-                  href={`/user/${this.props.user.username}/${user_board.name}`} >
-                  {user_board.name}
+                  to={`/user/${this.props.user.username}/${user_board.name}`} >
+                  {user_board.name.length > 15 ?
+                    user_board.name.slice(0, 15) + '...'
+                    :
+                    user_board.name
+                  }
                 </Menu.Item>
               ))
               : null
@@ -70,12 +76,17 @@ class Sidebar extends React.Component {
             {this.props.user ?
               this.props.user.teams.map( team => (
                 <Menu.Item
+                  as={NavLink}
+                  active={
+                    this.props.team && (team.name === this.props.team.name) && (team.name === this.props.ownProps.match.params.team)
+                  }
                   key={`team-${team.id}`}
-                  href={`/team/${team.name}`}>
-                  {team.name.length > 12 ?
-                    team.name.slice(0, 12) + '...'
+                  to={`/team/${team.name}`}>
+                  {team.name.length > 15 ?
+                    team.name.slice(0, 15) + '...'
                     :
-                    team.name}
+                    team.name
+                  }
                 </Menu.Item>
               ))
               : null
@@ -132,7 +143,8 @@ class Sidebar extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    team: state.team
   }
 }
 

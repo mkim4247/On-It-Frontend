@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Image, Header } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 
 class BoardCard extends React.Component {
 
@@ -33,7 +33,11 @@ class BoardCard extends React.Component {
               color: 'white',
               textShadow: '1px 1px 1px black'
             }}>
-            {this.props.board.name}
+            {this.props.board.name.length > 20 ?
+              this.props.board.name.slice(0, 20) + '...'
+              :
+              this.props.board.name
+            }
           </Header>
         </div>
       </NavLink>

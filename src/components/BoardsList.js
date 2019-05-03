@@ -17,7 +17,7 @@ class BoardsList extends React.Component {
 
   render(){
     return(
-      <div id='personal'>
+      <div className='board-list'>
         <Header size={'medium'}>
           {this.props.owner.type === 'user' ?
             'PERSONAL BOARDS'
@@ -34,7 +34,7 @@ class BoardsList extends React.Component {
             </Dropdown>
           }
         </Header>
-        <Card.Group itemsPerRow={3}>
+        <Card.Group itemsPerRow={3} style={{ marginBottom: "5px"}}>
           {this.props.owner.type === "user" ?
             this.props.owner.boards.map( user_board => (
               <BoardCard

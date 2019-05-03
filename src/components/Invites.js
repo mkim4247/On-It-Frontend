@@ -42,7 +42,7 @@ class Invites extends React.Component {
     const { showModal } = this.state
 
     return(
-      <div id='invite-container'>
+      <div className='right-container'>
         <Menu
           vertical
           secondary

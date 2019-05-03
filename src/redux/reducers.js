@@ -322,11 +322,6 @@ const userReducer = (state=null, action) => {
       userCopy = {...state, teams: teamCopy}
       return userCopy
 
-
-
-
-
-
     case "JOINING_TEAM":
       userCopy = {...state, teams: [...state.teams, action.team]}
       return userCopy
@@ -351,9 +346,20 @@ const boardReducer = (state=null, action) => {
   }
 }
 
+const teamReducer = (state=null, action) => {
+  switch(action.type){
+    case "SET_TEAM":
+      return action.team
+    default:
+      return state
+  }
+}
+
+
 const rootReducer = combineReducers({
   user: userReducer,
   board: boardReducer,
+  team: teamReducer,
 })
 
 export default rootReducer;
