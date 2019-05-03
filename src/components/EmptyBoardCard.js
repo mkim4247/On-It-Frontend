@@ -2,13 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { addingNewBoard } from '../redux/actions'
-import { Modal, Form, Button } from 'semantic-ui-react'
+import { Modal, Form, Button, Header } from 'semantic-ui-react'
 
 class EmptyBoardCard extends React.Component {
 
   state = {
     name: "",
     description: "",
+    background_image: "",
     redirect: false,
     showModal: false
   }
@@ -56,9 +57,18 @@ class EmptyBoardCard extends React.Component {
       :
       <div>
         <div
+          style={{ backgroundColor: "lightGrey" }}
           className='board-card'
           onClick={this.openModal}>
-          + Add Board
+          <Header
+            as='h2'
+            textAlign='center'
+            style={{
+              color: 'white',
+              textShadow: '1px 1px 1px black',
+            }}>
+            + Add Board
+          </Header>
         </div>
 
         <Modal
@@ -84,13 +94,23 @@ class EmptyBoardCard extends React.Component {
               </Form.Field>
               <Form.Field>
                 <label htmlFor='description'>
-                  Description
+                  Description (optional)
                 </label>
                 <Form.Input
                   type='text'
                   name='description'
                   placeholder='Description'
                   onChange={this.handleChange}/>
+              <Form.Field>
+                <label htmlFor='background_image'>
+                  Background Image (optional)
+                </label>
+                <Form.Input
+                  type='text'
+                  name='background_image'
+                  placeholder="Image URL"
+                  onChange={this.handleChange}/>
+              </Form.Field>
                 <Button
                   type='submit'
                   color='teal'

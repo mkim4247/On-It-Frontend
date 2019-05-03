@@ -7,8 +7,6 @@
 }
 
 #home-board-container {
-  margin-left: 50px;
-  margin-right: 50px;
   padding: 20px;
 }
 
@@ -16,12 +14,12 @@
   grid-area: side;
   padding-top: 5vh;
   padding-left: 3vw;
-  padding-right: 20px;
 }
 
 #personal {
   grid-area: personal;
   overflow: hidden;
+  padding: 5px;
 }
 
 #team {
@@ -31,15 +29,17 @@
 }
 
 .board-card {
-  border: 1px solid black;
+  border: 3px solid black;
   padding: 10px;
   margin: 10px;
   float: left;
-  max-width: 180px;
-  min-width: 180px;
-  max-height: 100px;
-  min-height: 100px;
+  max-width: 225px;
+  min-width: 225px;
+  max-height: 150px;
+  min-height: 150px;
   background-size: cover;
+  border-radius: 5%;
+  box-shadow: 2px 2px 2px black
 }
 
 .ui.menu {
@@ -51,13 +51,11 @@
   background-size: cover;
   height: 100vh;
   padding: 3vh;
-  background-image: url('./background_images copy/blair-fraser-15138-unsplash.jpg')
 }
 
 #board-projects-container {
   display: flex;
   overflow-x: scroll;
-
 }
 
 .project-container {
@@ -75,8 +73,4 @@
 #invite-container {
   grid-area: invites;
   padding-top: 5vh;
-}
-
-#todo-container {
-
 }

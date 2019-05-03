@@ -80,7 +80,7 @@ class EmptyProjectCard extends React.Component {
               </Form.Field>
               <Form.Field>
                 <label htmlFor='description'>
-                  Description
+                  Description (optional)
                 </label>
                 <Form.Input
                   type='text'

@@ -7,7 +7,6 @@ const userReducer = (state=null, action) => {
   let teamCopy;
   let teamBoardCopy;
   let teamProjectCopy;
-  let projectCopy;
   let teamTodoCopy;
 
   switch(action.type){

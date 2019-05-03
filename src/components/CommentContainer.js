@@ -63,15 +63,12 @@ class CommentContainer extends React.Component {
                       <Comment.Author>
                         {`${comment.user.first_name} ${comment.user.last_name}`}
                       </Comment.Author>
-
                       <Comment.Metadata>
                         {comment.created_at}
                       </Comment.Metadata>
-
                       <Comment.Text>
                         {comment.content}
                       </Comment.Text>
-
                       {comment.user.username === this.props.user.username ?
                         <Button
                           onClick={() => this.deleteComment(comment)}>

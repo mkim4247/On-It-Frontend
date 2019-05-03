@@ -72,7 +72,10 @@ class Sidebar extends React.Component {
                 <Menu.Item
                   key={`team-${team.id}`}
                   href={`/team/${team.name}`}>
-                  {team.name}
+                  {team.name.length > 12 ?
+                    team.name.slice(0, 12) + '...'
+                    :
+                    team.name}
                 </Menu.Item>
               ))
               : null

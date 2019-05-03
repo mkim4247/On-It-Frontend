@@ -41,8 +41,13 @@ class BoardContainer extends React.Component {
     return(
       <div>
         <Nav/>
-
-        <div id='board-container'>
+        <div
+          id='board-container'
+          style={
+            this.props.board ?
+              {backgroundImage: `url(${this.props.board.background_image})`}
+              : null
+            }>
           <BoardHeader
             board={
               this.props.path === "user" ?

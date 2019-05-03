@@ -123,7 +123,7 @@ class ProjectContainer extends React.Component {
               </Form.Field>
               <Form.Field>
                 <label htmlFor='description'>
-                  Description:
+                  Description (optional)
                 </label>
                 <Form.Input
                   type="text"
@@ -133,7 +133,7 @@ class ProjectContainer extends React.Component {
               </Form.Field>
               <Form.Field>
                 <label htmlFor='due_date'>
-                  Due Date:
+                  Due Date (optional)
                 </label>
                 <Form.Input
                   type="date"

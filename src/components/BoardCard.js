@@ -1,9 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Image, Header } from 'semantic-ui-react'
 
 class BoardCard extends React.Component {
-  
+
   state={
     hover: false
   }
@@ -16,16 +17,24 @@ class BoardCard extends React.Component {
           :
           `/team/${this.props.owner.name}/${this.props.board.name}`
         }>
+
+
         <div
+          style={{
+            backgroundImage: `url(${this.props.board.background_image})`
+          }}
           className='board-card'
           onMouseOver={ () => this.setState({ hover: true }) }
           onMouseOut={ () => this.setState({hover: false})} >
-          <h4>
+          <Header
+            as='h1'
+            textAlign='center'
+            style={{
+              color: 'white',
+              textShadow: '1px 1px 1px black'
+            }}>
             {this.props.board.name}
-          </h4>
-          <div>
-            {this.props.board.description}
-          </div>
+          </Header>
         </div>
       </NavLink>
     )

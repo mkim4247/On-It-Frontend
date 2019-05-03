@@ -47,7 +47,7 @@ class TodoContainer extends React.Component {
     const { showModal } = this.state
 
     return(
-      <div id='todo-container'>
+      <div>
         <Card
           fluid
           onClick={this.openModal}
@@ -116,7 +116,7 @@ class TodoContainer extends React.Component {
                     <div>
                       {this.props.todo && this.props.todo.users ?
                         this.props.todo.users.map( user => (
-                          <div>
+                          <div key={`users-${user.id}`}>
                             {`${user.first_name} ${user.last_name}`}
                           </div>
                         ))
