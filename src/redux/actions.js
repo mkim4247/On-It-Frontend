@@ -565,3 +565,25 @@ export const unassigningUserTeamTodo = (todo) => {
 export const setTeamForShowPage = team => {
   return { type: "SET_TEAM", team }
 }
+
+
+
+
+
+export const editingTeam = team => {
+  return (dispatch, getStore) => {
+    fetch(`${RAILS_API}teams/${team.id}`, {
+      method: "PATCH",
+      headers: HEADERS,
+      body: JSON.stringify(team)
+    })
+    .then(res => res.json())
+    .then(team => {
+      dispatch(editTeam(team))
+    })
+  }
+}
+
+const editTeam = team => {
+  return { type: "EDIT_TEAM", team }
+}

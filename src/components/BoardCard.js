@@ -13,9 +13,9 @@ class BoardCard extends React.Component {
     return(
       <NavLink to={
           this.props.owner.type === "user" ?
-          `/user/${this.props.owner.username}/${this.props.board.name}`
+          `/user/${this.props.owner.username}/board/${this.props.board.name}`
           :
-          `/team/${this.props.owner.name}/${this.props.board.name}`
+          `/team/${this.props.owner.name}/board/${this.props.board.name}`
         }>
 
 

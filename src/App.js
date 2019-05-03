@@ -34,15 +34,15 @@ class App extends Component {
             this.props.user ?
               <Redirect to='/home' /> : <Create />
           )}/>
-          <Route exact path='/user/:username/:board' render={ ownProps => (
+        <Route exact path='/user/:username/board/:board' render={ ownProps => (
             this.props.user ?
               <BoardShow {...ownProps} path="user"/> : <Redirect to='/login'/>
           )}/>
-          <Route exact path='/team/:team/:board' render={ ownProps => (
+        <Route exact path='/team/:team/board/:board' render={ ownProps => (
             this.props.user ?
               <BoardShow {...ownProps} path="team"/> : <Redirect to='/login'/>
           )}/>
-          <Route exact path='/team/:team' render={ ownProps => (
+          <Route path='/team/:team' render={ ownProps => (
             this.props.user ?
               <TeamShow {...ownProps} /> : <Redirect to='/login'/>
             )}/>

@@ -58,7 +58,7 @@ class Sidebar extends React.Component {
                 <Menu.Item
                   as={NavLink}
                   key={`board-${user_board.id}`}
-                  to={`/user/${this.props.user.username}/${user_board.name}`} >
+                  to={`/user/${this.props.user.username}/board/${user_board.name}`} >
                   {user_board.name.length > 15 ?
                     user_board.name.slice(0, 15) + '...'
                     :
