@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { editingTodo } from '../redux/actions'
+import { editingTodo, deletingTodo } from '../redux/actions'
 import { Header, Form, Button, Card, Modal } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 
@@ -23,6 +23,14 @@ class EditTodo extends React.Component {
     event.preventDefault()
     this.props.editingTodo(this.state, this.props.project)
     this.props.closeEdit()
+  }
+  
+  deleteTodo = event => {
+    let confirm = window.confirm("Are you sure you want to delete this task?")
+
+    if(confirm){
+      this.props.deletingTodo(this.props.todo, this.props.project)
+    }
   }
 
   render(){
@@ -83,8 +91,8 @@ class EditTodo extends React.Component {
             <Button
               fluid
               color='red'
-              onClick={this.deleteProject}>
-              Delete Project
+              onClick={this.deleteTodo}>
+              Delete Task
             </Button>
           </Card.Content>
         </Card>
@@ -94,4 +102,4 @@ class EditTodo extends React.Component {
   }
 }
 
-export default connect(null, { editingTodo })(EditTodo)
+export default connect(null, { editingTodo, deletingTodo })(EditTodo)

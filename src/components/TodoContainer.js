@@ -30,14 +30,6 @@ class TodoContainer extends React.Component {
     })
   }
 
-  deleteTodo = event => {
-    let confirm = window.confirm("Are you sure you want to delete this task?")
-
-    if(confirm){
-      this.props.deletingTodo(this.props.todo, this.props.project)
-    }
-  }
-
   assignTodo = event => {
     this.props.assigningUserTeamTodo(this.props.todo, this.props.project)
   }
@@ -152,14 +144,6 @@ class TodoContainer extends React.Component {
                 </Card.Content>
                 : null
               }
-              <Card.Content>
-                <Button
-                  onClick={this.deleteTodo}
-                  fluid
-                  color='red'>
-                  Delete Task
-                </Button>
-              </Card.Content>
             </Card>
           </Modal.Content>
         </Modal>
@@ -185,4 +169,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { deletingTodo, assigningUserTeamTodo, unassigningUserTeamTodo })(TodoContainer)
+export default connect(mapStateToProps, { assigningUserTeamTodo, unassigningUserTeamTodo })(TodoContainer)

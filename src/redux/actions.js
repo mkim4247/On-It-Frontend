@@ -357,7 +357,7 @@ export const invitingToTeam = (newInvite, team) => {
     .then(users => {
       let receiver = users.find( user => user.email === newInvite.email)
 
-      if(team.users.find(user => user.email === receiver.email)){
+      if(team.users.find(user => user.email === newInvite.email)){
         alert("That member already exists on this team")
       }
       else {

@@ -79,10 +79,13 @@ class Invites extends React.Component {
                 </Card.Content>
                 <Card.Content>
                   <Card.Description>
-                    {this.state.invite.team.description}
+                    Description:
+                    <div>
+                      {this.state.invite.team.description}
+                    </div>
                   </Card.Description>
                 </Card.Content>
-                <Card.Content>
+                <Card.Content textAlign='right'>
                   Invited by:
                   <div>
                     {`${this.state.invite.sender.first_name} ${this.state.invite.sender.last_name}`}
@@ -91,7 +94,7 @@ class Invites extends React.Component {
                 <Card.Content extra>
                   <div className='ui two buttons'>
                     <Button
-                      color='green'
+                      color='teal'
                       onClick={ () => this.acceptTeamInvite(this.state.invite) }>
                       Accept Invite
                     </Button>
