@@ -43,8 +43,28 @@ const userReducer = (state=null, action) => {
         }
       })
       userCopy = {...state, boards: userBoardCopy}
-
       return userCopy
+
+    case "EDIT_USER_PROJECT":
+      userBoardCopy = state.boards.map( board => {
+        if(board.id === action.project.user_board_id){
+          userProjectCopy = board.projects.map( project => {
+            if(project.id === action.project.id){
+              return {...project, name: action.project.name, description: action.project.description}
+            }
+            else {
+              return project
+            }
+          })
+          return {...board, projects: userProjectCopy}
+        }
+        else {
+          return board
+        }
+      })
+      userCopy = {...state, boards: userBoardCopy}
+      return userCopy
+
     case "ADD_USER_TODO":
       userBoardCopy = state.boards.map( board => {
         if(board.id === action.project.user_board_id){
@@ -212,6 +232,30 @@ const userReducer = (state=null, action) => {
         })
         userCopy = {...state, teams: teamCopy}
         return userCopy
+
+      case "EDIT_TEAM_PROJECT":
+        teamCopy = state.teams.map( team => {
+          teamBoardCopy = team.boards.map( team_board => {
+            if( team_board.id === action.project.team_board_id ){
+              teamProjectCopy = team_board.projects.map( team_project => {
+                if(team_project.id === action.project.id){
+                  return {...team_project, name: action.project.name, description: action.project.description}
+                }
+                else {
+                  return team_project
+                }
+              })
+              return {...team_board, projects: teamProjectCopy}
+            }
+            else {
+              return team_board
+            }
+          })
+          return {...team, boards: teamBoardCopy}
+        })
+        userCopy = {...state, teams: teamCopy}
+        return userCopy
+
       case "ADD_TEAM_TODO":
         teamCopy = state.teams.map( team => {
           teamBoardCopy = team.boards.map( board => {

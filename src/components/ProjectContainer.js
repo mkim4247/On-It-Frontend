@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { deletingProject, addingNewTodo } from '../redux/actions'
 import TodoContainer from './TodoContainer'
 import CommentContainer from './CommentContainer'
-import { Card, Button, Dropdown, Modal, Header, Form } from 'semantic-ui-react'
+import { Card, Button, Dropdown, Modal, Header, Form, Icon } from 'semantic-ui-react'
+import EditProject from './EditProject'
 
 class ProjectContainer extends React.Component {
 
@@ -11,7 +12,8 @@ class ProjectContainer extends React.Component {
     title: "",
     description: "",
     due_date: "",
-    showModal: false
+    showModal: false,
+    showEdit: false
   }
 
   openModal = () => {
@@ -23,6 +25,18 @@ class ProjectContainer extends React.Component {
   closeModal = () => {
     this.setState({
       showModal: false
+    })
+  }
+
+  openEdit = () => {
+    this.setState({
+      showEdit: true
+    })
+  }
+
+  closeEdit = () => {
+    this.setState({
+      showEdit: false
     })
   }
 
@@ -51,26 +65,24 @@ class ProjectContainer extends React.Component {
 
   render(){
     const { showModal } = this.state
+    const { showEdit } = this.state
 
     return(
       <div className='project-container'>
         <Card fluid>
           <Card.Content>
+            <Button
+              icon
+              floated="right"
+              onClick={this.openEdit}>
+              <Icon name='ellipsis horizontal'/>
+            </Button>
             <Card.Header>
-              <Dropdown text={this.props.project.name} >
-                <Dropdown.Menu>
-                  <Dropdown.Item>
-                    Edit
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={this.deleteProject}>
-                    Delete Project
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+              {this.props.project.name}
             </Card.Header>
-            <Card.Description>
+            <Header sub textAlign='right'>
               {this.props.project.description}
-            </Card.Description>
+            </Header>
           </Card.Content>
 
           <Card.Content >
@@ -149,9 +161,23 @@ class ProjectContainer extends React.Component {
             </Form>
           </Modal.Content>
         </Modal>
+
+        {showEdit ?
+          <EditProject
+            showEdit={this.state.showEdit}
+            closeEdit={this.closeEdit}
+            project={this.props.project} />
+          :
+          null
+        }
+
+
       </div>
     )
   }
 }
+
+
+
 
 export default connect(null, { deletingProject, addingNewTodo })(ProjectContainer)

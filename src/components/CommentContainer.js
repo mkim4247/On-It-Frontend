@@ -73,11 +73,14 @@ class CommentContainer extends React.Component {
                       {comment.content}
                     </Comment.Text>
                       {comment.user.username === this.props.user.username ?
+                        <Header textAlign='right' style={{margin: '0px'}}>
                         <Button
                           color='red'
                           onClick={() => this.deleteComment(comment)}>
                           Delete
                         </Button>
+                      </Header>
+
                         : null
                       }
                     </Comment.Content>

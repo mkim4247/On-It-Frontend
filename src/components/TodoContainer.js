@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { deletingTodo, assigningUserTeamTodo, unassigningUserTeamTodo } from '../redux/actions'
-import { Card, Modal, Button } from 'semantic-ui-react'
+import { Card, Modal, Button, Header } from 'semantic-ui-react'
 
 class TodoContainer extends React.Component {
   state = {
@@ -54,8 +54,9 @@ class TodoContainer extends React.Component {
           style={{color: "black"}} >
           <Card.Content>
             <Card.Description>
-              {this.props.todo.title}
+              <strong>{this.props.todo.title}</strong>
             </Card.Description>
+
             <Card.Meta>
               {`Due: ${this.formatDueDate(this.props.todo)}`}
             </Card.Meta>
@@ -101,7 +102,7 @@ class TodoContainer extends React.Component {
                 </Card.Meta>
               </Card.Content>
               <Card.Content>
-                <Card.Description fluid>
+                <Card.Description>
                   Description:
                   <div>
                     {this.props.todo.description}

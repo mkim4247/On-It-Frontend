@@ -578,12 +578,38 @@ export const editingTeam = team => {
       body: JSON.stringify(team)
     })
     .then(res => res.json())
-    .then(team => {
-      dispatch(editTeam(team))
+    .then(editTeam => {
+      dispatch(editTeam(editTeam))
     })
   }
 }
 
 const editTeam = team => {
   return { type: "EDIT_TEAM", team }
+}
+
+export const editingProject = project => {
+  return (dispatch, getStore) => {
+    fetch(`${RAILS_API}${project.type}_projects/${project.id}`, {
+      method: "PATCH",
+      headers: HEADERS,
+      body: JSON.stringify(project)
+    })
+    .then(res => res.json())
+    .then(editProject => {
+      if(project.type === "user")
+        dispatch(editUserProject(editProject))
+      else {
+        dispatch(editTeamProject(editProject))
+      }
+    })
+  }
+}
+
+const editUserProject = project => {
+  return { type: "EDIT_USER_PROJECT", project }
+}
+
+const editTeamProject = project => {
+  return { type: "EDIT_TEAM_PROJECT", project }
 }

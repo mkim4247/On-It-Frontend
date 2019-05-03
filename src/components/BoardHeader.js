@@ -91,8 +91,10 @@ class BoardHeader extends React.Component {
                   null
                 }
 
-                <Menu.Item onClick={this.showModal}>
-                  <Button icon>
+                <Menu.Item>
+                  <Button
+                    icon
+                    onClick={this.showModal}>
                     <Icon name='ellipsis horizontal' />
                   </Button>
                 </Menu.Item>
@@ -144,6 +146,7 @@ class BoardHeader extends React.Component {
               : null
             }
           </Modal>
+
         </div>
     )
   }

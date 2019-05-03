@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { editingTeam } from '../../redux/actions'
-import { Form, Button, Header } from 'semantic-ui-react'
+import { Form, Button, Header, Segment } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 
 class EditTeam extends React.Component {
@@ -34,35 +34,40 @@ class EditTeam extends React.Component {
             </Button>
           </NavLink>
         </Header>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Field>
-          <label htmlFor='name'>
-            Team
-          </label>
-          <Form.Input
-            type='text'
-            name='name'
-            required
-            placeholder='Name'
-            value={this.state.name}
-            onChange={this.handleChange}/>
-            <label htmlFor='description'>
-              Description
+        <Segment secondary padded>
+          <Header as='h3' textAlign='center'>
+            Edit Team Info:
+          </Header>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Field>
+            <label htmlFor='name'>
+              Name
             </label>
             <Form.Input
               type='text'
-              name='description'
-              placeholder='Description'
-              value={this.state.description}
+              name='name'
+              required
+              placeholder='Name'
+              value={this.state.name}
               onChange={this.handleChange}/>
-            <Button
-              type='submit'
-              fluid
-              color='teal'>
-              Submit
-            </Button>
-          </Form.Field>
-        </Form>
+              <label htmlFor='description'>
+                Description
+              </label>
+              <Form.Input
+                type='text'
+                name='description'
+                placeholder='Description'
+                value={this.state.description}
+                onChange={this.handleChange}/>
+              <Button
+                type='submit'
+                fluid
+                color='teal'>
+                Submit
+              </Button>
+            </Form.Field>
+          </Form>
+        </Segment>
       </Fragment>
     )
   }
