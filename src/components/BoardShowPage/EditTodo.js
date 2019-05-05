@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { editingTodo, deletingTodo } from '../redux/actions'
+import { editingTodo, deletingTodo } from '../../redux/actions'
 import { Header, Form, Button, Card, Modal } from 'semantic-ui-react'
 
 class EditTodo extends React.Component {

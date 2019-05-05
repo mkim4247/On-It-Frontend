@@ -12,7 +12,7 @@ const TeamBoardCard = props => {
       <Item.Content>
         <Item.Header
           as={NavLink}
-          to={`/team/${props.team.name}/board/${props.board.name}`}>
+          to={`/team/${props.team.name}/${props.team.id}/boards/${props.board.name}/${props.board.id}`}>
           {props.board.name}
         </Item.Header>
         <Item.Meta>

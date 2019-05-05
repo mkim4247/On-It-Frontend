@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { setTeamForShowPage, deletingTeam } from '../../redux/actions'
 import Nav from '../Nav'
 import Sidebar from '../SideBar'
-import UsersList from '../UsersList'
+import MembersList from './MembersList'
 import { Header, Button } from 'semantic-ui-react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import TeamBoardContainer from './TeamBoardContainer'
@@ -16,7 +16,7 @@ class TeamShow extends React.Component {
   }
   setTeamFromParams = () => {
     if(this.props.user){
-      let team = this.props.user.teams.find( team => team.name === this.props.match.params.team )
+      let team = this.props.user.teams.find( team => (team.name === this.props.match.params.team) && (team.id === parseInt(this.props.match.params.team_id)) )
 
       if(team){
         this.props.setTeamForShowPage(team)
@@ -65,7 +65,7 @@ class TeamShow extends React.Component {
                           team={this.props.team}/>
                     )}/>
                     <Route
-                      exact path={`/team/:team/edit`}
+                      exact path={`/team/:team/:team_id/edit`}
                       render={ () => (
                         <EditTeam team={this.props.team}/>
                     )}/>
@@ -74,7 +74,7 @@ class TeamShow extends React.Component {
                 : null
               }
             </div>
-            <UsersList team={this.props.team}/>
+            <MembersList team={this.props.team}/>
             <Header sub textAlign='center'>
               <Button
                 color='red'

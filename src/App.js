@@ -6,7 +6,7 @@ import { checkingToken } from './redux/actions'
 import Login from './components/Login'
 import Home from './components/Home'
 import Create from './components/Create'
-import BoardShow from './components/BoardShow'
+import BoardShow from './components/BoardShowPage/BoardShow'
 import TeamShow from './components/TeamShowPage/TeamShow'
 import UserShow from './components/UserShowPage/UserShow'
 
@@ -35,15 +35,15 @@ class App extends Component {
             this.props.user ?
               <Redirect to='/boards' /> : <Create />
           )}/>
-        <Route exact path='/user/:username/board/:board' render={ ownProps => (
+        <Route exact path='/user/:username/boards/:board/:board_id' render={ ownProps => (
             this.props.user ?
               <BoardShow {...ownProps} path="user"/> : <Redirect to='/login'/>
           )}/>
-        <Route exact path='/team/:team/board/:board' render={ ownProps => (
+        <Route exact path='/team/:team/:team_id/boards/:board/:board_id' render={ ownProps => (
             this.props.user ?
               <BoardShow {...ownProps} path="team"/> : <Redirect to='/login'/>
           )}/>
-          <Route path='/team/:team' render={ ownProps => (
+        <Route path='/team/:team/:team_id' render={ ownProps => (
             this.props.user ?
               <TeamShow {...ownProps} /> : <Redirect to='/login'/>
             )}/>

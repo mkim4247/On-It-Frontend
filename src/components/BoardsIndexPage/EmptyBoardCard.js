@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { addingNewBoard } from '../redux/actions'
+import { addingNewBoard } from '../../redux/actions'
 import { Modal, Form, Button, Header } from 'semantic-ui-react'
 
 class EmptyBoardCard extends React.Component {

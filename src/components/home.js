@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Nav from './Nav'
 import Sidebar from './SideBar'
-import BoardsList from './BoardsList'
-import TeamContainer from './TeamContainer'
+import BoardsList from './BoardsIndexPage/BoardsList'
+import TeamContainer from './BoardsIndexPage/TeamContainer'
 import Invites from './Invites'
 
 class Home extends React.Component {

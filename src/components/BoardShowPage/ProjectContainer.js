@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addingNewTodo } from '../redux/actions'
+import { addingNewTodo } from '../../redux/actions'
 import TodoContainer from './TodoContainer'
 import CommentContainer from './CommentContainer'
 import { Card, Button, Modal, Header, Form, Icon } from 'semantic-ui-react'

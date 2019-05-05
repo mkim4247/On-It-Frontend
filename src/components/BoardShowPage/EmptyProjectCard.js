@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addingNewProject } from '../redux/actions'
+import { addingNewProject } from '../../redux/actions'
 import { Card, Modal, Button, Form, Header } from 'semantic-ui-react'
 
 class EmptyProjectCard extends React.Component {

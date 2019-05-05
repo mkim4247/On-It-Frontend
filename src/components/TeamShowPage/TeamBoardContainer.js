@@ -9,7 +9,7 @@ const TeamBoardContainer = props => {
     <Fragment>
       <Header sub textAlign='center'>
         <NavLink
-          to={`/team/${props.team.name}/edit`}>
+          to={`/team/${props.team.name}/${props.team.id}/edit`}>
           <Button
             color='teal'>
             Edit Info

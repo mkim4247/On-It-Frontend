@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Nav from './Nav'
-import { setBoardForShowPage } from '../redux/actions'
+import Nav from '../Nav'
+import { setBoardForShowPage } from '../../redux/actions'
 import BoardHeader from './BoardHeader'
 import ProjectContainer from './ProjectContainer'
 import EmptyProjectCard from './EmptyProjectCard'
@@ -11,19 +11,19 @@ class BoardShow extends React.Component {
   setBoardFromParams = () => {
     if(this.props.user){
       if(this.props.path === "user"){
-        let board = this.props.user.boards.find( board => board.name === this.props.match.params.board )
+        let user_board = this.props.user.boards.find( board => (board.name === this.props.match.params.board) && (board.id === parseInt(this.props.match.params.board_id)) )
 
-        if(board){
-            this.props.setBoardForShowPage(board)
+        if(user_board){
+            this.props.setBoardForShowPage(user_board)
         }
       }
       else {
-        let team = this.props.user.teams.find( team => team.name === this.props.match.params.team )
+        let team = this.props.user.teams.find( team => (team.name === this.props.match.params.team) && (team.id === parseInt(this.props.match.params.team_id)) )
 
-        let board = team.boards.find( board => board.name === this.props.match.params.board )
+        let team_board = team.boards.find( board => (board.name === this.props.match.params.board) && (board.id === parseInt(this.props.match.params.board_id)) )
 
-        if(board){
-            this.props.setBoardForShowPage(board)
+        if(team_board){
+            this.props.setBoardForShowPage(team_board)
         }
       }
     }

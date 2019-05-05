@@ -10,9 +10,9 @@ class BoardCard extends React.Component {
       <NavLink
         to={
           this.props.owner.type === "user" ?
-          `/user/${this.props.owner.username}/board/${this.props.board.name}`
+          `/user/${this.props.owner.username}/boards/${this.props.board.name}/${this.props.board.id}`
           :
-          `/team/${this.props.owner.name}/board/${this.props.board.name}`}>
+          `/team/${this.props.owner.name}/${this.props.owner.id}/boards/${this.props.board.name}/${this.props.board.id}`}>
         <div
           style={{
             backgroundImage: `url(${this.props.board.background_image})`

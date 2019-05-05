@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Header, Card, Button, Modal, Menu, Popup, Icon } from 'semantic-ui-react'
-import InviteForm from './InviteForm'
+import InviteForm from '../InviteForm'
 import EditBoard from './EditBoard'
-import { deletingBoard } from '../redux/actions'
+import { deletingBoard } from '../../redux/actions'
 
 
 class BoardHeader extends React.Component {
@@ -43,7 +43,7 @@ class BoardHeader extends React.Component {
 
     return(
       this.state.redirect ?
-        <Redirect to='/home' />
+        <Redirect to='/boards' />
         :
         <div>
           {this.props.board ?

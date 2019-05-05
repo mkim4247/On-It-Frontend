@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingComment, postingNewComment } from '../redux/actions'
+import { deletingComment, postingNewComment } from '../../redux/actions'
 import { Card, Comment, Header, Form, Modal, Button } from 'semantic-ui-react'
 
 class CommentContainer extends React.Component {

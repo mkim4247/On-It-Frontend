@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Header, Form, Button, Card } from 'semantic-ui-react'
-import { editingBoard } from '../redux/actions'
+import { editingBoard } from '../../redux/actions'
 
 class EditBoard extends React.Component {
 

@@ -58,7 +58,7 @@ class Sidebar extends React.Component {
                 <Menu.Item
                   as={NavLink}
                   key={`board-${user_board.id}`}
-                  to={`/user/${this.props.user.username}/board/${user_board.name}`} >
+                  to={`/user/${this.props.user.username}/boards/${user_board.name}/${user_board.id}`} >
                   {user_board.name.length > 15 ?
                     user_board.name.slice(0, 15) + '...'
                     :
@@ -78,10 +78,10 @@ class Sidebar extends React.Component {
                 <Menu.Item
                   as={NavLink}
                   active={
-                    this.props.team && (team.name === this.props.team.name) && (team.name === this.props.ownProps.match.params.team)
+                    this.props.team && (team.name === this.props.team.name) && (team.name === this.props.ownProps.match.params.team) && (team.id === this.props.ownProps.match.params.team_id)
                   }
                   key={`team-${team.id}`}
-                  to={`/team/${team.name}`}>
+                  to={`/team/${team.name}/${team.id}`}>
                   {team.name.length > 15 ?
                     team.name.slice(0, 15) + '...'
                     :

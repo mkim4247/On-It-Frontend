@@ -31,7 +31,7 @@ class BoardsList extends React.Component {
             'PERSONAL BOARDS'
             :
             <NavLink
-              to={`/team/${this.props.owner.name}`}>
+              to={`/team/${this.props.owner.name}/${this.props.owner.id}`}>
               {this.props.owner.name}
             </NavLink>
           }
@@ -40,7 +40,7 @@ class BoardsList extends React.Component {
           {this.props.owner.type === "user" ?
             this.props.owner.boards.map( user_board => (
               <BoardCard
-                key={`board-${user_board.name}`}
+                key={`board-${user_board.name}${user_board.id}`}
                 owner={this.props.owner}
                 board={user_board}
               />
@@ -48,7 +48,7 @@ class BoardsList extends React.Component {
             :
             this.props.owner.boards.map( team_board => (
               <BoardCard
-                key={`board-${team_board.name}`}
+                key={`board-${team_board.name}${team_board.id}`}
                 owner={this.props.owner}
                 board={team_board}
               />

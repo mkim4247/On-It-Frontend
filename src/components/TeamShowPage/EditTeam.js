@@ -27,7 +27,7 @@ class EditTeam extends React.Component {
     return(
       <Fragment>
         <Header sub textAlign='center'>
-          <NavLink to={`/team/${this.props.team.name}`}>
+          <NavLink to={`/team/${this.props.team.name}/${this.props.team.id}`}>
             <Button
               color='teal'>
               Back

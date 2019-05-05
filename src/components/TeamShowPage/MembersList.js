@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Menu, Button } from 'semantic-ui-react'
-import InviteForm from './InviteForm'
-import { leavingTeam } from '../redux/actions'
+import InviteForm from '../InviteForm'
+import { leavingTeam } from '../../redux/actions'
 import { Redirect } from 'react-router-dom'
 
-class UsersList extends React.Component {
+class MembersList extends React.Component {
 
   state = {
     redirect: false
@@ -80,4 +80,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { leavingTeam })(UsersList)
+export default connect(mapStateToProps, { leavingTeam })(MembersList)

@@ -411,6 +411,7 @@ export const invitingToTeam = (newInvite, team) => {
           })
           .then(res => res.json())
           .then(data => {
+            alert("Invite Sent!")
             console.log(data)
           })
         }
