@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { creatingNewUser } from '../redux/actions'
-import { Form } from 'semantic-ui-react'
+import { Form, Button, Header } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
+import Nav from './Nav'
 
 class Create extends React.Component {
   state = {
@@ -26,20 +28,36 @@ class Create extends React.Component {
   render(){
     return(
       <div>
-        Create an Account
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group widths='equal'>
-            <Form.Input fluid label='First Name' name='first_name' placeholder='First Name' onChange={this.handleChange}/>
-            <Form.Input fluid label='Username' name='username' placeholder='Username' onChange={this.handleChange}/>
-          </Form.Group>
-          <Form.Group widths='equal'>
-            <Form.Input fluid label='Password' name='password' type='password' onChange={this.handleChange}/>
-            <Form.Input fluid label='Email' name='email' placeholder='Email' onChange={this.handleChange}/>
-          </Form.Group>
-          <Form.TextArea label='last name' name='last_name' onChange={this.handleChange}/>
+        <Nav />
+      <div id='login'>
+        <Header as='h2'>
+          CREATE ACCOUNT
+        </Header>
+        <div id='inner-login'>
+            <Form onSubmit={this.handleSubmit} size='tiny'>
+              <Form.Field>
+                <label htmlFor='first_name'> FIRST NAME </label>
+                <Form.Input type='text' name='first_name' placeholder='First Name' required onChange={this.handleChange}/>
 
-          <Form.Button>Submit</Form.Button>
-        </Form>
+                <label htmlFor='last_name'> LAST NAME </label>
+                <Form.Input type='text' name='last_name' placeholder='Last Name' required onChange={this.handleChange}/>
+
+                <label htmlFor='username'> USERNAME </label>
+                <Form.Input type='text' name='username' placeholder='Username' required onChange={this.handleChange}/>
+
+                <label htmlFor='email'> EMAIL </label>
+                <Form.Input type='text' name='email' placeholder='Email' required onChange={this.handleChange}/>
+
+                <label htmlFor='password'> PASSWORD </label>
+                <Form.Input type='password' name='password' placeholder='Password' required onChange={this.handleChange}/>
+
+                <Button fluid color='teal' onClick={this.handleSubmit}> SUBMIT </Button>
+              </Form.Field>
+            </Form>
+
+        </div>
+      </div>
+
       </div>
     )
   }

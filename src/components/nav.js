@@ -26,10 +26,13 @@ class Nav extends React.Component {
             </Menu.Item>
             : null
           }
-          <Menu.Item
-            as={NavLink}
-            to='/boards'
-            name="Boards" />
+          {this.props.user ?
+            <Menu.Item
+              as={NavLink}
+              to='/boards'
+              name="Boards" />
+            : null
+          }
           <Menu.Menu position='right'>
             {this.props.user ?
               <Menu.Item

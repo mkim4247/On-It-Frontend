@@ -1,3 +1,49 @@
+#login {
+  background-image: url('https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');
+  height: 100vh;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: grid;
+  grid-template-columns: 37.5% 25% 37.5%;
+  grid-template-rows: 25% 50% 25%;
+  grid-template-areas:
+    " . header ."
+    ". form ."
+    ". . .";
+  align-items: center;
+  text-align: center;
+}
+
+#inner-login {
+  grid-area: form;
+}
+
+#inner-login label{
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  font-size: 120%;
+}
+
+#login h1 {
+  font-size: 500%;
+  grid-area: header;
+  color: white;
+  text-shadow: 5px 5px 5px black;
+}
+
+#login h2 {
+  font-size: 200%;
+  grid-area: header;
+  color: white;
+  text-shadow: 5px 5px 5px black;
+}
+
+#login h3 {
+  font-size: 200%;
+  color: white;
+  text-shadow: 5px 5px 5px black;
+}
+
 .home {
   display: grid;
   grid-template-columns: 20% 60% 20%;
