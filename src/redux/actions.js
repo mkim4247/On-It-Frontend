@@ -70,6 +70,44 @@ export const checkingToken = token => {
   }
 }
 
+
+export const editingUser = user => {
+  return (dispatch, getStore) => {
+    let currentUser = getStore().user
+
+    fetch(`${RAILS_API}users/${currentUser.id}`, {
+      method: "PATCH",
+      headers: HEADERS,
+      body: JSON.stringify({ user })
+    })
+    .then(res => res.json())
+    .then(newUser => {
+      if(newUser.errors){
+        alert('Update Failed')
+        console.log(newUser.errors)
+      }
+      else {
+        console.log(`Updated`, newUser)
+        dispatch(setUser(newUser))
+      }
+    })
+  }
+}
+
+export const deletingUser = () => {
+  return (dispatch, getStore) => {
+    let user = getStore().user
+
+    fetch(`${RAILS_API}users/${user.id}`, {
+      method: "DELETE"
+    })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(setUser(null))
+    })
+  }
+}
+
 ////////////////////////////////////////
 
 export const setBoardForShowPage = board => {

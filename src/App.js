@@ -8,6 +8,7 @@ import Home from './components/Home'
 import Create from './components/Create'
 import BoardShow from './components/BoardShow'
 import TeamShow from './components/TeamShow'
+import UserShow from './components/UserShowPage/UserShow'
 
 class App extends Component {
   componentDidMount(){
@@ -22,17 +23,17 @@ class App extends Component {
     return (
       <div>
         <Switch>
-          <Route exact path='/home' render={ ownProps => (
+          <Route exact path='/boards' render={ ownProps => (
             this.props.user ?
               <Home {...ownProps}/> : <Redirect to='/login' />
           )}/>
           <Route exact path='/login' render={ () => (
             this.props.user ?
-              <Redirect to="/home" /> : <Login />
+              <Redirect to="/boards" /> : <Login />
           )}/>
           <Route exact path='/new' render={ () => (
             this.props.user ?
-              <Redirect to='/home' /> : <Create />
+              <Redirect to='/boards' /> : <Create />
           )}/>
         <Route exact path='/user/:username/board/:board' render={ ownProps => (
             this.props.user ?
@@ -45,6 +46,10 @@ class App extends Component {
           <Route path='/team/:team' render={ ownProps => (
             this.props.user ?
               <TeamShow {...ownProps} /> : <Redirect to='/login'/>
+            )}/>
+          <Route path='/user/:username' render={ ownProps => (
+              this.props.user ?
+                <UserShow {...ownProps} /> : <Redirect to='/login'/>
             )}/>
         </Switch>
       </div>
