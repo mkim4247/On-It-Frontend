@@ -453,7 +453,7 @@ export const deletingTeamInvite = invite => {
     })
     .then(res => res.json())
     .then(allInvites => {
-      let filteredInvites = allInvites.filter( invite => invite.receiver.find(receiver => receiver.username === user.username) )
+      let filteredInvites = allInvites.filter( invite => invite.receiver.username === user.username )
       dispatch(deleteTeamInvite(filteredInvites))
     })
   }

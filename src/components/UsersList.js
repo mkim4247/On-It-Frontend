@@ -3,8 +3,13 @@ import { connect } from 'react-redux'
 import { Menu, Button } from 'semantic-ui-react'
 import InviteForm from './InviteForm'
 import { leavingTeam } from '../redux/actions'
+import { Redirect } from 'react-router-dom'
 
 class UsersList extends React.Component {
+
+  state = {
+    redirect: false
+  }
 
   leaveTeam = event => {
     let confirm = window.confirm("Are you sure you want to leave this team?")
@@ -20,6 +25,9 @@ class UsersList extends React.Component {
 
   render(){
     return(
+      this.state.redirect ?
+      <Redirect to='/boards'/>
+      :
       <div className='right-container'>
         <Menu
           vertical

@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setTeamForShowPage, deletingTeam } from '../redux/actions'
-import Nav from './Nav'
-import Sidebar from './SideBar'
-import UsersList from './UsersList'
+import { setTeamForShowPage, deletingTeam } from '../../redux/actions'
+import Nav from '../Nav'
+import Sidebar from '../SideBar'
+import UsersList from '../UsersList'
 import { Header, Button } from 'semantic-ui-react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import TeamBoardContainer from './TeamShowPage/TeamBoardContainer'
-import TeamHeader from './TeamShowPage/TeamHeader'
-import EditTeam from './TeamShowPage/EditTeam'
+import TeamBoardContainer from './TeamBoardContainer'
+import TeamHeader from './TeamHeader'
+import EditTeam from './EditTeam'
 
 class TeamShow extends React.Component {
   state = {
@@ -48,7 +48,7 @@ class TeamShow extends React.Component {
   render(){
     return(
       this.state.redirect ?
-        <Redirect to='/home'/>
+        <Redirect to='/boards'/>
         :
         <div>
           <Nav />

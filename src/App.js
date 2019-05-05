@@ -7,7 +7,7 @@ import Login from './components/Login'
 import Home from './components/Home'
 import Create from './components/Create'
 import BoardShow from './components/BoardShow'
-import TeamShow from './components/TeamShow'
+import TeamShow from './components/TeamShowPage/TeamShow'
 import UserShow from './components/UserShowPage/UserShow'
 
 class App extends Component {
