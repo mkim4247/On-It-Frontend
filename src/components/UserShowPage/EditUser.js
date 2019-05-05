@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { editingUser } from '../../redux/actions'
 import { Form, Button, Header, Segment } from 'semantic-ui-react'
-import { NavLink } from 'react-router-dom'
 
 class EditTeam extends React.Component {
 

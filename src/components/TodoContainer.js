@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingTodo, assigningUserTeamTodo, unassigningUserTeamTodo } from '../redux/actions'
+import { assigningUserTeamTodo, unassigningUserTeamTodo } from '../redux/actions'
 import { Card, Modal, Button, Header, Icon } from 'semantic-ui-react'
 import EditTodo from './EditTodo'
 

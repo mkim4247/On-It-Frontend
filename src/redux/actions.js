@@ -616,8 +616,8 @@ export const editingTeam = team => {
       body: JSON.stringify(team)
     })
     .then(res => res.json())
-    .then(editTeam => {
-      dispatch(editTeam(editTeam))
+    .then(newTeam => {
+      dispatch(editTeam(newTeam))
     })
   }
 }

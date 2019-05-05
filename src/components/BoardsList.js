@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Header, Dropdown, Card } from 'semantic-ui-react'
+import { Header, Card } from 'semantic-ui-react'
 import BoardCard from './BoardCard'
 import EmptyBoardCard from './EmptyBoardCard'
 import { NavLink } from 'react-router-dom'

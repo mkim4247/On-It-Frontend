@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addingNewTodo } from '../redux/actions'
 import TodoContainer from './TodoContainer'
 import CommentContainer from './CommentContainer'
-import { Card, Button, Dropdown, Modal, Header, Form, Icon } from 'semantic-ui-react'
+import { Card, Button, Modal, Header, Form, Icon } from 'semantic-ui-react'
 import EditProject from './EditProject'
 
 class ProjectContainer extends React.Component {

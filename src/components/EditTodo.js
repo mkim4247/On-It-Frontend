@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { editingTodo, deletingTodo } from '../redux/actions'
 import { Header, Form, Button, Card, Modal } from 'semantic-ui-react'
-import { NavLink } from 'react-router-dom'
 
 class EditTodo extends React.Component {
 
@@ -24,7 +23,7 @@ class EditTodo extends React.Component {
     this.props.editingTodo(this.state, this.props.project)
     this.props.closeEdit()
   }
-  
+
   deleteTodo = event => {
     let confirm = window.confirm("Are you sure you want to delete this task?")
 
