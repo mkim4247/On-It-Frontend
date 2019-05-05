@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { creatingNewUser } from '../redux/actions'
 import { Form, Button, Header } from 'semantic-ui-react'
-import { NavLink } from 'react-router-dom'
 import Nav from './Nav'
 
 class Create extends React.Component {

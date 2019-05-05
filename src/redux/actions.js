@@ -662,11 +662,11 @@ export const editingBoard = board => {
       body: JSON.stringify(board)
     })
     .then(res => res.json())
-    .then(editBoard => {
+    .then(newBoard => {
       if(board.type === "user")
-        dispatch(editUserBoard(editBoard))
+        dispatch(editUserBoard(newBoard))
       else {
-        dispatch(editTeamBoard(editBoard))
+        dispatch(editTeamBoard(newBoard))
       }
     })
   }

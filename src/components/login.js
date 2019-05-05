@@ -1,6 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Header } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {settingUser} from '../redux/actions'
 import {NavLink} from 'react-router-dom'
@@ -47,14 +46,14 @@ class Login extends React.Component {
                 OR
               </Header>
                 <div style={{padding: '10px'}}>
+                  <NavLink
+                    to='/new'>
                   <Button
                     fluid
-                    color='teal'
-                    as={NavLink}
-                    to='/new'>
+                    color='teal'>
                     CREATE ACCOUNT
                   </Button>
-
+                </NavLink>
                 </div>
           </div>
         </div>

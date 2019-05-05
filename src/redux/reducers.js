@@ -25,7 +25,7 @@ const userReducer = (state=null, action) => {
     case "EDIT_USER_BOARD":
       userBoardCopy = state.boards.map( board => {
         if(board.id === action.board.id){
-          return {...board, name: action.board.name, description: action.board.description, background_image: action.board.background_image}
+          return action.board
         }
         else {
           return board
@@ -489,7 +489,17 @@ const boardReducer = (state=null, action) => {
   switch(action.type){
     case "SET_BOARD":
       return action.board
+    case "ADD_USER_BOARD":
+      return action.user_board
+    case "ADD_TEAM_BOARD":
+      return action.team_board
+    case "EDIT_USER_BOARD":
+      return action.board
+    case "EDIT_TEAM_BOARD":
+      return action.board
     case "DELETE_USER_BOARD":
+      return null
+    case "DELETE_TEAM_BOARD":
       return null
     default:
       return state
@@ -500,6 +510,10 @@ const teamReducer = (state=null, action) => {
   switch(action.type){
     case "SET_TEAM":
       return action.team
+    case "EDIT_TEAM":
+      return action.team
+    case "DELETE_TEAM":
+      return null 
     default:
       return state
   }

@@ -49,6 +49,7 @@ class BoardShow extends React.Component {
               : null
             }>
           <BoardHeader
+            ownProps={this.props.ownProps}
             board={
               this.props.path === "user" ?
                 {...this.props.board, type: "user"}
