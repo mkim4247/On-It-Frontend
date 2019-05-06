@@ -6,27 +6,24 @@ import BoardsList from './BoardsIndexPage/BoardsList'
 import TeamContainer from './BoardsIndexPage/TeamContainer'
 import Invites from './Invites'
 
-class Home extends React.Component {
-
-  render(){
-    return (
-      <div>
-        <Nav />
-        <div className='home'>
-          <Sidebar ownProps={this.props}/>
-          <div className='home-board-container'>
-            <BoardsList
-              owner={
-                {...this.props.user, type: "user"}
-              }
-            />
-            <TeamContainer />
-          </div>
-          <Invites/>
+const Home = props => {
+  return (
+    <div>
+      <Nav />
+      <div className='home'>
+        <Sidebar ownProps={props}/>
+        <div className='home-board-container'>
+          <BoardsList
+            owner={
+              {...props.user, type: "user"}
+            }
+          />
+          <TeamContainer />
         </div>
+        <Invites/>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 const mapStateToProps = state => {

@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Menu, Button } from 'semantic-ui-react'
-import InviteForm from '../InviteForm'
-import { leavingTeam } from '../../redux/actions'
 import { Redirect } from 'react-router-dom'
+import { Menu, Button } from 'semantic-ui-react'
+import { leavingTeam } from '../../redux/teamActions'
+import InviteForm from '../InviteForm'
 
 class MembersList extends React.Component {
 

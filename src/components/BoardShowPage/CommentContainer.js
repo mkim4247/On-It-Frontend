@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingComment, postingNewComment } from '../../redux/actions'
 import { Card, Comment, Header, Form, Modal, Button } from 'semantic-ui-react'
+import { deletingComment, postingNewComment } from '../../redux/commentActions'
 
 class CommentContainer extends React.Component {
 
@@ -22,7 +22,7 @@ class CommentContainer extends React.Component {
     this.props.postingNewComment(this.state, this.props.project)
     this.setState({
       showModal: false
-     })
+    })
   }
 
   openModal = () => {
@@ -73,14 +73,15 @@ class CommentContainer extends React.Component {
                       {comment.content}
                     </Comment.Text>
                       {comment.user.username === this.props.user.username ?
-                        <Header textAlign='right' style={{margin: '0px'}}>
-                        <Button
-                          color='red'
-                          onClick={() => this.deleteComment(comment)}>
-                          Delete
-                        </Button>
-                      </Header>
-
+                        <Header
+                          textAlign='right'
+                          style={{margin: '0px'}}>
+                          <Button
+                            color='red'
+                            onClick={() => this.deleteComment(comment)}>
+                            Delete
+                          </Button>
+                        </Header>
                         : null
                       }
                     </Comment.Content>

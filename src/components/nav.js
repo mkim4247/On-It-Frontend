@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
-import { setUser } from '../redux/actions'
+import { setUser } from '../redux/userActions'
 
 class Nav extends React.Component {
+
   state = {
     visible: false
   }

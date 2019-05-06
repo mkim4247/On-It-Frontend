@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { setBoardForShowPage } from '../../redux/boardActions'
 import Nav from '../Nav'
-import { setBoardForShowPage } from '../../redux/actions'
 import BoardHeader from './BoardHeader'
 import ProjectContainer from './ProjectContainer'
 import EmptyProjectCard from './EmptyProjectCard'
@@ -9,21 +9,24 @@ import EmptyProjectCard from './EmptyProjectCard'
 class BoardShow extends React.Component {
 
   setBoardFromParams = () => {
+    // find and set the right user board or team board to show
     if(this.props.user){
       if(this.props.path === "user"){
+        //board should match the name and id given in params (avoids duplicate board name bugs)
         let user_board = this.props.user.boards.find( board => (board.name === this.props.match.params.board) && (board.id === parseInt(this.props.match.params.board_id)) )
 
         if(user_board){
-            this.props.setBoardForShowPage(user_board)
+          this.props.setBoardForShowPage(user_board)
         }
       }
       else {
+        //have to find right team before finding right board here
         let team = this.props.user.teams.find( team => (team.name === this.props.match.params.team) && (team.id === parseInt(this.props.match.params.team_id)) )
 
         let team_board = team.boards.find( board => (board.name === this.props.match.params.board) && (board.id === parseInt(this.props.match.params.board_id)) )
 
         if(team_board){
-            this.props.setBoardForShowPage(team_board)
+          this.props.setBoardForShowPage(team_board)
         }
       }
     }
@@ -37,6 +40,8 @@ class BoardShow extends React.Component {
     this.setBoardFromParams()
   }
 
+  // props are passed down and given "type" attribute here to make dispatched actions easier/more abstract //
+
   render(){
     return(
       <div>
@@ -47,7 +52,7 @@ class BoardShow extends React.Component {
             this.props.board ?
               {backgroundImage: `url(${this.props.board.background_image})`}
               : null
-            }>
+          }>
           <BoardHeader
             ownProps={this.props.ownProps}
             board={

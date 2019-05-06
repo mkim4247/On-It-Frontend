@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { acceptingTeamInvite, deletingTeamInvite } from '../redux/actions'
 import { Card, Menu, Modal, Button } from 'semantic-ui-react'
+import { acceptingTeamInvite, deletingTeamInvite } from '../redux/teamActions'
 
 class Invites extends React.Component {
 
@@ -36,7 +36,6 @@ class Invites extends React.Component {
       showModal: false
     })
   }
-
 
   render(){
     const { showModal } = this.state

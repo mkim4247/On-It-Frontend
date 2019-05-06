@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './App.css';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
-import { checkingToken } from './redux/actions'
+import { checkingToken } from './redux/userActions'
 import Login from './components/Login'
 import Home from './components/Home'
 import Create from './components/Create'
 import BoardShow from './components/BoardShowPage/BoardShow'
 import TeamShow from './components/TeamShowPage/TeamShow'
 import UserShow from './components/UserShowPage/UserShow'
+import NotFound from './components/NotFound'
 
 class App extends Component {
   componentDidMount(){
@@ -51,6 +52,7 @@ class App extends Component {
               this.props.user ?
                 <UserShow {...ownProps} /> : <Redirect to='/login'/>
             )}/>
+          <Route component={ NotFound }/>
         </Switch>
       </div>
     );

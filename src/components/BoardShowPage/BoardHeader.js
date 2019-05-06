@@ -2,10 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Header, Card, Button, Modal, Menu, Popup, Icon } from 'semantic-ui-react'
+import { deletingBoard } from '../../redux/boardActions'
 import InviteForm from '../InviteForm'
 import EditBoard from './EditBoard'
-import { deletingBoard } from '../../redux/actions'
-
 
 class BoardHeader extends React.Component {
 
@@ -110,7 +109,6 @@ class BoardHeader extends React.Component {
                 <EditBoard
                   closeEdit={this.closeEdit}
                   board={this.props.board}/>
-
                 {this.props.team ?
                   <Card.Content>
                     <InviteForm team={this.props.team}/>

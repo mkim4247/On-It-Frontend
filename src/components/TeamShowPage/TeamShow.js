@@ -1,19 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setTeamForShowPage, deletingTeam } from '../../redux/actions'
-import Nav from '../Nav'
-import Sidebar from '../SideBar'
-import MembersList from './MembersList'
-import { Header, Button } from 'semantic-ui-react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import { Header, Button } from 'semantic-ui-react'
+import { setTeamForShowPage, deletingTeam } from '../../redux/teamActions'
 import TeamBoardContainer from './TeamBoardContainer'
 import TeamHeader from './TeamHeader'
 import EditTeam from './EditTeam'
+import Nav from '../Nav'
+import Sidebar from '../SideBar'
+import MembersList from './MembersList'
 
 class TeamShow extends React.Component {
+
   state = {
     redirect: false
   }
+
   setTeamFromParams = () => {
     if(this.props.user){
       let team = this.props.user.teams.find( team => (team.name === this.props.match.params.team) && (team.id === parseInt(this.props.match.params.team_id)) )

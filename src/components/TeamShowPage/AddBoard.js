@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addingNewBoard } from '../../redux/actions'
 import { Button, Modal, Form } from 'semantic-ui-react'
+import { addingNewBoard } from '../../redux/boardActions'
 
 class AddBoard extends React.Component {
 

@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { assigningUserTeamTodo, unassigningUserTeamTodo } from '../../redux/actions'
 import { Card, Modal, Button, Header, Icon } from 'semantic-ui-react'
+import { assigningUserTeamTodo, unassigningUserTeamTodo } from '../../redux/todoActions'
 import EditTodo from './EditTodo'
 
 class TodoContainer extends React.Component {
+
   state = {
     showModal: false,
     showEdit: false

@@ -1,14 +1,20 @@
 import React, { Fragment } from 'react'
+import { Header } from 'semantic-ui-react'
+import Nav from './Nav'
 
-class NotFound extends React.Component{
-  render(){
-    return (
-      <div className="center">
-      <h1> This Page Does Not Exist </h1>
-      <img src="https://media.giphy.com/media/X05U0gOPkQ4G4/giphy.gif" />
+const NotFound = props => {
+  return (
+    <div>
+      <Nav />
+      <div className='home'>
+        <div className='board-list'>
+          <Header as='h1' textAlign='center' verticalAlign='center'>
+            Sorry, this page does not exist.
+          </Header>
+        </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default NotFound

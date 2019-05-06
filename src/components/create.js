@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { creatingNewUser } from '../redux/actions'
+import { creatingNewUser } from '../redux/userActions'
 import { Form, Button, Header } from 'semantic-ui-react'
 import Nav from './Nav'
 
 class Create extends React.Component {
+
   state = {
     first_name: "",
     last_name: "",
@@ -28,11 +29,11 @@ class Create extends React.Component {
     return(
       <div>
         <Nav />
-      <div id='login'>
-        <Header as='h2'>
-          CREATE ACCOUNT
-        </Header>
-        <div id='inner-login'>
+        <div id='login'>
+          <Header as='h2'>
+            CREATE ACCOUNT
+          </Header>
+          <div id='inner-login'>
             <Form onSubmit={this.handleSubmit} size='tiny'>
               <Form.Field>
                 <label htmlFor='first_name'> FIRST NAME </label>
@@ -53,14 +54,11 @@ class Create extends React.Component {
                 <Button fluid color='teal' onClick={this.handleSubmit}> SUBMIT </Button>
               </Form.Field>
             </Form>
-
+          </div>
         </div>
-      </div>
-
       </div>
     )
   }
-
 }
 
 export default connect(null, { creatingNewUser })(Create)

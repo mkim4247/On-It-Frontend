@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
+import { NavLink } from 'react-router-dom'
 import { Header, Item, Segment, Button } from 'semantic-ui-react'
 import AddBoard from './AddBoard'
 import TeamBoardCard from './TeamBoardCard'
-import { NavLink } from 'react-router-dom'
 
 const TeamBoardContainer = props => {
   return(

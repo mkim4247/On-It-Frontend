@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletingUser } from '../../redux/actions'
-import Nav from '../Nav'
-import Sidebar from '../SideBar'
-import { Header, Button } from 'semantic-ui-react'
 import { Redirect } from 'react-router-dom'
+import { Header, Button } from 'semantic-ui-react'
+import { deletingUser } from '../../redux/userActions'
 import UserHeader from './UserHeader'
 import Invites from '../Invites'
 import EditUser from './EditUser'
+import Nav from '../Nav'
+import Sidebar from '../SideBar'
 
 class UserShow extends React.Component {
 

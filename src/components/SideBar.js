@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addingNewTeam } from '../redux/actions'
-import { Menu, Modal, Form, Button } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
+import { Menu, Modal, Form, Button } from 'semantic-ui-react'
+import { addingNewTeam } from '../redux/teamActions'
 
 class Sidebar extends React.Component {
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { invitingToTeam } from '../redux/actions'
 import { Form, Button, Header } from 'semantic-ui-react'
+import { invitingToTeam } from '../redux/teamActions'
 
 class InviteForm extends React.Component {
 

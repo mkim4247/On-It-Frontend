@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Header, Form, Button, Card, Modal } from 'semantic-ui-react'
-import { editingProject, deletingProject } from '../../redux/actions'
+import { editingProject, deletingProject } from '../../redux/projectActions'
 
 class EditProject extends React.Component {
 

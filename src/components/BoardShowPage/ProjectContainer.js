@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addingNewTodo } from '../../redux/actions'
+import { Card, Button, Modal, Header, Form, Icon } from 'semantic-ui-react'
+import { addingNewTodo } from '../../redux/todoActions'
 import TodoContainer from './TodoContainer'
 import CommentContainer from './CommentContainer'
-import { Card, Button, Modal, Header, Form, Icon } from 'semantic-ui-react'
 import EditProject from './EditProject'
 
 class ProjectContainer extends React.Component {
+
+  // showModal and showEdit handle the two Modals opened through this Component, first the Modal with Info and the other to Edit
 
   state = {
     title: "",
@@ -162,7 +164,6 @@ class ProjectContainer extends React.Component {
           :
           null
         }
-
 
       </div>
     )

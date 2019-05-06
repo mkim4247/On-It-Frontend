@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addingNewBoard } from '../../redux/actions'
 import { Modal, Form, Button, Header } from 'semantic-ui-react'
+import { addingNewBoard } from '../../redux/boardActions'
 
 class EmptyBoardCard extends React.Component {
 
@@ -43,7 +43,6 @@ class EmptyBoardCard extends React.Component {
     const { showModal } = this.state
 
     return(
-
       <div>
         <div
           style={{ backgroundColor: "lightGrey" }}
@@ -67,7 +66,6 @@ class EmptyBoardCard extends React.Component {
           <Modal.Header>
             Add Board
           </Modal.Header>
-
           <Modal.Content>
             <Form onSubmit={this.handleSubmit}>
               <Form.Field>
