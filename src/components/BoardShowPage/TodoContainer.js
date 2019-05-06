@@ -72,7 +72,18 @@ class TodoContainer extends React.Component {
                 this.props.todo.users.map( user => (
                   <span
                     key={`todo-${user.id}`}
-                    style={{
+                    style={
+                      user.username === this.props.user.username ?
+                      {
+                        border: '1px solid black',
+                        height: '1em',
+                        width: '1em',
+                        borderRadius: '50%',
+                        padding: '5px',
+                        backgroundColor: 'yellow'
+                      }
+                      :
+                      {
                       border: '1px solid black',
                       height: '1em',
                       width: '1em',
@@ -112,7 +123,6 @@ class TodoContainer extends React.Component {
                 </Card.Header>
                 <Header sub textAlign='right'>
                   {`Due: ${this.formatDueDate(this.props.todo)}`}
-                  {this.props.project.description}
                 </Header>
                 <Card.Description>
                   Description:

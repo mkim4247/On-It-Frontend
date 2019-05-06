@@ -50,7 +50,7 @@ class CommentContainer extends React.Component {
 
     return(
       <div>
-        <Card>
+        <Card fluid>
           <Card.Content>
             <Comment.Group>
               <Header as='h5' dividing>

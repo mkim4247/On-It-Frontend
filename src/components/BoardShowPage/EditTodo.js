@@ -74,7 +74,6 @@ class EditTodo extends React.Component {
                   <Form.Input
                     type='date'
                     name='due_date'
-                    value={this.state.due_date}
                     onChange={this.handleChange}/>
                   <Button
                     type='submit'
@@ -102,3 +101,11 @@ class EditTodo extends React.Component {
 }
 
 export default connect(null, { editingTodo, deletingTodo })(EditTodo)
+
+EditTodo.defaultProps = {
+  todo: {
+    title: "",
+    description: "",
+    due_date: ""
+  }
+}

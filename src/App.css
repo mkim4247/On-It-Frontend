@@ -119,7 +119,7 @@
 .project-container {
   padding: 10px;
   margin: 10px;
-  min-width: 275px;
+  width: 300px;
   max-height: 80vh;
   overflow-y: scroll;
 }

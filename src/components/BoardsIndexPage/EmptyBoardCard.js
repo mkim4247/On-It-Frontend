@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { addingNewBoard } from '../../redux/actions'
 import { Modal, Form, Button, Header } from 'semantic-ui-react'
 
@@ -10,7 +9,6 @@ class EmptyBoardCard extends React.Component {
     name: "",
     description: "",
     background_image: "",
-    redirect: false,
     showModal: false
   }
 
@@ -25,7 +23,7 @@ class EmptyBoardCard extends React.Component {
     event.target.reset()
     this.props.addingNewBoard(this.state, this.props.owner)
     this.setState({
-      redirect: true
+      showModal: false
     })
   }
 
@@ -45,16 +43,7 @@ class EmptyBoardCard extends React.Component {
     const { showModal } = this.state
 
     return(
-      this.state.redirect ?
-        <Redirect
-          to={
-            this.props.owner.type === "user" ?
-              `/${this.props.owner.type}/${this.props.owner.username}/board/${this.state.name}`
-              :
-              `/${this.props.owner.type}/${this.props.owner.name}/board/${this.state.name}`
-          }
-        />
-      :
+
       <div>
         <div
           style={{ backgroundColor: "lightGrey" }}
