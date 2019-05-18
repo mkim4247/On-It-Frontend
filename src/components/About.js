@@ -49,7 +49,7 @@ const About = () => {
             <p>
               Credits to the following artists on Unsplash for the background images that were used: Paul Earle, 贝莉儿 NG, Nitish Meena, Josefa Holland-Merten, Robert Bye, Jay Mantri, Blair Fraser, Jeremy Ricketts, Dominik Schröder, Anthony DELANOIX, Modestas Urbonas, Namphuong Van, Blake Richard Verdoorn, Nick Scheerbart, Ivan Slade, Clem Onojeghuo, Noah Baslé, Cameron Kirby, Sebastien Gabriel, Elliott Engelmann, Paul Jarvis, Jonathan Bean, and NASA.
               <br/>
-              Hand Icon made by <a href="https://www.freepik.com/" title="Freepik"> Freepik </a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com </a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank"> CC 3.0 BY </a>
+              Hand Icon made by <a href="https://www.freepik.com/" title="Freepik"> Freepik </a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com </a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"> CC 3.0 BY </a>
             </p>
             <hr/>
             <div>

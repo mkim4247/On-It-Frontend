@@ -155,7 +155,3 @@ export const reorganizingTodos = (todo, project) => {
     })
   }
 }
-
-const reorganizeTodos = (todo, project) => {
-  return { type: "REORGANIZE_TODOS", todo, project }
-}
