@@ -89,6 +89,7 @@ class ProjectContainer extends React.Component {
           <Card.Content >
             <div id='todo-container'>
               {this.props.project.todos.sort( (a,b) => a.display_order - b.display_order).map( (user_todo, index) => (
+                
                 <TodoContainer
                   key={`todo-${user_todo.id}`}
                   index={index}

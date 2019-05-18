@@ -129,3 +129,11 @@ const editUserBoard = board => {
 const editTeamBoard = board => {
   return { type: "EDIT_TEAM_BOARD", board }
 }
+
+export const reorganizingUserBoard = board => {
+  return { type: "REORGANIZE_USER_BOARD", board }
+}
+
+export const reorganizingTeamBoard = board => {
+  return { type: "REORGANIZE_TEAM_BOARD", board }
+}

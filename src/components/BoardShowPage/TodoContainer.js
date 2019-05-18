@@ -56,7 +56,9 @@ class TodoContainer extends React.Component {
     const { showEdit } = this.state
 
     return(
-      <Draggable draggableId={this.props.todo.id} index={this.props.index}>
+      <Draggable
+        draggableId={this.props.todo.id}
+        index={this.props.index}>
         {provided => (
       <div
         {...provided.draggableProps}

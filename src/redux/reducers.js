@@ -461,6 +461,37 @@ const userReducer = (state=null, action) => {
       userCopy = {...state, invitations: action.invites}
       return userCopy
 
+    case "REORGANIZE_USER_BOARD":
+      userBoardCopy = state.boards.map( board => {
+        if(board.id === action.board.id){
+          return action.board
+        }
+        else {
+          return board
+        }
+      })
+      userCopy = {...state, boards: userBoardCopy}
+      return userCopy
+    case "REORGANIZE_TEAM_BOARD":
+      teamCopy = state.teams.map( team => {
+        if(team.id === action.board.team_id){
+          teamBoardCopy = team.boards.map( board => {
+            if(board.id === action.board.id){
+              return action.board
+            }
+            else {
+              return board
+            }
+          })
+          return {...team, boards: teamBoardCopy}
+        }
+        else {
+          return team
+        }
+      })
+      userCopy = {...state, teams: teamCopy}
+      return userCopy
+
     default:
       return state
   }

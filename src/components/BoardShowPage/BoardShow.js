@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { DragDropContext } from 'react-beautiful-dnd';
-import { setBoardForShowPage } from '../../redux/boardActions'
+import { setBoardForShowPage, reorganizingUserBoard, reorganizingTeamBoard } from '../../redux/boardActions'
 import { reorganizingTodos } from '../../redux/todoActions'
 import Nav from '../Nav'
 import BoardHeader from './BoardHeader'
@@ -54,29 +54,79 @@ class BoardShow extends React.Component {
     if(destination.droppableId === source.droppableId && destination.index === source.index){
       return
     }
-    // find right project
-    let project = this.props.board.projects.find( project => project.id === source.droppableId )
-    // assign its type to help with fetch 
+    // find right original project
+    let originalProject = this.props.board.projects.find( project => project.id === source.droppableId )
+    // find right new project
+    let newProject = this.props.board.projects.find( project => project.id === destination.droppableId)
+    // assign its type to help with fetch
     if(this.props.path === "user"){
-      project.type = 'user'
+      originalProject.type = 'user'
     }
     else {
-      project.type = 'team'
+      originalProject.type = 'team'
     }
-    // make copy of todos
-    let reorganizedTodos = project.todos.slice()
-    // find the right todo object
-    let movedTodo = reorganizedTodos.find( todo => todo.id === draggableId )
-    // remove the todo that's moving
-    reorganizedTodos.splice(source.index, 1)
-    // put the todo in its new spot
-    reorganizedTodos.splice(destination.index, 0, movedTodo)
-    // need to reassign indeces now
-    reorganizedTodos.forEach( (todo, index) => {
-      todo.display_order = index
-      this.props.reorganizingTodos(todo, project)
-    })
 
+    if(originalProject === newProject){
+      // make copy of todos
+      let reorganizedTodos = originalProject.todos.slice()
+      // find the right todo object
+      let movedTodo = reorganizedTodos.find( todo => todo.id === draggableId )
+      // remove the todo that's moving
+      reorganizedTodos.splice(source.index, 1)
+      // put the todo in its new spot
+      reorganizedTodos.splice(destination.index, 0, movedTodo)
+      // need to reassign indeces now
+      reorganizedTodos.forEach( (todo, index) => {
+        todo.display_order = index
+        this.props.reorganizingTodos(todo, originalProject)
+      })
+      return
+    }
+    else {
+      //need to reorganize original's and new project's todos
+      let originalTodos = originalProject.todos.slice()
+      let newTodos = newProject.todos.slice()
+
+      // find the todo object that's moving
+      let movedTodo = originalTodos.find( todo => todo.id === draggableId )
+      movedTodo[`${this.props.path}_project_id`] = newProject.id
+
+      // remove the todo that's moving
+      originalTodos.splice(source.index, 1)
+      // reassign the indeces for todos still there
+      originalTodos.forEach( (todo, index) => {
+        todo.display_order = index
+        this.props.reorganizingTodos(todo, originalProject)
+      })
+      // put the todo in the new project
+      newTodos.splice(destination.index, 0, movedTodo)
+      // need to reassign indeces now
+      newTodos.forEach( (todo, index) => {
+        todo.display_order = index
+        this.props.reorganizingTodos(todo, originalProject)
+      })
+
+      let projects = this.props.board.projects.map( project => {
+        if(project.id === originalProject.id){
+          return {...originalProject, todos: originalTodos}
+        }
+        else if(project.id === newProject.id){
+          return {...newProject, todos: newTodos}
+        }
+        else {
+          return project
+        }
+      })
+
+      let board = {...this.props.board, projects: projects}
+
+      if(this.props.path === "user"){
+        this.props.reorganizingUserBoard(board)
+      }
+      else {
+        this.props.reorganizingTeamBoard(board)
+      }
+    }
   }
 
   // props are passed down and given "type" attribute here to make dispatched actions easier/more abstract //
@@ -107,9 +157,9 @@ class BoardShow extends React.Component {
               }
           />
           <div id='board-projects-container'>
-            {this.props.board ?
-              this.props.board.projects.map( project => (
-                <DragDropContext onDragEnd={this.onDragEnd} key={`dnd-${project.id}`}>
+            <DragDropContext onDragEnd={this.onDragEnd}>
+              {this.props.board ?
+                this.props.board.projects.map( project => (
                   <ProjectContainer
                     key={`pc-${project.name}${project.id}`}
                     project={
@@ -119,10 +169,10 @@ class BoardShow extends React.Component {
                         {...project, type: "team"}
                     }
                   />
-                </DragDropContext>
-              ))
-              : null
-            }
+                ))
+                : null
+              }
+            </DragDropContext>
             <EmptyProjectCard
               board={
                 this.props.path === "user" ?
@@ -145,4 +195,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { setBoardForShowPage, reorganizingTodos })(BoardShow)
+export default connect(mapStateToProps, { setBoardForShowPage, reorganizingTodos, reorganizingUserBoard, reorganizingTeamBoard })(BoardShow)
