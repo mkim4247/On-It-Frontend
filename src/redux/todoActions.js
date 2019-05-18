@@ -1,7 +1,8 @@
 import { setUser } from './userActions'
 
-const RAILS_API = 'http://localhost:4247/api/v1/'
-const HEADERS = { "Content-type": "application/json" }
+// const RAILS_API = 'http://localhost:4247/api/v1/'
+const HEROKU_API = 'https://on-it-backend.herokuapp.com/api/v1'
+const HEADERS = { "Content-type": "application/json", "Accept": "application/json" }
 
 /* will be getting project that todo belongs to, which has type attr of user or team again */
 export const addingNewTodo = (newTodo, project) => {
@@ -9,7 +10,7 @@ export const addingNewTodo = (newTodo, project) => {
 
     newTodo[`${project.type}_project_id`] = project.id
 
-    fetch(`${RAILS_API}${project.type}_todos`, {
+    fetch(`${HEROKU_API}${project.type}_todos`, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(newTodo)
@@ -36,7 +37,7 @@ const addTeamTodo = (team_todo, project) => {
 
 export const deletingTodo = (todo, project) => {
   return (dispatch, getStore) => {
-    fetch(`${RAILS_API}${project.type}_todos/${todo.id}`, {
+    fetch(`${HEROKU_API}${project.type}_todos/${todo.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())
@@ -64,7 +65,7 @@ const deleteTeamTodo = (team_todos, project) => {
 
 export const editingTodo = (todo, project) => {
   return dispatch => {
-    fetch(`${RAILS_API}${project.type}_todos/${todo.id}`, {
+    fetch(`${HEROKU_API}${project.type}_todos/${todo.id}`, {
       method: "PATCH",
       headers: HEADERS,
       body: JSON.stringify(todo)
@@ -99,7 +100,7 @@ export const assigningUserTeamTodo = (todo, project) => {
       team_todo_id: todo.id
     }
 
-    fetch(`${RAILS_API}user_team_todos`, {
+    fetch(`${HEROKU_API}user_team_todos`, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(newUserTeamTodo)
@@ -125,7 +126,7 @@ export const unassigningUserTeamTodo = (todo) => {
       team_todo_id: todo.id
     }
 
-    fetch(`${RAILS_API}user_team_todos`, {
+    fetch(`${HEROKU_API}user_team_todos`, {
       method: "DELETE",
       headers: HEADERS,
       body: JSON.stringify(user_team_todo)
@@ -139,7 +140,7 @@ export const unassigningUserTeamTodo = (todo) => {
 
 export const reorganizingTodos = (todo, project) => {
   return dispatch => {
-    fetch(`${RAILS_API}${project.type}_todos/${todo.id}`, {
+    fetch(`${HEROKU_API}${project.type}_todos/${todo.id}`, {
       method: "PATCH",
       headers: HEADERS,
       body: JSON.stringify(todo)

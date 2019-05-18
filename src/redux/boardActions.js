@@ -1,5 +1,6 @@
-const RAILS_API = 'http://localhost:4247/api/v1/'
-const HEADERS = { "Content-type": "application/json" }
+// const RAILS_API = 'http://localhost:4247/api/v1/'
+const HEROKU_API = 'https://on-it-backend.herokuapp.com/api/v1'
+const HEADERS = { "Content-type": "application/json", "Accept": "application/json" }
 
 /* used for setting board from params */
 export const setBoardForShowPage = board => {
@@ -48,7 +49,7 @@ export const addingNewBoard = (newBoard, owner) => {
       newBoard.team_id = owner.id
     }
 
-    fetch(`${RAILS_API}${owner.type}_boards`, {
+    fetch(`${HEROKU_API}${owner.type}_boards`, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(newBoard)
@@ -78,7 +79,7 @@ export const deletingBoard = board => {
   return (dispatch, getStore) => {
     let user = getStore().user
 
-    fetch(`${RAILS_API}${board.type}_boards/${board.id}`, {
+    fetch(`${HEROKU_API}${board.type}_boards/${board.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())
@@ -106,7 +107,7 @@ const deleteTeamBoard = (team_boards, teamID) => {
 
 export const editingBoard = board => {
   return dispatch => {
-    fetch(`${RAILS_API}${board.type}_boards/${board.id}`, {
+    fetch(`${HEROKU_API}${board.type}_boards/${board.id}`, {
       method: "PATCH",
       headers: HEADERS,
       body: JSON.stringify(board)

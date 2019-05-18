@@ -1,5 +1,6 @@
-const RAILS_API = 'http://localhost:4247/api/v1/'
-const HEADERS = { "Content-type": "application/json" }
+// const RAILS_API = 'http://localhost:4247/api/v1/'
+const HEROKU_API = 'https://on-it-backend.herokuapp.com/api/v1'
+const HEADERS = { "Content-type": "application/json", "Accept": "application/json" }
 
 /* board has type attr assigned of either team or user */
 export const addingNewProject = (newProject, board) => {
@@ -12,7 +13,7 @@ export const addingNewProject = (newProject, board) => {
       newProject.team_board_id = board.id
     }
 
-    fetch(`${RAILS_API}${board.type}_projects`, {
+    fetch(`${HEROKU_API}${board.type}_projects`, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(newProject)
@@ -43,7 +44,7 @@ export const deletingProject = (project) => {
   return (dispatch, getStore) => {
     let board = getStore().board
 
-    fetch(`${RAILS_API}${project.type}_projects/${project.id}`, {
+    fetch(`${HEROKU_API}${project.type}_projects/${project.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())
@@ -70,7 +71,7 @@ const deleteTeamProject = (team_projects, team_board) => {
 
 export const editingProject = project => {
   return (dispatch, getStore) => {
-    fetch(`${RAILS_API}${project.type}_projects/${project.id}`, {
+    fetch(`${HEROKU_API}${project.type}_projects/${project.id}`, {
       method: "PATCH",
       headers: HEADERS,
       body: JSON.stringify(project)

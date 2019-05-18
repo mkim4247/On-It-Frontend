@@ -1,5 +1,6 @@
-const RAILS_API = 'http://localhost:4247/api/v1/'
-const HEADERS = { "Content-type": "application/json" }
+// const RAILS_API = 'http://localhost:4247/api/v1/'
+const HEROKU_API = 'https://on-it-backend.herokuapp.com/api/v1'
+const HEADERS = { "Content-type": "application/json", "Accept": "application/json" }
 
 /* passing in project that comment belongs to, similar to todo; project has type attr of user or team again */
 export const postingNewComment = (comment, project) => {
@@ -13,7 +14,7 @@ export const postingNewComment = (comment, project) => {
     else {
       comment.team_project_id = project.id
     }
-    fetch(`${RAILS_API}${project.type}_comments`, {
+    fetch(`${HEROKU_API}${project.type}_comments`, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(comment)
@@ -40,7 +41,7 @@ const addTeamComment = (team_comment, project) => {
 
 export const deletingComment = (comment, project) => {
   return (dispatch, getStore) => {
-    fetch(`${RAILS_API}${project.type}_comments/${comment.id}`, {
+    fetch(`${HEROKU_API}${project.type}_comments/${comment.id}`, {
       method: "DELETE",
       headers: HEADERS,
       body: JSON.stringify(comment)

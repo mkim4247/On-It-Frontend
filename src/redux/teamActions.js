@@ -1,7 +1,8 @@
 import { setUser } from './userActions'
 
-const RAILS_API = 'http://localhost:4247/api/v1/'
-const HEADERS = { "Content-type": "application/json" }
+// const RAILS_API = 'http://localhost:4247/api/v1/'
+const HEROKU_API = 'https://on-it-backend.herokuapp.com/api/v1'
+const HEADERS = { "Content-type": "application/json", "Accept": "application/json" }
 
 /* used for setting team from params */
 export const setTeamForShowPage = team => {
@@ -14,7 +15,7 @@ export const addingNewTeam = (newTeam) => {
     let user = getStore().user
     newTeam.user_id = user.id
 
-    fetch(RAILS_API + 'teams', {
+    fetch(HEROKU_API + 'teams', {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(newTeam)
@@ -34,7 +35,7 @@ export const deletingTeam = (team) => {
   return (dispatch, getStore) => {
     let user = getStore().user
 
-    fetch(RAILS_API + `teams/${team.id}`, {
+    fetch(HEROKU_API + `teams/${team.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())
@@ -52,7 +53,7 @@ const deleteTeam = teams => {
 
 export const editingTeam = team => {
   return (dispatch, getStore) => {
-    fetch(`${RAILS_API}teams/${team.id}`, {
+    fetch(`${HEROKU_API}teams/${team.id}`, {
       method: "PATCH",
       headers: HEADERS,
       body: JSON.stringify(team)
@@ -73,7 +74,7 @@ export const invitingToTeam = (newInvite, team) => {
   return (dispatch, getStore) => {
     let user = getStore().user
 
-    fetch(`${RAILS_API}users`)
+    fetch(`${HEROKU_API}users`)
     .then(res => res.json())
     .then(users => {
       let receiver = users.find( user => user.email === newInvite.email)
@@ -87,7 +88,7 @@ export const invitingToTeam = (newInvite, team) => {
           newInvite.receiver_id = receiver.id
           newInvite.team_id = team.id
 
-          fetch(`${RAILS_API}invites`, {
+          fetch(`${HEROKU_API}invites`, {
             method: "POST",
             headers: HEADERS,
             body: JSON.stringify(newInvite)
@@ -112,7 +113,7 @@ export const acceptingTeamInvite = invite => {
     let user = getStore().user
     let newUserTeam = {user_id: user.id, team_id: invite.team.id}
 
-    fetch(`${RAILS_API}user_teams`, {
+    fetch(`${HEROKU_API}user_teams`, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(newUserTeam)
@@ -134,7 +135,7 @@ export const deletingTeamInvite = invite => {
   return (dispatch, getStore) => {
     let user = getStore().user
 
-    fetch(`${RAILS_API}invites/${invite.id}`, {
+    fetch(`${HEROKU_API}invites/${invite.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())
@@ -158,7 +159,7 @@ export const leavingTeam = team => {
       team_id: team.id,
       user_id: user.id
     }
-    fetch(`${RAILS_API}user_teams`, {
+    fetch(`${HEROKU_API}user_teams`, {
       method: "DELETE",
       headers: HEADERS,
       body: JSON.stringify(user_team)
