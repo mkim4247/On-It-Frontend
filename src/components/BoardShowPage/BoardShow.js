@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { DragDropContext } from 'react-beautiful-dnd';
 import { setBoardForShowPage } from '../../redux/boardActions'
+import { reorganizingTodos } from '../../redux/todoActions'
 import Nav from '../Nav'
 import BoardHeader from './BoardHeader'
 import ProjectContainer from './ProjectContainer'
@@ -40,6 +42,43 @@ class BoardShow extends React.Component {
     this.setBoardFromParams()
   }
 
+  onDragEnd = result => {
+    const { destination, source, draggableId } = result
+    // result object made from React-DND, includes destination and source objects; draggableId is todoId here
+    console.log(result)
+    // if no destination, do nothing
+    if(!destination) {
+      return
+    }
+    // check if location has changed, if not then do nothing
+    if(destination.droppableId === source.droppableId && destination.index === source.index){
+      return
+    }
+    // find right project
+    let project = this.props.board.projects.find( project => project.id === source.droppableId )
+    // assign its type to help with fetch 
+    if(this.props.path === "user"){
+      project.type = 'user'
+    }
+    else {
+      project.type = 'team'
+    }
+    // make copy of todos
+    let reorganizedTodos = project.todos.slice()
+    // find the right todo object
+    let movedTodo = reorganizedTodos.find( todo => todo.id === draggableId )
+    // remove the todo that's moving
+    reorganizedTodos.splice(source.index, 1)
+    // put the todo in its new spot
+    reorganizedTodos.splice(destination.index, 0, movedTodo)
+    // need to reassign indeces now
+    reorganizedTodos.forEach( (todo, index) => {
+      todo.display_order = index
+      this.props.reorganizingTodos(todo, project)
+    })
+
+  }
+
   // props are passed down and given "type" attribute here to make dispatched actions easier/more abstract //
 
   render(){
@@ -70,15 +109,17 @@ class BoardShow extends React.Component {
           <div id='board-projects-container'>
             {this.props.board ?
               this.props.board.projects.map( project => (
-                <ProjectContainer
-                  key={`pc-${project.name}${project.id}`}
-                  project={
-                    this.props.path === "user" ?
-                      {...project, type: "user"}
-                      :
-                      {...project, type: "team"}
+                <DragDropContext onDragEnd={this.onDragEnd} key={`dnd-${project.id}`}>
+                  <ProjectContainer
+                    key={`pc-${project.name}${project.id}`}
+                    project={
+                      this.props.path === "user" ?
+                        {...project, type: "user"}
+                        :
+                        {...project, type: "team"}
                     }
-                />
+                  />
+                </DragDropContext>
               ))
               : null
             }
@@ -104,4 +145,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { setBoardForShowPage })(BoardShow)
+export default connect(mapStateToProps, { setBoardForShowPage, reorganizingTodos })(BoardShow)

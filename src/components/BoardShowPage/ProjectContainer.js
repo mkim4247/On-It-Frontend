@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Card, Button, Modal, Header, Form, Icon } from 'semantic-ui-react'
 import { addingNewTodo } from '../../redux/todoActions'
+import { Droppable } from 'react-beautiful-dnd'
 import TodoContainer from './TodoContainer'
 import CommentContainer from './CommentContainer'
 import EditProject from './EditProject'
@@ -62,7 +63,13 @@ class ProjectContainer extends React.Component {
     const { showEdit } = this.state
 
     return(
-      <div className='project-container'>
+      <Droppable droppableId={this.props.project.id}>
+      {(provided) => (
+      <div
+        className='project-container'
+        ref={provided.innerRef}
+        {...provided.droppableProps}
+        >
         <Card fluid>
           <Card.Content>
             <Button
@@ -81,9 +88,10 @@ class ProjectContainer extends React.Component {
 
           <Card.Content >
             <div id='todo-container'>
-              {this.props.project.todos.map( user_todo => (
+              {this.props.project.todos.sort( (a,b) => a.display_order - b.display_order).map( (user_todo, index) => (
                 <TodoContainer
                   key={`todo-${user_todo.id}`}
+                  index={index}
                   todo={user_todo}
                   project={this.props.project}
                 />
@@ -164,8 +172,11 @@ class ProjectContainer extends React.Component {
           :
           null
         }
-
+        {provided.placeholder}
       </div>
+    )}
+    </Droppable>
+
     )
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Card, Modal, Button, Header, Icon } from 'semantic-ui-react'
+import { Draggable } from 'react-beautiful-dnd'
 import { assigningUserTeamTodo, unassigningUserTeamTodo } from '../../redux/todoActions'
 import EditTodo from './EditTodo'
 
@@ -55,7 +56,13 @@ class TodoContainer extends React.Component {
     const { showEdit } = this.state
 
     return(
-      <div>
+      <Draggable draggableId={this.props.todo.id} index={this.props.index}>
+        {provided => (
+      <div
+        {...provided.draggableProps}
+        {...provided.dragHandleProps}
+        ref={provided.innerRef}
+        >
         <Card
           fluid
           onClick={this.openModal}
@@ -170,6 +177,8 @@ class TodoContainer extends React.Component {
         }
 
       </div>
+    )}
+    </Draggable>
     )
   }
 }

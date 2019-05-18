@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Header } from 'semantic-ui-react'
 import Nav from './Nav'
 
@@ -8,7 +8,7 @@ const NotFound = props => {
       <Nav />
       <div className='home'>
         <div className='board-list'>
-          <Header as='h1' textAlign='center' verticalAlign='center'>
+          <Header as='h1' textAlign='center'>
             Sorry, this page does not exist.
           </Header>
         </div>
