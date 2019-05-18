@@ -34,6 +34,10 @@ class Nav extends React.Component {
               name="Boards" />
             : null
           }
+          <Menu.Item
+            as={NavLink}
+            to='/about'
+            name='About' />
           <Menu.Menu position='right'>
             {this.props.user ?
               <Menu.Item

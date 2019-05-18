@@ -10,6 +10,7 @@ import BoardShow from './components/BoardShowPage/BoardShow'
 import TeamShow from './components/TeamShowPage/TeamShow'
 import UserShow from './components/UserShowPage/UserShow'
 import NotFound from './components/NotFound'
+import About from './components/About'
 
 class App extends Component {
   componentDidMount(){
@@ -36,18 +37,21 @@ class App extends Component {
             this.props.user ?
               <Redirect to='/boards' /> : <Create />
           )}/>
-        <Route exact path='/user/:username/boards/:board/:board_id' render={ ownProps => (
+          <Route exact path='/user/:username/boards/:board/:board_id' render={ ownProps => (
             this.props.user ?
               <BoardShow {...ownProps} path="user"/> : <Redirect to='/login'/>
           )}/>
-        <Route exact path='/team/:team/:team_id/boards/:board/:board_id' render={ ownProps => (
-            this.props.user ?
-              <BoardShow {...ownProps} path="team"/> : <Redirect to='/login'/>
+          <Route exact path='/about' render={ () => (
+              <About />
           )}/>
-        <Route path='/team/:team/:team_id' render={ ownProps => (
-            this.props.user ?
-              <TeamShow {...ownProps} /> : <Redirect to='/login'/>
+          <Route exact path='/team/:team/:team_id/boards/:board/:board_id' render={ ownProps => (
+              this.props.user ?
+                <BoardShow {...ownProps} path="team"/> : <Redirect to='/login'/>
             )}/>
+          <Route path='/team/:team/:team_id' render={ ownProps => (
+              this.props.user ?
+                <TeamShow {...ownProps} /> : <Redirect to='/login'/>
+              )}/>
           <Route path='/user/:username' render={ ownProps => (
               this.props.user ?
                 <UserShow {...ownProps} /> : <Redirect to='/login'/>

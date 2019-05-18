@@ -134,3 +134,18 @@
   padding-top: 5vh;
   padding-right: 3vw;
 }
+
+#about {
+  background-image: url('https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');
+  height: 100vh;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+#inner-about {
+  grid-area: personal;
+  overflow: hidden;
+  margin-top: 20px;
+  padding: 5px;
+  overflow: scroll;
+}
