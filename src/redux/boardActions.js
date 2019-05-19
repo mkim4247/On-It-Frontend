@@ -1,5 +1,5 @@
 // const RAILS_API = 'http://localhost:4247/api/v1/'
-const HEROKU_API = 'https://on-it-backend.herokuapp.com/api/v1'
+const HEROKU_API = 'https://on-it-backend.herokuapp.com/api/v1/'
 const HEADERS = { "Content-type": "application/json", "Accept": "application/json" }
 
 /* used for setting board from params */

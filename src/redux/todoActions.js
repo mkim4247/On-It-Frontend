@@ -1,7 +1,7 @@
 import { setUser } from './userActions'
 
 // const RAILS_API = 'http://localhost:4247/api/v1/'
-const HEROKU_API = 'https://on-it-backend.herokuapp.com/api/v1'
+const HEROKU_API = 'https://on-it-backend.herokuapp.com/api/v1/'
 const HEADERS = { "Content-type": "application/json", "Accept": "application/json" }
 
 /* will be getting project that todo belongs to, which has type attr of user or team again */
