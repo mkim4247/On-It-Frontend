@@ -11,6 +11,7 @@ import TeamShow from './components/TeamShowPage/TeamShow'
 import UserShow from './components/UserShowPage/UserShow'
 import NotFound from './components/NotFound'
 import About from './components/About'
+import Login from './components/Login'
 
 class App extends Component {
   componentDidMount(){
@@ -25,13 +26,17 @@ class App extends Component {
     return (
       <div>
         <Switch>
+          <Route exact path='/' render={ ownProps => (
+              this.props.user ?
+              <Home {...ownProps}/> : <Landing />
+            )}/>
           <Route exact path='/boards' render={ ownProps => (
             this.props.user ?
               <Home {...ownProps}/> : <Redirect to='/login' />
           )}/>
           <Route exact path='/login' render={ () => (
             this.props.user ?
-              <Redirect to="/boards" /> : <Landing />
+              <Redirect to="/boards" /> : <Login />
           )}/>
           <Route exact path='/new' render={ () => (
             this.props.user ?
