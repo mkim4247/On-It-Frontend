@@ -7,7 +7,7 @@ const About = () => {
   return(
     <div>
       <Nav />
-      <div className='home' id='about'>
+      <div className='home vh100' id='about'>
         <div id='inner-about'>
           <Segment color='teal' raised padded='very'>
             <Header as='h2' textAlign='center' style={{

@@ -137,6 +137,7 @@ class BoardShow extends React.Component {
         <Nav/>
         <div
           id='board-container'
+          className='vh100'
           style={
             this.props.board ?
               {backgroundImage: `url(${this.props.board.background_image})`}

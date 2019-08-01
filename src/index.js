@@ -5,9 +5,9 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from './redux/reducers'
 import thunk from "redux-thunk"
 import { BrowserRouter } from "react-router-dom"
-
 import './index.css';
 import App from './App';
+import ErrorBoundary from './components/ErrorBoundary'
 import * as serviceWorker from './serviceWorker';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

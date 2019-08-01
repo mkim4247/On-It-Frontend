@@ -28,7 +28,7 @@ class Login extends React.Component {
     return(
       <div>
         <Nav />
-        <div id='login'>
+        <div id='login' className='vh100'>
           <Header as='h1'>
             On It!
           </Header>

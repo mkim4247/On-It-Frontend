@@ -1,8 +1,8 @@
 #login {
-  background-image: url('https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');
-  height: 100vh;
+  /* background-image: url('https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');
   background-size: 100% 100%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
+  background: linear-gradient(rgb(28, 180, 172), 15%, #C9DAEA);
   display: grid;
   grid-template-columns: 37.5% 25% 37.5%;
   grid-template-rows: 25% 50% 25%;
@@ -12,6 +12,21 @@
     ". . .";
   align-items: center;
   text-align: center;
+}
+
+#hero {
+  background: #03F7EB;
+}
+
+#hero-container {
+  position: relative;
+  left: 20px;
+  top: 20px;
+  width: 50%;
+}
+
+#info {
+
 }
 
 #inner-login {
@@ -107,7 +122,6 @@
 #board-container {
   width: 100vw;
   background-size: cover;
-  height: 100vh;
   padding: 3vh;
 }
 
@@ -136,10 +150,10 @@
 }
 
 #about {
-  background-image: url('https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');
-  height: 100vh;
+  /* background-image: url('https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');
   background-size: 100% 100%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
+  background: linear-gradient(rgb(28, 180, 172), 15%, #C9DAEA);
 }
 
 #inner-about {
@@ -149,3 +163,22 @@
   padding: 5px;
   overflow: scroll;
 }
+
+.vh100 {
+  height: 100vh;
+}
+
+/* light sea green (semantic teal)
+#1CB4AC
+
+Columbia Blue
+#C9DAEA
+
+Turquoise Blue
+#03F7EB
+
+Licorice
+#191516
+
+French Wine
+#AB2346 */
