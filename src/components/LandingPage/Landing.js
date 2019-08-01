@@ -6,9 +6,10 @@ import Info from './Info'
 const Landing = () => {
   return(
     <div>
-      <Login />
-      <Hero />
       <Info />
+      <Hero />
+      <Login />
+      
     </div>
   )
 }

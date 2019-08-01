@@ -1,4 +1,4 @@
-// const RAILS_API = 'http://localhost:4247/api/v1/'
+const RAILS_API = 'http://localhost:4247/api/v1/'
 const HEROKU_API = 'https://on-it-backend.herokuapp.com/api/v1/'
 const HEADERS = { "Content-type": "application/json", "Accept": "application/json" }
 
@@ -9,7 +9,7 @@ export const setUser = user => {
 
 export const settingUser = user => {
   return dispatch => {
-    fetch(HEROKU_API + 'login', {
+    fetch(RAILS_API + 'login', {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(user)
@@ -30,7 +30,7 @@ export const settingUser = user => {
 
 export const creatingNewUser = user => {
   return dispatch => {
-    fetch(HEROKU_API + 'users', {
+    fetch(RAILS_API + 'users', {
       method:"POST",
       headers: HEADERS,
       body: JSON.stringify({ user })
@@ -51,7 +51,7 @@ export const creatingNewUser = user => {
 
 export const checkingToken = token => {
   return dispatch => {
-    fetch(HEROKU_API + 'profile', {
+    fetch(RAILS_API + 'profile', {
     method: "GET",
     headers: {
       "Authentication": `Bearer ${token}`
@@ -75,7 +75,7 @@ export const editingUser = user => {
   return (dispatch, getStore) => {
     let currentUser = getStore().user
 
-    fetch(`${HEROKU_API}users/${currentUser.id}`, {
+    fetch(`${RAILS_API}users/${currentUser.id}`, {
       method: "PATCH",
       headers: HEADERS,
       body: JSON.stringify({ user })
@@ -98,7 +98,7 @@ export const deletingUser = () => {
   return (dispatch, getStore) => {
     let user = getStore().user
 
-    fetch(`${HEROKU_API}users/${user.id}`, {
+    fetch(`${RAILS_API}users/${user.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())

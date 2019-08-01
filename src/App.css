@@ -2,7 +2,7 @@
   /* background-image: url('https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');
   background-size: 100% 100%;
   background-repeat: no-repeat; */
-  background: linear-gradient(rgb(28, 180, 172), 15%, #C9DAEA);
+
   display: grid;
   grid-template-columns: 37.5% 25% 37.5%;
   grid-template-rows: 25% 50% 25%;
@@ -15,7 +15,6 @@
 }
 
 #hero {
-  background: #03F7EB;
 }
 
 #hero-container {
@@ -26,7 +25,7 @@
 }
 
 #info {
-
+  background: linear-gradient(rgb(28, 180, 172), 15%, #C9DAEA);
 }
 
 #inner-login {
