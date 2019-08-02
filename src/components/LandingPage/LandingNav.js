@@ -8,7 +8,7 @@ class LandingNav extends React.Component {
   render(){
     return(
       <div>
-        <Menu inverted color={'teal'}>
+        <Menu inverted color={'teal'} size='massive' fixed='top'>
           {this.props.user ?
             <Menu.Item
               as={NavLink}
@@ -27,7 +27,9 @@ class LandingNav extends React.Component {
           <Menu.Item
             as={NavLink}
             to='/about'
-            name='About' />
+            style={{fontFamily: 'Pacifico, cursive'}}>
+            On It!
+          </Menu.Item>
           <Menu.Menu position='right'>
             {this.props.user ?
               <Menu.Item
