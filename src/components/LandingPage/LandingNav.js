@@ -26,7 +26,7 @@ class LandingNav extends React.Component {
           }
           <Menu.Item
             as={NavLink}
-            to='/about'
+            to='/'
             style={{fontFamily: 'Pacifico, cursive'}}>
             On It!
           </Menu.Item>
