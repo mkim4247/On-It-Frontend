@@ -14,9 +14,16 @@
   text-align: center;
 }
 
+#landing-nav {
+  background-color: #1CB4AC;
+  position: sticky;
+  top: 0;
+  height: 30px;
+}
+
 #hero {
   background: linear-gradient(rgb(28, 180, 172), 15%, #C9DAEA);
-  
+
 }
 
 #hero-container {
