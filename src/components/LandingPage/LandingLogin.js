@@ -8,7 +8,7 @@ class LandingLogin extends React.Component {
   render(){
     return(
       <div>
-        <div id='login' className='vh100'>
+        <div id='login'>
           <div id='inner-login'>
             <Form onSubmit={this.handleSubmit} size='small'>
               <Form.Field>
