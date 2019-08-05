@@ -1,4 +1,4 @@
-#login {
+.login {
   /* background-image: url('https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');
   background-size: 100% 100%;
   background-repeat: no-repeat; */
@@ -45,31 +45,31 @@
   padding: 30px;
 }
 
-#inner-login {
+.inner-login {
   grid-area: form;
 }
 
-#inner-login label{
-  color: white;
+.inner-login label{
+  color: white !important;
   text-shadow: 1px 1px 1px black;
   font-size: 120%;
 }
 
-#login h1 {
+.login h1 {
   font-size: 500%;
   grid-area: header;
   color: white;
   text-shadow: 5px 5px 5px black;
 }
 
-#login h2 {
+.login h2 {
   font-size: 200%;
   grid-area: header;
   color: white;
   text-shadow: 5px 5px 5px black;
 }
 
-#login h3 {
+.login h3 {
   font-size: 200%;
   color: white;
   text-shadow: 5px 5px 5px black;

@@ -28,12 +28,12 @@ class Login extends React.Component {
     return(
       <div>
         <LandingNav />
-        <div id='login' className='vh100'>
+        <div className='login' className='vh100'>
           {/* <Header as='h1'>
             On It!
           </Header>
           */}
-          <div id='inner-login'>
+          <div className='inner-login'>
             <Form onSubmit={this.handleSubmit} size='small'>
               <Form.Field>
                 <label htmlFor='username'> USERNAME </label>

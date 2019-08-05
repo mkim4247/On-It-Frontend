@@ -1,5 +1,6 @@
 import React from 'react'
-import { Header, Button, Segment } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
+import { Header, Button } from 'semantic-ui-react'
 
 class Hero extends React.Component {
 
@@ -15,10 +16,14 @@ class Hero extends React.Component {
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </div>
 
-          <Button
-            color='teal'>
-            click
-          </Button>
+          <NavLink
+            to='/new'>
+            <Button
+              fluid
+              color='teal'>
+              Sign up
+            </Button>
+          </NavLink>
         </div>
       </div>
     )
