@@ -5,10 +5,26 @@ import { Button, Form, Header } from 'semantic-ui-react'
 import { settingUser } from '../../redux/userActions'
 
 class LandingLogin extends React.Component {
+  state = {
+    username: "",
+    password: ""
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.currentTarget.name]: event.currentTarget.value
+    })
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    this.props.settingUser(this.state)
+  }
+
   render(){
     return(
       <div>
-        <div id='login'>
+        <div id='login' className='vh100'>
           <div id='inner-login'>
             <Form onSubmit={this.handleSubmit} size='small'>
               <Form.Field>
@@ -38,4 +54,5 @@ class LandingLogin extends React.Component {
     )
   }
 }
-export default LandingLogin
+
+export default connect(null, {settingUser})(LandingLogin)

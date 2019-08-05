@@ -3,7 +3,7 @@ import React from "react"
 class Extra extends React.Component {
   render(){
     return(
-      <div>
+      <div className='vh100'>
       extra
       </div>
     )
