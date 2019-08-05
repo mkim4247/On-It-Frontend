@@ -6,10 +6,6 @@ import { setUser } from '../redux/userActions'
 
 class Nav extends React.Component {
 
-  state = {
-    visible: false
-  }
-
   logout = () => {
     this.props.setUser(null)
     localStorage.clear()
@@ -53,24 +49,6 @@ class Nav extends React.Component {
             }
           </Menu.Menu>
         </Menu>
-
-        <div
-          id='nav-menu'
-          style={
-            this.state.visible ?
-          {
-            display: "block",
-            position: "fixed",
-            right: 0,
-            backgroundColor: "grey",
-            padding: '100px',
-            zIndex: 1
-          }
-          :
-          { display: "none" }
-        }>
-        Nav Menu
-        </div>
       </div>
     )
   }
