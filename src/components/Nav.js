@@ -18,7 +18,7 @@ class Nav extends React.Component {
   render(){
     return(
       <div>
-        <Menu inverted color={'teal'}>
+        <Menu style={{fontFamily: 'Pacifico, cursive'}} inverted color={'teal'} size='massive' >
           {this.props.user ?
             <Menu.Item
               as={NavLink}

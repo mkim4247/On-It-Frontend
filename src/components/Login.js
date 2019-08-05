@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Button, Form, Header } from 'semantic-ui-react'
 import { settingUser } from '../redux/userActions'
-import Nav from './Nav'
+import LandingNav from './LandingPage/LandingNav'
 
 class Login extends React.Component {
 
@@ -27,11 +27,12 @@ class Login extends React.Component {
   render(){
     return(
       <div>
-        <Nav />
+        <LandingNav />
         <div id='login' className='vh100'>
-          <Header as='h1'>
+          {/* <Header as='h1'>
             On It!
           </Header>
+          */}
           <div id='inner-login'>
             <Form onSubmit={this.handleSubmit} size='small'>
               <Form.Field>

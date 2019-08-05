@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { creatingNewUser } from '../redux/userActions'
 import { Form, Button, Header } from 'semantic-ui-react'
-import Nav from './Nav'
+import LandingNav from './LandingPage/LandingNav'
 
 class Create extends React.Component {
 
@@ -28,7 +28,7 @@ class Create extends React.Component {
   render(){
     return(
       <div>
-        <Nav />
+        <LandingNav />
         <div id='login'>
           <Header as='h2'>
             CREATE ACCOUNT
