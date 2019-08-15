@@ -7,7 +7,7 @@ class LandingNav extends React.Component {
 
   render(){
     return(
-      <div>
+      <div style={{position: "sticky", top: "0", zIndex: "1"}}>
         <Menu style={{fontFamily: 'Pacifico, cursive'}} inverted color={'teal'} size='massive'>
           {this.props.user ?
             <Menu.Item
