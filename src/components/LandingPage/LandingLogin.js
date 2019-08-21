@@ -24,15 +24,15 @@ class LandingLogin extends React.Component {
   render(){
     return(
       <div>
-        <div className='login'>
-          <div className='inner-login'>
+        <div className='container'>
+          <div className='row'>
             <Form onSubmit={this.handleSubmit} size='small'>
               <Form.Field>
-                <label htmlFor='username'> USERNAME </label>
+                <label htmlFor='username'> Username </label>
                 <Form.Input type='text' name='username' placeholder='Username' onChange={this.handleChange}/>
-                <label htmlFor='password'> PASSWORD </label>
+                <label htmlFor='password'> Password </label>
                 <Form.Input type='password' name='password' placeholder='Password' onChange={this.handleChange}/>
-                <Button fluid color='teal' onClick={this.handleSubmit}> LOGIN </Button>
+                <Button fluid color='teal' onClick={this.handleSubmit}> Log In </Button>
               </Form.Field>
             </Form>
             <Header sub style={{fontSize: '150%', color: 'white', textShadow: "1px 1px 1px black"}}>
