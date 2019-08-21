@@ -23,9 +23,9 @@ class LandingLogin extends React.Component {
 
   render(){
     return(
-      <div>
         <div className='container'>
           <div className='row'>
+          <h1> Log in to On It! </h1>
             <Form onSubmit={this.handleSubmit} size='small'>
               <Form.Field>
                 <label htmlFor='username'> Username </label>
@@ -50,7 +50,6 @@ class LandingLogin extends React.Component {
             </div>
           </div>
         </div>
-      </div>
     )
   }
 }
