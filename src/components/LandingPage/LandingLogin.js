@@ -34,16 +34,14 @@ class LandingLogin extends React.Component {
                   <Form.Input type='text' name='username' placeholder='Username' onChange={this.handleChange}/>
                   <label htmlFor='password'> Password </label>
                   <Form.Input type='password' name='password' placeholder='Password' onChange={this.handleChange}/>
-                  <Button fluid color='teal' onClick={this.handleSubmit}> Log In </Button>
+                  <Button fluid onClick={this.handleSubmit}> Log In </Button>
                 </Form.Field>
               </Form>
 
                 <NavLink
                   to='/new'>
-                  <Button
-                    fluid
-                    color='teal'>
-                    Create Account 
+                  <Button>
+                    Create Account
                   </Button>
                 </NavLink>
 

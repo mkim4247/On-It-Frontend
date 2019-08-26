@@ -48,10 +48,25 @@
   padding-right: 15px;
 }
 
+.login-container label {
+  color: white !important;
+}
+
+.login-container button {
+  background-color: white !important;
+  color: black !important;
+}
+
+.login-container button:hover {
+  background-color: #1CB4AC !important;
+}
+
 .row h1 {
-  font-size: 2em;
+  font-size: 3em;
+  text-align: center;
   line-height: 1.2;
   margin-bottom: 0.5rem;
+  color: white;
 }
 
 #landing-nav {
