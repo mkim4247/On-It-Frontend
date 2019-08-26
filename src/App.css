@@ -16,8 +16,8 @@
   height: 600px;
 }
 
-.nav-container a:active{
-  background-color: #1CB4AC;
+.ui.inverted.teal.menu .active.item {
+  background-color: rgb(28, 180, 172) !important;
 }
 
 .container {

@@ -43,7 +43,7 @@ class LandingLogin extends React.Component {
                   <Button
                     fluid
                     color='teal'>
-                    CREATE ACCOUNT
+                    Create Account 
                   </Button>
                 </NavLink>
 
