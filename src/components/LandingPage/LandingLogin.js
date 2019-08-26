@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Button, Form, Header } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 import { settingUser } from '../../redux/userActions'
 
 class LandingLogin extends React.Component {
@@ -23,10 +23,11 @@ class LandingLogin extends React.Component {
 
   render(){
     return(
-        <div className='container'>
+        <section className='container'>
           <div className='row'>
             <div className='login-container'>
               <h1> Log in to On It! </h1>
+
               <Form onSubmit={this.handleSubmit} size='small'>
                 <Form.Field>
                   <label htmlFor='username'> Username </label>
@@ -36,10 +37,7 @@ class LandingLogin extends React.Component {
                   <Button fluid color='teal' onClick={this.handleSubmit}> Log In </Button>
                 </Form.Field>
               </Form>
-              <Header sub style={{fontSize: '150%', color: 'white', textShadow: "1px 1px 1px black"}}>
-                OR
-              </Header>
-              <div style={{padding: '10px'}}>
+
                 <NavLink
                   to='/new'>
                   <Button
@@ -48,10 +46,10 @@ class LandingLogin extends React.Component {
                     CREATE ACCOUNT
                   </Button>
                 </NavLink>
-              </div>
+
             </div>
           </div>
-        </div>
+        </section>
     )
   }
 }
