@@ -7,8 +7,8 @@ class LandingNav extends React.Component {
 
   render(){
     return(
-      <div style={{position: "sticky", top: "0", zIndex: "1"}}>
-        <Menu style={{fontFamily: 'Pacifico, cursive'}} inverted color={'teal'} size='massive'>
+      <div className='nav-container' style={{position: "sticky", top: "0", zIndex: "1"}}>
+        <Menu style={{fontFamily: 'Pacifico, cursive'}} inverted borderless color={'teal'} size='massive'>
           {this.props.user ?
             <Menu.Item
               as={NavLink}

@@ -25,28 +25,30 @@ class LandingLogin extends React.Component {
     return(
         <div className='container'>
           <div className='row'>
-          <h1> Log in to On It! </h1>
-            <Form onSubmit={this.handleSubmit} size='small'>
-              <Form.Field>
-                <label htmlFor='username'> Username </label>
-                <Form.Input type='text' name='username' placeholder='Username' onChange={this.handleChange}/>
-                <label htmlFor='password'> Password </label>
-                <Form.Input type='password' name='password' placeholder='Password' onChange={this.handleChange}/>
-                <Button fluid color='teal' onClick={this.handleSubmit}> Log In </Button>
-              </Form.Field>
-            </Form>
-            <Header sub style={{fontSize: '150%', color: 'white', textShadow: "1px 1px 1px black"}}>
-              OR
-            </Header>
-            <div style={{padding: '10px'}}>
-              <NavLink
-                to='/new'>
-                <Button
-                  fluid
-                  color='teal'>
-                  CREATE ACCOUNT
-                </Button>
-              </NavLink>
+            <div className='login-container'>
+              <h1> Log in to On It! </h1>
+              <Form onSubmit={this.handleSubmit} size='small'>
+                <Form.Field>
+                  <label htmlFor='username'> Username </label>
+                  <Form.Input type='text' name='username' placeholder='Username' onChange={this.handleChange}/>
+                  <label htmlFor='password'> Password </label>
+                  <Form.Input type='password' name='password' placeholder='Password' onChange={this.handleChange}/>
+                  <Button fluid color='teal' onClick={this.handleSubmit}> Log In </Button>
+                </Form.Field>
+              </Form>
+              <Header sub style={{fontSize: '150%', color: 'white', textShadow: "1px 1px 1px black"}}>
+                OR
+              </Header>
+              <div style={{padding: '10px'}}>
+                <NavLink
+                  to='/new'>
+                  <Button
+                    fluid
+                    color='teal'>
+                    CREATE ACCOUNT
+                  </Button>
+                </NavLink>
+              </div>
             </div>
           </div>
         </div>

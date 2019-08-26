@@ -16,6 +16,10 @@
   height: 600px;
 }
 
+.nav-container a:active{
+  background-color: #1CB4AC;
+}
+
 .container {
   background: linear-gradient(rgb(28, 180, 172), 15%, #C9DAEA);
   width: 100%;
@@ -35,6 +39,13 @@
   padding-bottom: 5rem !important;
   padding-top: 5rem !important;
   padding: 5rem;
+}
+
+.login-container {
+  position: relative;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .row h1 {
