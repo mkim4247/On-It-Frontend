@@ -2,7 +2,7 @@ import React from 'react'
 import { Header } from 'semantic-ui-react'
 import Nav from './Nav'
 
-const NotFound = props => {
+const NotFound = () => {
   return (
     <div>
       <Nav />

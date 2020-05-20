@@ -4,54 +4,55 @@ import { NavLink } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
 import { setUser } from '../redux/userActions'
 
-class Nav extends React.Component {
-
-  logout = () => {
-    this.props.setUser(null)
+const Nav = props => {
+  const logout = () => {
+    props.setUser(null)
     localStorage.clear()
   }
 
-  render(){
-    return(
-      <div>
-        <Menu style={{fontFamily: 'Pacifico, cursive'}} inverted color={'teal'} size='massive' >
-          {this.props.user ?
-            <Menu.Item
-              as={NavLink}
-              to={`/user/${this.props.user.username}`}>
-                {this.props.user.first_name[0] + this.props.user.last_name[0]}
-            </Menu.Item>
-            : null
-          }
-          {this.props.user ?
-            <Menu.Item
-              as={NavLink}
-              to='/boards'
-              name="Boards" />
-            : null
-          }
+  return(
+    <div>
+      <Menu
+        style={{fontFamily: 'Pacifico, cursive'}}
+        inverted
+        color={'teal'}
+        size='massive' >
+        {props.user ?
           <Menu.Item
             as={NavLink}
-            to='/about'
-            name='About' />
-          <Menu.Menu position='right'>
-            {this.props.user ?
-              <Menu.Item
-                as={NavLink}
-                name="Logout"
-                to='/login'
-                onClick={this.logout} />
-              :
-              <Menu.Item
-                name="Login"
-                as={NavLink}
-                to='/login'/>
-            }
-          </Menu.Menu>
-        </Menu>
-      </div>
-    )
-  }
+            to={`/user/${props.user.username}`}>
+              {props.user.first_name[0] + props.user.last_name[0]}
+          </Menu.Item>
+          : null
+        }
+        {props.user ?
+          <Menu.Item
+            as={NavLink}
+            to='/boards'
+            name="Boards" />
+          : null
+        }
+        <Menu.Item
+          as={NavLink}
+          to='/about'
+          name='About' />
+        <Menu.Menu position='right'>
+          {props.user ?
+            <Menu.Item
+              as={NavLink}
+              name="Logout"
+              to='/login'
+              onClick={this.logout} />
+            :
+            <Menu.Item
+              name="Login"
+              as={NavLink}
+              to='/login'/>
+          }
+        </Menu.Menu>
+      </Menu>
+    </div>
+  )
 }
 
 const mapStateToProps = state => {

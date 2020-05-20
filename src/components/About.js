@@ -3,7 +3,6 @@ import { Header, Segment, Container } from 'semantic-ui-react'
 import Nav from './Nav'
 
 const About = () => {
-
   return(
     <div>
       <Nav />
