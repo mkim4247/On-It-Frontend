@@ -1,13 +1,11 @@
 import React from "react"
 
-class Extra extends React.Component {
-  render(){
-    return(
-      <div className='vh100'>
+class Extra = () => {
+  return(
+    <div className='vh100'>
       extra
-      </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default Extra
