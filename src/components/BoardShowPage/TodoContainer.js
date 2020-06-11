@@ -4,6 +4,7 @@ import { Card, Modal, Button, Header, Icon } from 'semantic-ui-react'
 import { Draggable } from 'react-beautiful-dnd'
 import { assigningUserTeamTodo, unassigningUserTeamTodo } from '../../redux/todoActions'
 import EditTodo from './EditTodo'
+import PropTypes from 'prop-types';
 
 class TodoContainer extends React.Component {
 

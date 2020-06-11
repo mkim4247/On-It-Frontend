@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Header } from 'semantic-ui-react'
 import BoardsList from './BoardsList'
+import PropTypes from 'prop-types';
 
 const TeamContainer = props => {
   return(

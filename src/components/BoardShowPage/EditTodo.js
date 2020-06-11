@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { editingTodo, deletingTodo } from '../../redux/todoActions'
 import { Header, Form, Button, Card, Modal } from 'semantic-ui-react'
+import PropTypes from 'prop-types';
 
 class EditTodo extends React.Component {
 

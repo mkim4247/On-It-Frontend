@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Modal, Form, Button, Header } from 'semantic-ui-react'
 import { addingNewBoard } from '../../redux/boardActions'
+import PropTypes from 'prop-types';
 
 class EmptyBoardCard extends React.Component {
 

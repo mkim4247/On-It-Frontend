@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Header } from 'semantic-ui-react'
+import PropTypes from 'prop-types';
 
 const BoardCard = props => {
   return(

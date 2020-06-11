@@ -3,6 +3,7 @@ import { Header, Card } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import BoardCard from './BoardCard'
 import EmptyBoardCard from './EmptyBoardCard'
+import PropTypes from 'prop-types';
 
 const BoardsList = props => {
   return(
