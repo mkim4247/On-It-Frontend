@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { Menu, Button } from 'semantic-ui-react'
 import { leavingTeam } from '../../redux/teamActions'
 import InviteForm from '../InviteForm'
+import PropTypes from 'prop-types';
 
 class MembersList extends React.Component {
 

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Form, Button, Header, Segment } from 'semantic-ui-react'
 import { editingUser } from '../../redux/userActions'
+import PropTypes from 'prop-types';
 
 class EditTeam extends React.Component {
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
+import PropTypes from 'prop-types';
 
 const LandingNav = props => {
   return(

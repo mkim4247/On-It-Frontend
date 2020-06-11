@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Menu, Modal, Form, Button } from 'semantic-ui-react'
 import { addingNewTeam } from '../redux/teamActions'
+import PropTypes from 'prop-types';
 
 class Sidebar extends React.Component {
 

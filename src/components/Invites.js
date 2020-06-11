@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Card, Menu, Modal, Button } from 'semantic-ui-react'
 import { acceptingTeamInvite, deletingTeamInvite } from '../redux/teamActions'
+import PropTypes from 'prop-types';
 
 class Invites extends React.Component {
 

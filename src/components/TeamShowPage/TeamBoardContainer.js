@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Header, Item, Segment, Button } from 'semantic-ui-react'
 import AddBoard from './AddBoard'
 import TeamBoardCard from './TeamBoardCard'
+import PropTypes from 'prop-types';
 
 const TeamBoardContainer = props => {
   return(

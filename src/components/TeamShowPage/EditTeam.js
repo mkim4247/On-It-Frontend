@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Form, Button, Header, Segment } from 'semantic-ui-react'
 import { editingTeam } from '../../redux/teamActions'
+import PropTypes from 'prop-types';
 
 class EditTeam extends React.Component {
 

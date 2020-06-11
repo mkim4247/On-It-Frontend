@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
 import { setUser } from '../redux/userActions'
+import PropTypes from 'prop-types';
 
 const Nav = props => {
   const logout = () => {

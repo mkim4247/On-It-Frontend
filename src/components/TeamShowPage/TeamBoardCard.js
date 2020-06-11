@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Item } from 'semantic-ui-react'
+import PropTypes from 'prop-types';
 
 const TeamBoardCard = props => {
   return(

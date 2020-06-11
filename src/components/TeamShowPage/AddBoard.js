@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Button, Modal, Form } from 'semantic-ui-react'
 import { addingNewBoard } from '../../redux/boardActions'
+import PropTypes from 'prop-types';
 
 class AddBoard extends React.Component {
 

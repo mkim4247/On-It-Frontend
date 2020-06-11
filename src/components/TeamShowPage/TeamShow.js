@@ -9,6 +9,7 @@ import EditTeam from './EditTeam'
 import Nav from '../Nav'
 import Sidebar from '../SideBar'
 import MembersList from './MembersList'
+import PropTypes from 'prop-types';
 
 class TeamShow extends React.Component {
 

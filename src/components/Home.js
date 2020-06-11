@@ -5,6 +5,7 @@ import Sidebar from './SideBar'
 import BoardsList from './BoardsIndexPage/BoardsList'
 import TeamContainer from './BoardsIndexPage/TeamContainer'
 import Invites from './Invites'
+import PropTypes from 'prop-types';
 
 const Home = props => {
   return (

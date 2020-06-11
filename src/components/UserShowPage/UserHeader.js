@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { Header, Icon } from 'semantic-ui-react'
+import PropTypes from 'prop-types';
 
 const UserHeader = props => {
   return(

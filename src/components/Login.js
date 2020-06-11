@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { Button, Form, Header } from 'semantic-ui-react'
 import { settingUser } from '../redux/userActions'
 import LandingNav from './LandingPage/LandingNav'
+import PropTypes from 'prop-types';
 
 class Login extends React.Component {
 

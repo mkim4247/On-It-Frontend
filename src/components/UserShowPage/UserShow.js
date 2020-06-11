@@ -8,6 +8,7 @@ import Invites from '../Invites'
 import EditUser from './EditUser'
 import Nav from '../Nav'
 import Sidebar from '../SideBar'
+import PropTypes from 'prop-types';
 
 class UserShow extends React.Component {
 

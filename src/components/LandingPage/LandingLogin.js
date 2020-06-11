@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Button, Form } from 'semantic-ui-react'
 import { settingUser } from '../../redux/userActions'
+import PropTypes from 'prop-types';
 
 class LandingLogin extends React.Component {
   state = {

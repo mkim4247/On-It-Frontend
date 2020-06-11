@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { creatingNewUser } from '../redux/userActions'
 import { Form, Button, Header } from 'semantic-ui-react'
 import LandingNav from './LandingPage/LandingNav'
+import PropTypes from 'prop-types';
 
 class Create extends React.Component {
 
