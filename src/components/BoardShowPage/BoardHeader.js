@@ -5,6 +5,7 @@ import { Header, Card, Button, Modal, Menu, Popup, Icon } from 'semantic-ui-reac
 import { deletingBoard } from '../../redux/boardActions'
 import InviteForm from '../InviteForm'
 import EditBoard from './EditBoard'
+import PropTypes from 'prop-types';
 
 class BoardHeader extends React.Component {
 

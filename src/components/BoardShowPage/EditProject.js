@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Header, Form, Button, Card, Modal } from 'semantic-ui-react'
 import { editingProject, deletingProject } from '../../redux/projectActions'
+import PropTypes from 'prop-types';
 
 class EditProject extends React.Component {
 

@@ -7,6 +7,7 @@ import Nav from '../Nav'
 import BoardHeader from './BoardHeader'
 import ProjectContainer from './ProjectContainer'
 import EmptyProjectCard from './EmptyProjectCard'
+import PropTypes from 'prop-types';
 
 class BoardShow extends React.Component {
 

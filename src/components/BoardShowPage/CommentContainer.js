@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Card, Comment, Header, Form, Modal, Button } from 'semantic-ui-react'
 import { deletingComment, postingNewComment } from '../../redux/commentActions'
+import PropTypes from 'prop-types';
 
 class CommentContainer extends React.Component {
 
