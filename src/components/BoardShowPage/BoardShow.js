@@ -198,3 +198,12 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default connect(mapStateToProps, { setBoardForShowPage, reorganizingTodos, reorganizingUserBoard, reorganizingTeamBoard })(BoardShow)
+
+CalendarContainer.defaultProps = {
+  reservations: [{start: '', end:'', title: ''}]
+}
+
+CalendarContainer.propTypes = {
+  reservations: PropTypes.array,
+  selectingTimeSlot: PropTypes.func
+}
