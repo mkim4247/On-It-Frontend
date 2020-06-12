@@ -107,3 +107,12 @@ class AddBoard extends React.Component {
 }
 
 export default connect (null, { addingNewBoard })(AddBoard)
+
+CalendarContainer.defaultProps = {
+  reservations: [{start: '', end:'', title: ''}]
+}
+
+CalendarContainer.propTypes = {
+  reservations: PropTypes.array,
+  selectingTimeSlot: PropTypes.func
+}

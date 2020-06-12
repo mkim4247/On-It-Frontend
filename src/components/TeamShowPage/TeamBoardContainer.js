@@ -43,3 +43,12 @@ const TeamBoardContainer = props => {
 }
 
 export default TeamBoardContainer
+
+CalendarContainer.defaultProps = {
+  reservations: [{start: '', end:'', title: ''}]
+}
+
+CalendarContainer.propTypes = {
+  reservations: PropTypes.array,
+  selectingTimeSlot: PropTypes.func
+}
