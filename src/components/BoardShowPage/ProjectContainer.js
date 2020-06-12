@@ -187,3 +187,12 @@ class ProjectContainer extends React.Component {
 
 
 export default connect(null, { addingNewTodo })(ProjectContainer)
+
+CalendarContainer.defaultProps = {
+  reservations: [{start: '', end:'', title: ''}]
+}
+
+CalendarContainer.propTypes = {
+  reservations: PropTypes.array,
+  selectingTimeSlot: PropTypes.func
+}

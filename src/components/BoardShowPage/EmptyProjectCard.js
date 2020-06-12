@@ -104,3 +104,13 @@ class EmptyProjectCard extends React.Component {
 }
 
 export default connect(null, {addingNewProject})(EmptyProjectCard)
+
+
+CalendarContainer.defaultProps = {
+  reservations: [{start: '', end:'', title: ''}]
+}
+
+CalendarContainer.propTypes = {
+  reservations: PropTypes.array,
+  selectingTimeSlot: PropTypes.func
+}

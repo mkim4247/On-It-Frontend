@@ -193,3 +193,13 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { assigningUserTeamTodo, unassigningUserTeamTodo })(TodoContainer)
+
+
+CalendarContainer.defaultProps = {
+  reservations: [{start: '', end:'', title: ''}]
+}
+
+CalendarContainer.propTypes = {
+  reservations: PropTypes.array,
+  selectingTimeSlot: PropTypes.func
+}
