@@ -122,3 +122,12 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { acceptingTeamInvite, deletingTeamInvite })(Invites)
+
+CalendarContainer.defaultProps = {
+  reservations: [{start: '', end:'', title: ''}]
+}
+
+CalendarContainer.propTypes = {
+  reservations: PropTypes.array,
+  selectingTimeSlot: PropTypes.func
+}

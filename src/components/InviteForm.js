@@ -50,3 +50,12 @@ class InviteForm extends React.Component {
 }
 
 export default connect(null, { invitingToTeam })(InviteForm)
+
+CalendarContainer.defaultProps = {
+  reservations: [{start: '', end:'', title: ''}]
+}
+
+CalendarContainer.propTypes = {
+  reservations: PropTypes.array,
+  selectingTimeSlot: PropTypes.func
+}
