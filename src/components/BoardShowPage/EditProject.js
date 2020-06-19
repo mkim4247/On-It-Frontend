@@ -98,11 +98,11 @@ class EditProject extends React.Component {
 export default connect(null, { editingProject, deletingProject })(EditProject)
 
 
-CalendarContainer.defaultProps = {
+EditProject.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+EditProject.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }

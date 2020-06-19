@@ -142,11 +142,11 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, { deletingComment, postingNewComment })(CommentContainer)
 
 
-CalendarContainer.defaultProps = {
+CommentContainer.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+CommentContainer.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }

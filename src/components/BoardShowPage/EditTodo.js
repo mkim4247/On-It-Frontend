@@ -104,11 +104,11 @@ class EditTodo extends React.Component {
 export default connect(null, { editingTodo, deletingTodo })(EditTodo)
 
 
-CalendarContainer.defaultProps = {
+EditTodo.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+EditTodo.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }

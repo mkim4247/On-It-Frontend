@@ -83,11 +83,11 @@ class EditBoard extends React.Component {
 
 export default connect(null, { editingBoard })(EditBoard)
 
-CalendarContainer.defaultProps = {
+EditBoard.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+EditBoard.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }
