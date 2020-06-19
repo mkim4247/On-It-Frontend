@@ -18,11 +18,11 @@ const UserHeader = props => {
 
 export default UserHeader
 
-CalendarContainer.defaultProps = {
+UserHeader.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+UserHeader.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }

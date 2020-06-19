@@ -65,11 +65,11 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { deletingUser })(UserShow)
 
-CalendarContainer.defaultProps = {
+UserShow.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+UserShow.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }

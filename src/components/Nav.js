@@ -64,11 +64,11 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, { setUser })(Nav)
 
-CalendarContainer.defaultProps = {
+Nav.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+Nav.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }
