@@ -37,11 +37,11 @@ const BoardCard = props => {
 export default BoardCard
 
 
-CalendarContainer.defaultProps = {
+BoardCard.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+BoardCard.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }

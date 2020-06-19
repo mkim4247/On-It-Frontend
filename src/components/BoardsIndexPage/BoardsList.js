@@ -45,11 +45,11 @@ const BoardsList = props => {
 export default BoardsList
 
 
-CalendarContainer.defaultProps = {
+BoardsList.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+BoardsList.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }

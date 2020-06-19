@@ -117,11 +117,11 @@ class EmptyBoardCard extends React.Component {
 export default connect(null, { addingNewBoard })(EmptyBoardCard)
 
 
-CalendarContainer.defaultProps = {
+EmptyBoardCard.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+EmptyBoardCard.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }
