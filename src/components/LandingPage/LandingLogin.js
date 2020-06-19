@@ -56,11 +56,11 @@ class LandingLogin extends React.Component {
 export default connect(null, {settingUser})(LandingLogin)
 
 
-CalendarContainer.defaultProps = {
+LandingLogin.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+LandingLogin.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }

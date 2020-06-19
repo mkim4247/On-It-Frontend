@@ -21,11 +21,11 @@ const TeamHeader = props => {
 
 export default TeamHeader
 
-CalendarContainer.defaultProps = {
+TeamHeader.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+TeamHeader.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }

@@ -76,11 +76,11 @@ class EditTeam extends React.Component {
 
 export default connect(null, { editingTeam })(EditTeam)
 
-CalendarContainer.defaultProps = {
+EditTeam.defaultProps = {
   reservations: [{start: '', end:'', title: ''}]
 }
 
-CalendarContainer.propTypes = {
+EditTeam.propTypes = {
   reservations: PropTypes.array,
   selectingTimeSlot: PropTypes.func
 }
