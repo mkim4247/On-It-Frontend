@@ -1,6 +1,6 @@
 import React from "react"
 
-class Extra = () => {
+const Extra = () => {
   return(
     <div className='vh100'>
       extra

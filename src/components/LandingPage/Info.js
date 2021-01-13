@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Info extends React.Component {
+const Info = () => {
   return(
     <div id='info'>
       <div className='info-inner'>

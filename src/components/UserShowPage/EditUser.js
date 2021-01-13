@@ -120,11 +120,11 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, { editingUser })(EditTeam)
 
-EditUser.defaultProps = {
-  reservations: [{start: '', end:'', title: ''}]
-}
+// EditUser.defaultProps = {
+//   reservations: [{start: '', end:'', title: ''}]
+// }
 
-EditUser.propTypes = {
-  reservations: PropTypes.array,
-  selectingTimeSlot: PropTypes.func
-}
+// EditUser.propTypes = {
+//   reservations: PropTypes.array,
+//   selectingTimeSlot: PropTypes.func
+// }
